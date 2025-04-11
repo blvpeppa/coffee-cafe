@@ -3,14 +3,10 @@ import Logo from "../../assets/website/coffee_logo.png";
 import { FaCoffee } from "react-icons/fa";
 
 const Menu = [
-  {
-    id: 1,
-    name: "Home",
-    link: "/#",
-  },
+
   {
     id: 2,
-    name: "Services",
+    name: "Services & Products",
     link: "/#services",
   },
   {
@@ -28,11 +24,11 @@ const Navbar = () => {
             {/* Logo section */}
             <div data-aos="fade-down" data-aos-once="true">
               <a
-                href="#"
+                href="/"
                 className="font-bold text-2xl sm:text-3xl flex justify-center items-center gap-2 tracking-wider font-cursive"
               >
                 <img src={Logo} alt="Logo" className="w-14" />
-                Coffee Cafe
+                KRC
               </a>
             </div>
 
@@ -56,7 +52,7 @@ const Navbar = () => {
                 ))}
               </ul>
               <button className=" bg-primary/70 hover:scale-105 duration-200 text-white px-4 py-2 rounded-full flex items-center gap-3">
-                Order
+                Join
                 <FaCoffee className="text-xl text-white drop-shadow-sm cursor-pointer" />
               </button>
             </div>

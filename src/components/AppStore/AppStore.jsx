@@ -24,7 +24,7 @@ const AppStore = () => {
             >
               {/* text section */}
               <h1 className="text-2xl text-center sm:text-left sm:text-4xl font-semibold text-white/90 pl-3">
-                Coffee Cafe is available for Android and IOS
+                 Kigalirabbits available on 
               </h1>
               {/* img section */}
               <div className="flex flex-wrap justify-center sm:justify-start items-center">
