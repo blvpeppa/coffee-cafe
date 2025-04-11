@@ -1,7 +1,8 @@
 import React from "react";
 import HeroPng from "../../assets/coffee2.png";
-const Menu = [
+import BgImage from "../../assets/bg_1.jpg";
 
+const Menu = [
   {
     id: 2,
     name: "Services & Products",
@@ -13,44 +14,49 @@ const Menu = [
     link: "/#about",
   },
 ];
+
 const Hero = () => {
   return (
     <>
-      <div className="min-h-[550px] sm:min-h-[600px] bg-brandDark flex justify-center items-center text-white">
-        <div className="container pb-8 sm:pb-0">
-          <div className="grid grid-cols-1 sm:grid-cols-2">
-            {/* text content section */}
-            <div className="flex flex-col justify-center gap-6 pt-12 sm:pt-0 text-center sm:text-left order-2 sm:order-1">
-              <h1
-                data-aos="fade-up"
-                data-aos-once="true"
-                className="text-5xl sm:text-6xl lg:text-7xl font-bold"
-              >
-                Kigali{" "}
-                <span
-                  data-aos="zoom-out"
-                  data-aos-delay="300"
-                  class="bg-clip-text text-transparent bg-gradient-to-b from-primary to-primary/90 font-cursive"
-                >
-                  Rabbit
-                </span>{" "}
-                Center
+      <div
+        className="relative w-full bg-cover bg-no-repeat bg-center lg:h-screen flex items-center justify-center"
+        style={{ backgroundImage: `url(${BgImage})` }}
+      >
+        {/* Transparent overlay */}
+        <div className="absolute inset-0 bg-black bg-opacity-50 z-10"></div>
+
+        {/* Content goes here */}
+        <section className="relative z-20 w-full">
+          <div className="mx-auto w-screen max-w-screen-xl px-4 py-16 sm:px-6 sm:py-24 lg:px-8 lg:py-32">
+            <div className="max-w-prose text-left">
+              <h1 className="text-4xl font-bold text-white sm:text-5xl">
+                RABBIT<span className="text-green-600">GENETIC</span> CENTER
               </h1>
-              <div data-aos="fade-up" data-aos-delay="400">
-                <button className="bg-gradient-to-r from-primary to-secondary border-2 border-primary hover:scale-105 duration-200 text-white py-2 px-4 rounded-full">
-                <a href="/About">Learn more</a> 
-                </button>
+              <div className="mt-4 flex gap-4 sm:mt-6">
+                <a
+                  className="inline-flex items-center gap-2 rounded-sm border border-white px-8 py-3 text-white hover:bg-indigo-50 hover:text-green-700 focus:ring-3 focus:outline-hidden"
+                  href="#"
+                >
+                  <span className="text-sm font-medium">Learn More</span>
+                  <svg
+                    className="size-5 shadow-sm rtl:rotate-180"
+                    xmlns="http://www.w3.org/2000/svg"
+                    fill="none"
+                    viewBox="0 0 24 24"
+                    stroke="currentColor"
+                  >
+                    <path
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                      strokeWidth="2"
+                      d="M17 8l4 4m0 0l-4 4m4-4H3"
+                    />
+                  </svg>
+                </a>
               </div>
             </div>
-            {/* Image section */}
-            <div
-              data-aos="zoom-in"
-              data-aos-duration="300"
-              className="min-h-[450px] flex justify-center items-center relative order-1 sm:order-2 "
-            >
-            </div>
           </div>
-        </div>
+        </section>
       </div>
     </>
   );
