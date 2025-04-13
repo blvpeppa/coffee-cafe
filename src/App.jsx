@@ -7,7 +7,12 @@ import AppStore from "./components/AppStore/AppStore.jsx";
 import Testimonials from "./components/Testimonials/Testimonials.jsx";
 import Footer from "./components/Footer/Footer.jsx";
 import AOS from "aos";
+import Home from "./components/Home/Home.jsx";
+import About from "./components/About/About.jsx";
+import "@fortawesome/fontawesome-free/css/all.min.css";
 import "aos/dist/aos.css";
+import { BrowserRouter,Router,Route,Routes,Link } from "react-router-dom";
+
 
 const App = () => {
   React.useEffect(() => {
@@ -21,15 +26,19 @@ const App = () => {
   }, []);
 
   return (
+  <>
     <div className="bg-white dark:bg-gray-900 dark:text-white duration-200 overflow-x-hidden">
       <Navbar />
-      <Hero />
-      <Services />
-      <Banner />
-      <AppStore />
-      <Testimonials />
-      <Footer />
-    </div>
+     
+   
+    <BrowserRouter >
+<Routes>
+  <Route path='/' element={<Home />} />
+  <Route path='/About' element={<About />} />
+</Routes>
+    </BrowserRouter>
+    <Footer />
+    </div> </>
   );
 };
 

@@ -1,67 +1,72 @@
 import React from "react";
-import Img2 from "../../assets/coffee2.png";
+
 const ServicesData = [
   {
     id: 1,
-    img: Img2,
-    name: "Espresso",
+    icon: "flaticon-blind",
+    name: "KIGALI RABBIT FARM",
     description:
-      "Lorem ipsum dolor sit amet ipsum dolor sit ametipsum dolor sit amet ipsum dolor sit amet.",
+      "Is a limited liability company incorporated in Rwanda under the Companies Act (NO 17/2018 of 13/04/2018) Laws of Rwanda.",
     aosDelay: "100",
   },
   {
     id: 2,
-    img: Img2,
-    name: "Americano",
+    icon: "flaticon-dog-eating",
+    name: "GENETIC CENTER",
     description:
-      "Lorem ipsum dolor sit amet ipsum dolor sit ametipsum dolor sit amet ipsum dolor sit amet",
+      "It was set up in 2018 primarily as sustainable farming breeding, trainer and consultancy firm. And now it became a RABBIT GENETIC CENTER.",
     aosDelay: "300",
   },
   {
     id: 3,
-    img: Img2,
-    name: "Cappuccino",
+    icon: "flaticon-grooming",
+    name: "Our introduction in East African Community",
     description:
-      "Lorem ipsum dolor sit amet ipsum dolor sit ametipsum dolor sit amet ipsum dolor sit amet",
+      "We are the first company to introduce Rabbit Artificial Insemination system in EAC.",
     aosDelay: "500",
   },
 ];
+
 const Services = () => {
   return (
     <>
       <span id="services"></span>
-      <div className="py-10">
-        <div className="container">
-          {/* Heading section  */}
-          <div className="text-center mb-20">
-            <h1 className="text-4xl font-bold font-cursive text-gray-800">
-            Affordable Tours
+      <div className="py-16 bg-green-50">
+        <div className="container mx-auto px-4">
+          {/* Heading section */}
+          <div className="text-center mb-16">
+            <h1 className="text-4xl font-bold text-green-800">
+              Our Introduction
             </h1>
+            <p className="text-gray-600 mt-2">
+              Discover more about who we are and what we do
+            </p>
           </div>
 
-          {/* Services Card section  */}
-          <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-14 md:gap-5 place-items-center">
+          {/* Services Card section */}
+          <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-10">
             {ServicesData.map((service) => (
               <div
+                key={service.id}
                 data-aos="fade-up"
                 data-aos-delay={service.aosDelay}
-                className="rounded-2xl bg-white hover:bg-primary hover:text-white relative shadow-xl duration-high group max-w-[300px]"
+                className="bg-white shadow-lg p-6 rounded-xl text-center transition-transform transform hover:-translate-y-2"
               >
-                <div className="h-[122px]">
-                  <img
-                    src={service.img}
-                    alt=""
-                    className="max-w-[200px] block mx-auto transform -translate-y-14
-                  group-hover:scale-105 group-hover:rotate-6 duration-300"
-                  />
+                <div className="text-green-700 text-5xl mb-4">
+                  <span className={service.icon}></span>
                 </div>
-                <div className="p-4 text-center">
-                  <div className="w-full "></div>
-                  <h1 className="text-xl font-bold">{service.name}</h1>
-                  <p className="text-gray-500 group-hover:text-white duration-high text-sm line-clamp-2">
-                    {service.description}
-                  </p>
-                </div>
+                <h3 className="text-xl font-semibold mb-2 text-green-800">
+                  {service.name}
+                </h3>
+                <p className="text-gray-700 text-sm mb-4">
+                  {service.description}
+                </p>
+                <a
+                  href="#"
+                  className="inline-flex items-center justify-center w-8 h-8 bg-green-700 text-white rounded-full hover:bg-green-800 transition"
+                >
+                  <span className="fa fa-chevron-right" />
+                </a>
               </div>
             ))}
           </div>

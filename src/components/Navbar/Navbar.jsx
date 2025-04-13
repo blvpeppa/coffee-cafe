@@ -1,58 +1,103 @@
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
+import {
+  FaFacebook,
+  FaTwitter,
+  FaInstagram,
+  FaDribbble,
+  FaPhone,
+  FaPaperPlane,
+  FaBars,
+  FaTimes,
+} from "react-icons/fa";
 
 const Menu = [
   { id: 1, name: "Home", link: "/" },
   { id: 2, name: "About", link: "/#about" },
   { id: 3, name: "Services & Products", link: "/#services" },
-  { id: 4, name: "Contact", link: "/#about" },
-  { id: 5, name: "Tour", link: "/#about" },
-  { id: 6, name: "Training", link: "/#about" },
+  { id: 4, name: "Contact", link: "/#contact" },
+  { id: 5, name: "Tour", link: "/#tour" },
+  { id: 6, name: "Training", link: "/#training" },
 ];
 
 const Navbar = () => {
-  const [isSticky, setIsSticky] = useState(false);
-
-  useEffect(() => {
-    const handleScroll = () => {
-      setIsSticky(window.scrollY > 100); // Adjust threshold as needed
-    };
-
-    window.addEventListener("scroll", handleScroll);
-
-    return () => window.removeEventListener("scroll", handleScroll);
-  }, []);
+  const [isOpen, setIsOpen] = useState(false);
 
   return (
-    <div
-      className={`${
-        isSticky ? "fixed top-0 z-50 shadow-lg" : "relative"
-      } w-full bg-gradient-to-r from-white to-green-800 text-white transition-all duration-300`}
-    >
-      <div className="container mx-auto py-2">
-        <div className="flex justify-between items-center">
-          {/* Logo */}
-          <div data-aos="fade-down" data-aos-once="true">
-            <a
-              href="/"
-              className="font-bold text-2xl sm:text-3xl flex items-center gap-2 tracking-wider font-sans text-green-900"
-            >
-              KRC
+    <>
+      {/* Top Bar */}
+      <div className="bg-green-800 text-white text-sm">
+        <div className="container mx-auto px-4 py-2 flex flex-col md:flex-row justify-between items-center">
+          <div className="flex items-center gap-4 flex-wrap">
+            <a href="#" className="flex items-center gap-2">
+              <FaPhone /> +250 780797881
+            </a>
+            <a href="#" className="flex items-center gap-2">
+              <FaPaperPlane /> kigalirabbit@gmail.com
             </a>
           </div>
+          <div className="flex space-x-4 mt-2 md:mt-0">
+            <a href="#" className="hover:text-green-300">
+              <FaFacebook />
+            </a>
+            <a href="#" className="hover:text-green-300">
+              <FaTwitter />
+            </a>
+            <a href="#" className="hover:text-green-300">
+              <FaInstagram />
+            </a>
+            <a href="#" className="hover:text-green-300">
+              <FaDribbble />
+            </a>
+          </div>
+        </div>
+      </div>
 
-          {/* Menu */}
-          <div
-            data-aos="fade-down"
-            data-aos-once="true"
-            data-aos-delay="300"
-            className="flex items-center gap-4"
+      {/* Main Navbar */}
+      <div className="sticky top-0 z-50 bg-white shadow-md">
+        <div className="container mx-auto px-4 py-4 flex justify-between items-center">
+          {/* Logo */}
+          <a
+            href="/"
+            className="text-3xl font-bold text-green-900 tracking-wider"
           >
-            <ul className="hidden sm:flex items-center gap-4">
+            KRC
+          </a>
+
+          {/* Desktop Menu */}
+          <ul className="hidden md:flex gap-8">
+            {Menu.map((menu) => (
+              <li key={menu.id}>
+                <a
+                  href={menu.link}
+                  className="text-lg text-gray-800 hover:text-green-700 transition-all duration-300"
+                >
+                  {menu.name}
+                </a>
+              </li>
+            ))}
+          </ul>
+
+          {/* Mobile Menu Icon */}
+          <div className="md:hidden">
+            <button
+              onClick={() => setIsOpen(!isOpen)}
+              className="text-2xl text-green-900"
+            >
+              {isOpen ? <FaTimes /> : <FaBars />}
+            </button>
+          </div>
+        </div>
+
+        {/* Mobile Dropdown */}
+        {isOpen && (
+          <div className="md:hidden bg-white border-t border-gray-200 shadow-md">
+            <ul className="flex flex-col gap-4 p-4">
               {Menu.map((menu) => (
                 <li key={menu.id}>
                   <a
                     href={menu.link}
-                    className="inline-block text-xl py-4 px-4 text-black hover:text-white duration-200 font-sans"
+                    className="block text-gray-800 text-lg hover:text-green-700"
+                    onClick={() => setIsOpen(false)}
                   >
                     {menu.name}
                   </a>
@@ -60,9 +105,9 @@ const Navbar = () => {
               ))}
             </ul>
           </div>
-        </div>
+        )}
       </div>
-    </div>
+    </>
   );
 };
 
