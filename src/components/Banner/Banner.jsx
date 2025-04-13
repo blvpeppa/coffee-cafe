@@ -4,6 +4,7 @@ import { MdHealthAndSafety } from "react-icons/md";
 import { MdSupportAgent } from "react-icons/md";
 import { MdEmergency } from "react-icons/md";
 import { GiRabbit } from "react-icons/gi";
+import {Link } from "react-router-dom";
 //import BgImg from "../../assets/website/coffee-texture.jpg";
 
 const bgImage = {
@@ -91,11 +92,7 @@ const Banner = () => {
                       latest technologies.
                     </p>
                     <div className="mt-6 flex justify-center sm:justify-start">
-              <a
-                href="/About"
-                className="inline-flex items-center gap-2 border border-green-700 px-6 py-2 sm:px-8 sm:py-3 rounded-sm text-sm sm:text-base text-green-700 hover:bg-green-700 hover:text-white transition duration-300"
-              >
-                 More About
+                <Link to="/about" className="inline-flex items-center gap-2 border border-green-700 px-6 py-2 sm:px-8 sm:py-3 rounded-sm text-sm sm:text-base text-green-700 hover:bg-green-700 hover:text-white transition duration-300"> More About
                 <svg
                   className="w-5 h-5"
                   fill="none"
@@ -108,8 +105,7 @@ const Banner = () => {
                     strokeWidth={2}
                     d="M17 8l4 4m0 0l-4 4m4-4H3"
                   />
-                </svg>
-              </a>
+                </svg></Link>
             </div>
                     </div>
                 </div>
