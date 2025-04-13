@@ -8,6 +8,7 @@ import {
   FaPaperPlane,
   FaBars,
   FaTimes,
+  FaWhatsapp
 } from "react-icons/fa";
 
 const Menu = [
@@ -46,7 +47,7 @@ const Navbar = () => {
               <FaInstagram />
             </a>
             <a href="#" className="hover:text-green-300">
-              <FaDribbble />
+              <FaWhatsapp />
             </a>
           </div>
         </div>

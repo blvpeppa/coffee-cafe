@@ -82,21 +82,40 @@ const Banner = () => {
                     data-aos="slide-left"
                     className="border-l-4 border-primary/50 pl-6 space-y-2 text-white"
                   >
-                    <h1 className="text-2xl font-semibold font-cursive">
-                      Veterinary Help
+                    <h1 className="text-2xl font-semibold font-cursive2 text-black " >
+                      Veterinary <GiRabbit className="text-4xl text-green-600 inline" /> Help
                     </h1>
                     <p className="text-sm text-gray-700">
                       Our experienced team provides expert veterinary assistance
                       to ensure optimal health and breeding of rabbits using the
                       latest technologies.
                     </p>
-                    <div className="pt-2">
-                      <GiRabbit className="text-4xl text-green-600" />
+                    <div className="mt-6 flex justify-center sm:justify-start">
+              <a
+                href="/About"
+                className="inline-flex items-center gap-2 border border-green-700 px-6 py-2 sm:px-8 sm:py-3 rounded-sm text-sm sm:text-base text-green-700 hover:bg-green-700 hover:text-white transition duration-300"
+              >
+                 More About
+                <svg
+                  className="w-5 h-5"
+                  fill="none"
+                  stroke="currentColor"
+                  viewBox="0 0 24 24"
+                >
+                  <path
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    strokeWidth={2}
+                    d="M17 8l4 4m0 0l-4 4m4-4H3"
+                  />
+                </svg>
+              </a>
+            </div>
                     </div>
-                  </div>
                 </div>
-              </div>
+                 </div>
               {/* End text content */}
+              
             </div>
           </div>
         </div>

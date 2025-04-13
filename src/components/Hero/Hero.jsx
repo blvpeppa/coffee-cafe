@@ -4,7 +4,7 @@ import BgImage from "../../assets/bg_1.jpg";
 const Hero = () => {
   return (
     <div
-      className="relative w-full bg-cover bg-no-repeat bg-center min-h-[500px] sm:min-h-[600px] md:min-h-[700px] lg:h-screen flex items-center justify-center"
+      className="relative w-full bg-cover bg-no-repeat bg-center min-h-[500px] sm:min-h-[600px] md:min-h-[300px] lg:h-screen flex items-center justify-center"
       style={{ backgroundImage: `url(${BgImage})` }}
     >
       {/* Overlay */}
