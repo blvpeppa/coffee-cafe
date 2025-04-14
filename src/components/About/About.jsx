@@ -2,6 +2,9 @@ import React from "react";
 import BgImage from "../../assets/bg_4.jpg";
 import CEOImage from "../../assets/CEO.jpg";
 import Banner from "../Banner/Banner";
+import AboutMain from "../../assets/about.jpg";
+import AboutImg2 from "../../assets/about-2.jpg";
+import AboutImg3 from "../../assets/about-3.jpg";
 
 const About = () => {
   return (
@@ -77,31 +80,31 @@ const About = () => {
       </section>
 
       {/* Farming Info */}
-      <section className="bg-gray-100 py-10">
+      <section className="bg-green-50 py-10">
         <div className="container mx-auto px-4 space-y-4">
           <h2 className="text-2xl font-bold text-gray-800">RABBIT FARMING</h2>
           <h3 className="text-xl font-semibold text-gray-700">
             A Sustainable and Profitable Venture
           </h3>
-          <p className="text-gray-600">
+          <p className="text-gray-800">
             Rabbit farming is a lucrative and sustainable agricultural practice
             that has gained popularity in recent years. At KIGALI RABBIT CENTER,
             we are dedicated to promoting and supporting rabbit farming as a
             viable business opportunity for farmers in Rwanda and across Africa.
           </p>
-          <p className="text-gray-600">
+          <p className="text-gray-800">
             Rabbits are known for their high reproductive rate, efficient feed
             conversion, and ability to thrive in various environments. This makes
             them ideal livestock for small-scale farmers looking to increase
             income. Additionally, rabbit meat is lean, high in protein, and in
             demand in the market.
           </p>
-          <p className="text-gray-600">
+          <p className="text-gray-800">
             Our team at KIGALI RABBIT CENTER offers training and consultancy to
             help farmers with breeding, feeding, disease management, and
             marketing.
           </p>
-          <p className="text-gray-600">
+          <p className="text-gray-800">
             Join us at KIGALI RABBIT CENTER and embark on a journey toward a more
             sustainable and profitable future in agriculture through rabbit
             farming.
@@ -115,7 +118,7 @@ const About = () => {
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8 text-center">
             <div className="bg-gray-100 p-6 rounded shadow-md">
               <h2 className="text-4xl font-bold text-green-600">20</h2>
-              <p className="mt-2 text-gray-700">Branches</p>
+              <p className="mt-2 text-gray-700">Outgrowers</p>
             </div>
             <div className="bg-gray-100 p-6 rounded shadow-md">
               <h2 className="text-4xl font-bold text-green-600">15</h2>
@@ -132,8 +135,83 @@ const About = () => {
           </div>
         </div>
       </section>
-
       <Banner />
+      <section className="bg-green-50 py-16">
+      <div className="container mx-auto px-4 grid lg:grid-cols-2 gap-12 items-start">
+        
+        {/* Video & Images */}
+        <div className="flex flex-col space-y-6 order-2 lg:order-1">
+          <div
+            className="relative bg-cover bg-center h-72 flex items-center justify-center rounded-md shadow-md"
+            style={{ backgroundImage: `url(${AboutMain})` }}
+          >
+            <a
+              href="/videos/sample-video.mp4"
+              className="flex items-center justify-center w-16 h-16 bg-green-600 rounded-full text-white text-2xl hover:bg-green-700 transition"
+            >
+              ▶
+            </a>
+          </div>
+          <div className="flex gap-4">
+            <div
+              className="w-1/2 h-60 bg-cover bg-center rounded-md shadow"
+              style={{ backgroundImage: `url(${AboutImg2})` }}
+            ></div>
+            <div
+              className="w-1/2 h-60 bg-cover bg-center rounded-md shadow"
+              style={{ backgroundImage: `url(${AboutImg3})` }}
+            ></div>
+          </div>
+        </div>
+
+        {/* FAQs */}
+        <div className="order-1 lg:order-2">
+          <div className="mb-6">
+            <h2 className="text-3xl font-bold mb-2">Frequently Asked</h2>
+            <p className="text-gray-600">Read the following to understand more about rabbit farming.</p>
+          </div>
+
+          {/* Accordion 1 */}
+          <details className="mb-4 bg-white shadow-md rounded-md">
+            <summary className="cursor-pointer px-6 py-4 font-semibold text-lg text-green-700">
+              Why Rabbit farming?
+            </summary>
+            <div className="px-6 py-4 text-gray-700 space-y-4 text-sm leading-relaxed">
+              <p>
+                The domestic rabbit, *Oryctolagus cuniculus*, is a descendant of wild rabbits of southern Europe and North Africa...
+              </p>
+              <p>
+                Rabbits are ideal small livestock for peri-urban or rural areas, especially in developing countries...
+              </p>
+              <p>
+                Rabbits produce lean white meat high in protein, low in fat and cholesterol. Their skins are also used in garments and crafts...
+              </p>
+              <p>
+                In 2020, world production of rabbit meat was estimated at 1.8 million tons annually. Top producers include Italy, France, China...
+              </p>
+            </div>
+          </details>
+
+          {/* Accordion 2 */}
+          <details className="mb-4 bg-white shadow-md rounded-md">
+            <summary className="cursor-pointer px-6 py-4 font-semibold text-lg text-green-700">
+              Advantages of keeping rabbits:
+            </summary>
+            <div className="px-6 py-4 text-gray-700 text-sm leading-relaxed space-y-2">
+              <ul className="list-disc ml-6 space-y-1">
+                <li>Small body size</li>
+                <li>Low cost for animals and housing</li>
+                <li>Efficient reproduction and feed conversion</li>
+                <li>Can give birth to 25+ offspring per year</li>
+                <li>Short fattening period, market-ready in 8 weeks</li>
+                <li>Highly nutritious meat, over 300 recipe variations</li>
+                <li>Low land requirements and low upkeep costs</li>
+              </ul>
+            </div>
+          </details>
+        </div>
+      </div>
+    </section>
     </>
   );
 };
