@@ -2,9 +2,7 @@ import React from "react";
 import Hero from "../Hero/Hero";
 import Services from "../Services/Services";
 import Banner from "../Banner/Banner";
-import AppStore from "../AppStore/AppStore";
 import Testimonials from "../Testimonials/Testimonials";
-
 const Home = () => { 
     return (
     <>
@@ -12,7 +10,6 @@ const Home = () => {
         <Hero />
         <Services />
         <Banner />
-        <AppStore />
         <Testimonials />
       </div>
       </>
