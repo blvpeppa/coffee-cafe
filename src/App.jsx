@@ -2,6 +2,7 @@ import React from "react";
 import Navbar from "./components/Navbar/Navbar";
 import Footer from "./components/Footer/Footer.jsx";
 import Contact from "./components/Contact/Contact.jsx";
+import Training from "./components/Traininig/Training.jsx";
 import SP from "./components/services&products/SP.jsx";
 import AOS from "aos";
 import Home from "./components/Home/Home.jsx";
@@ -26,19 +27,21 @@ const App = () => {
   return (
   <>
     <div className="bg-white dark:bg-gray-900 dark:text-white duration-200 overflow-x-hidden">
-      <Navbar />
-     
    
-    <BrowserRouter >
-<Routes>
-  <Route path='/' element={<Home />} />
-  <Route path='/About' element={<About />} />
-  <Route path='/Contact' element={<Contact />} />
-  <Route path='/Products' element={<SP />} />
-  <Route path='/Tour' element={<Tour />} />
-</Routes>
+    <BrowserRouter>
+      <div className="bg-white dark:bg-gray-900 dark:text-white duration-200">
+        <Navbar />
+        <Routes>
+          <Route path="/" element={<Home />} />
+          <Route path="/about" element={<About />} />
+          <Route path="/products" element={<SP />} />
+          <Route path="/contact" element={<Contact />} />
+          <Route path="/tour" element={<Tour />} />
+          <Route path="/training" element={<Training />} />
+        </Routes>
+        <Footer />
+      </div>
     </BrowserRouter>
-    <Footer />
     </div> </>
   );
 };

@@ -27,7 +27,7 @@ const About = () => {
     </p>
     <div className="mt-6">
       <a
-        href="http://localhost:5173/products"
+        href="/products"
         className="inline-block bg-green-600 hover:bg-green-700 text-white px-6 py-3 rounded-md text-lg font-medium transition duration-300"
       >
         Explore Services
