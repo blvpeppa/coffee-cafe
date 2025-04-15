@@ -5,7 +5,7 @@ import Banner from "../Banner/Banner";
 import AboutMain from "../../assets/about.jpg";
 import AboutImg2 from "../../assets/about-2.jpg";
 import AboutImg3 from "../../assets/about-3.jpg";
-
+import { Link, useLocation } from "react-router-dom";
 const About = () => {
   return (
     <>
@@ -26,12 +26,7 @@ const About = () => {
       Learn more about our mission, our team, and how we're transforming rabbit farming across Africa.
     </p>
     <div className="mt-6">
-      <a
-        href="/products"
-        className="inline-block bg-green-600 hover:bg-green-700 text-white px-6 py-3 rounded-md text-lg font-medium transition duration-300"
-      >
-        Explore Services
-      </a>
+      <Link to="/products" className="inline-block bg-green-600 hover:bg-green-700 text-white px-6 py-3 rounded-md text-lg font-medium transition duration-300" onClick={() => setIsOpen(false)} aria-label="Home">Explore Services</Link>
     </div>
   </div>
 </div>
