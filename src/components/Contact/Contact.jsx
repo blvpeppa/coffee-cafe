@@ -1,6 +1,8 @@
-import react from "react";
+import react,{useState} from "react";
+import { useNavigate } from "react-router-dom";
 import BgImage from "../../assets/bg_4.jpg";
 import Bgcontact from "../../assets/image_2.jpg";
+import axios from "axios";
 const Contact = () => {
     const info = [
       {
@@ -27,6 +29,33 @@ const Contact = () => {
         link: "https://www.kigalirabbitcenter.org/"
       }
     ];
+  const [name,setName] = useState("")
+  const [message,setMessage] = useState("")
+  const [email,setEmail] = useState("")
+  const [subject,setSubject] = useState("")
+const navigate = useNavigate()
+const dataSubmit = async () => {
+  if (!name || !email || !subject || !message) {
+    window.alert("Please fill in all fields.");
+    return;
+  }
+  try {
+    const response = await axios.post("http://localhost:7000/send/contact", {
+      name: name,
+      email: email,
+      subject: subject,
+      message: message,
+    });
+
+    if (response.status === 201) {
+      window.alert("Contact was sent successfully.");
+      navigate("/");
+    }
+  } catch (error) {
+    console.error("Error contacting server:", error.response || error.message);
+    window.alert("Failed to send contact. Please try again.");
+  }
+};
   
     return (
       <div>
@@ -63,32 +92,37 @@ const Contact = () => {
             <div className="grid md:grid-cols-2 gap-10 items-start">
               <div className="bg-white shadow-md rounded p-6">
                 <h3 className="text-2xl font-bold mb-6">Contact Us</h3>
-                <form>
+                <form onSubmit={(e) => e.preventDefault()}>
                   <div className="grid md:grid-cols-2 gap-4">
                     <input
                       type="text"
                       placeholder="Full Name"
                       className="border border-gray-300 p-3 rounded w-full"
+                      onChange={(e) =>setName(e.target.value)}
                     />
                     <input
                       type="email"
                       placeholder="Email Address"
                       className="border border-gray-300 p-3 rounded w-full"
+                      onChange={(e) =>setEmail(e.target.value)}
                     />
                   </div>
                   <input
                     type="text"
                     placeholder="Subject"
                     className="border border-gray-300 p-3 rounded w-full mt-4"
+                    onChange={(e) =>setSubject(e.target.value)}
                   />
                   <textarea
                     placeholder="Message"
                     className="border border-gray-300 p-3 rounded w-full mt-4"
+                    onChange={(e) =>setMessage(e.target.value)}
                     rows="5"
                   ></textarea>
                   <button
                     type="submit"
                     className="mt-4 bg-green-600 text-white px-6 py-2 rounded hover:bg-green-700"
+                    onClick={()=>dataSubmit()}
                   >
                     Send Message
                   </button>

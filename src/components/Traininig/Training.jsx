@@ -44,7 +44,7 @@ const Training = () => {
       title: "Beginner Rabbit Farming",
       description: "Learn the fundamentals of rabbit husbandry, housing, and basic care.",
       duration: "2 days",
-      price: "50,000 RWF",
+      price: "$50",
       dates: ["15-16 June 2024", "20-21 July 2024"]
     },
     {
@@ -52,7 +52,7 @@ const Training = () => {
       title: "Advanced Breeding Techniques",
       description: "Master rabbit breeding, genetics, and reproduction management.",
       duration: "3 days",
-      price: "75,000 RWF",
+      price: "$75",
       dates: ["5-7 August 2024", "10-12 September 2024"]
     },
     {
@@ -60,7 +60,15 @@ const Training = () => {
       title: "Rabbit Health & Disease Management",
       description: "Comprehensive training on rabbit health, common diseases, and prevention.",
       duration: "2 days",
-      price: "60,000 RWF",
+      price: "$60",
+      dates: ["25-26 October 2024", "15-16 November 2024"]
+    },
+    {
+      id: 4,
+      title: "Rabbits artificial insemination course",
+      description: "Comprehensive training on rabbit health, common diseases, and prevention.",
+      duration: "2 days",
+      price: "$60",
       dates: ["25-26 October 2024", "15-16 November 2024"]
     }
   ];

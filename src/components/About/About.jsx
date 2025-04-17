@@ -38,15 +38,18 @@ const About = () => {
             <div className="w-80 bg-white shadow-lg rounded-md overflow-hidden">
               <img src={CEOImage} alt="CEO" className="w-full object-cover" />
               <div className="p-4 text-center">
-                <h2 className="text-2xl font-semibold">Dieudonne Musoni</h2>
-                <h4 className="text-green-700 font-semibold text-sm">
+                <h1 className="text-2xl font-semibold">Dieudonne Musoni</h1>
+                <h2 className="text-green-700 font-semibold text-sm">
                   CEO of Kigali Rabbit Center
+                </h2>
+                <h3 className="text-green-800 font-semibold text-sm">
+                  Rabbit Center
+                </h3><h4 className="text-green-800 font-semibold text-sm">
+                  Rabbit Expert
                 </h4>
-                <p className="text-gray-600 mt-2">I am a rabbit farmer.</p>
               </div>
             </div>
           </div>
-
           <div className="text-gray-700 space-y-4">
             <h2 className="text-2xl font-bold">KIGALI RABBIT FARM</h2>
             <p>
