@@ -42,9 +42,7 @@ const About = () => {
                 <h2 className="text-green-700 font-semibold text-sm">
                   CEO of Kigali Rabbit Center
                 </h2>
-                <h3 className="text-green-800 font-semibold text-sm">
-                  Rabbit Center
-                </h3><h4 className="text-green-800 font-semibold text-sm">
+<h4 className="text-green-800 font-semibold text-sm">
                   Rabbit Expert
                 </h4>
               </div>
