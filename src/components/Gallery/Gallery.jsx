@@ -1,94 +1,68 @@
-import react from 'react'
+import React from 'react';
 import g1 from '../../assets/gallery-1.jpg';
 import g2 from '../../assets/gallery-2.jpg';
 import g3 from '../../assets/gallery-3.jpg';
-export default function Gallery() {
-return ( 
-<>
- {/* Farm Gallery Section */}
+import g4 from '../../assets/gallery-4.jpg';
+import g5 from '../../assets/gallery-5.jpg';
+import g6 from '../../assets/gallery-6.jpg';
+import g7 from '../../assets/gallery-7.jpg';
+//import g8 from '../../assets/gallery-2.jpg';
+//import g9 from '../../assets/gallery-3.jpg';
+const Gallery = () => {
+  const galleryItems = [
+    { img: g1},
+    { img: {g2}},
+    { img: {g3}},
+    { img: {g4}},
+    { img: {g5}},
+    { img: {g6}},
+    { img: {g7}},
+    { img: {g7}},
+    { img: {g7}},
+  ];
+
+  return (
+    <>
+      {/* Gallery Section */}
       <section className="py-16">
         <div className="container mx-auto px-4">
-          <div className="flex justify-center pb-12 mb-6">
-            <div className="w-full md:w-2/3 text-center">
-              <h2 className="text-3xl font-bold">Farm Gallery</h2>
-            </div>
+        <h1 className="text-lg font-semibold h-20 p-4  text-center">Our Gallery Collection</h1>
+          <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-8">
+            {galleryItems.map((item, index) => (
+              <div key={index} className="group relative overflow-hidden rounded-lg shadow-lg">
+                <div
+                  className="h-64 bg-cover bg-center flex items-end transition-transform duration-300 group-hover:scale-105"
+                  style={{ backgroundImage: `url(/images/${item.img})` }}
+                >
+                  <a
+                    href={`/images/${item.img}`}
+                    className="absolute inset-0 flex items-center justify-center bg-black bg-opacity-50 text-white opacity-0 group-hover:opacity-100 transition"
+                  >
+                    <span className="text-2xl">
+                      <i className="fa fa-expand"></i>
+                    </span>
+                  </a>
+                </div>
+              </div>
+            ))}
           </div>
-          <div className="flex flex-wrap -mx-4">
-            {/* Gallery Item 1 */}
-            <div className="w-full md:w-1/3 px-4 mb-8">
-              <div
-                className="relative h-64 bg-cover bg-center flex items-end"
-                style={{backgroundImage: `url(${g1})`}}
-              >
-                <a
-                  href="images/gallery-1.jpg"
-                  className="absolute inset-0 flex items-center justify-center bg-black bg-opacity-50 text-white text-2xl"
-                >
-                  <span className="fa fa-expand"></span>
-                </a>
-                <div className="bg-white w-full px-4 py-3">
-                  <h2 className="text-xl font-semibold">
-                    <a href="work-single.html">Rabbit pellets</a>
-                  </h2>
-                </div>
-              </div>
-            </div>
 
-            {/* Gallery Item 2 */}
-            <div className="w-full md:w-1/3 px-4 mb-8">
-              <div
-                className="relative h-64 bg-cover bg-center flex items-end"
-                style={{ backgroundImage: `url(${g2})`}}
-              >
-                <a
-                  href="images/gallery-2.jpg"
-                  className="absolute inset-0 flex items-center justify-center bg-black bg-opacity-50 text-white text-2xl"
-                >
-                  <span className="fa fa-expand"></span>
-                </a>
-                <div className="bg-white w-full px-4 py-3">
-                  <h2 className="text-xl font-semibold">
-                    <a href="work-single.html">Stock1</a>
-                  </h2>
-                </div>
-              </div>
-            </div>
-
-            {/* Gallery Item 3 */}
-            <div className="w-full md:w-1/3 px-4 mb-8">
-              <div
-                className="relative h-64 bg-cover bg-center flex items-end"
-                style={{ backgroundImage: `url(${g3})`}}
-              >
-                <a
-                  href="images/gallery-3.jpg"
-                  className="absolute inset-0 flex items-center justify-center bg-black bg-opacity-50 text-white text-2xl"
-                >
-                  <span className="fa fa-expand"></span>
-                </a>
-                <div className="bg-white w-full px-4 py-3">
-                  <h2 className="text-xl font-semibold">
-                    <a href="work-single.html">Stock2</a>
-                  </h2>
-                </div>
-              </div>
-            </div>
-
-            {/* More Gallery Button */}
-            <div className="w-full md:w-1/3 px-4"></div>
-            <div className="w-full md:w-1/3 px-4">
-              <div className="text-center p-6">
-                <a
-                  href="gallery.html"
-                  className="bg-green-600 hover:bg-green-700 text-white py-3 px-6 rounded inline-block"
-                >
-                  more on gallery <span className="ml-2">&rarr;</span>
-                </a>
-              </div>
-            </div>
+          {/* Pagination */}
+          <div className="flex justify-center mt-12">
+            <ul className="flex space-x-2 text-gray-700">
+              <li><a href="#" className="px-3 py-1 border rounded hover:bg-gray-200">&lt;</a></li>
+              <li className="px-3 py-1 border rounded bg-black text-white">1</li>
+              <li><a href="#" className="px-3 py-1 border rounded hover:bg-gray-200">2</a></li>
+              <li><a href="#" className="px-3 py-1 border rounded hover:bg-gray-200">3</a></li>
+              <li><a href="#" className="px-3 py-1 border rounded hover:bg-gray-200">4</a></li>
+              <li><a href="#" className="px-3 py-1 border rounded hover:bg-gray-200">5</a></li>
+              <li><a href="#" className="px-3 py-1 border rounded hover:bg-gray-200">&gt;</a></li>
+            </ul>
           </div>
         </div>
       </section>
     </>
   );
 };
+
+export default Gallery;

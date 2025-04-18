@@ -2,6 +2,7 @@ import react from 'react'
 import t1 from '../../assets/pricing-1.jpg';
 import t2 from '../../assets/pricing-2.jpg';
 import t3 from '../../assets/pricing-3.jpg';
+import { Link } from "react-router-dom";
 export default function Training_home() {
     return (
         <>
@@ -18,7 +19,7 @@ export default function Training_home() {
             <div className="w-full md:w-1/3 px-4 mb-8">
               <div className="bg-white shadow-lg rounded-lg overflow-hidden">
                 <div
-                  className="h-48 bg-cover bg-center"
+                  className="h-72 bg-cover bg-center"
                   style={{ backgroundImage: `url(${t1})`}}
                 ></div>
                 <div className="text-center p-6">
@@ -27,7 +28,7 @@ export default function Training_home() {
                     <sup className="text-base">$</sup>20
                   </span>
                   <a href="#" className="block mt-4 bg-green-600 hover:bg-green-700 text-white py-3 px-6 rounded">
-                    Get Started
+                  APPLY
                   </a>
                 </div>
               </div>
@@ -37,7 +38,7 @@ export default function Training_home() {
             <div className="w-full md:w-1/3 px-4 mb-8">
               <div className="bg-white shadow-lg rounded-lg overflow-hidden">
                 <div
-                  className="h-48 bg-cover bg-center"
+                  className="h-72 bg-cover bg-center"
                   style={{ backgroundImage:`url(${t2})`}}
                 ></div>
                 <div className="text-center p-6">
@@ -47,7 +48,7 @@ export default function Training_home() {
                   </span>
                   <sub className="block text-sm text-gray-500">/1-30 people</sub>
                   <a href="#" className="block mt-4 bg-green-600 hover:bg-green-700 text-white py-3 px-6 rounded">
-                    Get Started
+                  APPLY
                   </a>
                 </div>
               </div>
@@ -57,14 +58,14 @@ export default function Training_home() {
             <div className="w-full md:w-1/3 px-4 mb-8">
               <div className="bg-white shadow-lg rounded-lg overflow-hidden">
                 <div
-                  className="h-48 bg-cover bg-center"
+                  className="h-72 bg-cover bg-center"
                   style={{ backgroundImage: `url(${t3})`}}
                 ></div>
                 <div className="text-center p-6">
                   <span className="block text-gray-600 mb-2">Institutional visit</span>
                   <span className="text-2xl font-semibold">free</span>
                   <a href="#" className="block mt-4 bg-green-600 hover:bg-green-700 text-white py-3 px-6 rounded">
-                    Get Started
+                    APPLY
                   </a>
                 </div>
               </div>
@@ -74,12 +75,11 @@ export default function Training_home() {
             <div className="w-full md:w-1/3 px-4"></div>
             <div className="w-full md:w-1/3 px-4">
               <div className="text-center p-6">
-                <a
-                  href=""
+                <Link to="/tour"
                   className="bg-green-600 hover:bg-green-700 text-white py-3 px-6 rounded inline-block"
                 >
                   more visits <span className="ml-2">&rarr;</span>
-                </a>
+                </Link>
               </div>
             </div>
           </div>

@@ -3,7 +3,7 @@ import Hero from "../Hero/Hero";
 import Services from "../Services/Services";
 import Banner from "../Banner/Banner";
 import Testimonials from "../Testimonials/Testimonials";
-import Gallery from "../Gallery/Gallery"
+import Gallery from "../Gallery_home/Gallery_home"
 import Training_home from "../Training_home/Training_home";
 const Home = () => { 
     return (
