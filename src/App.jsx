@@ -4,6 +4,7 @@ import Footer from "./components/Footer/Footer.jsx";
 import Contact from "./components/Contact/Contact.jsx";
 import Training from "./components/Traininig/Training.jsx";
 import SP from "./components/services&products/SP.jsx";
+//import Gallery from "./components/Gallery/Gallery.jsx";
 import AOS from "aos";
 import Home from "./components/Home/Home.jsx";
 import About from "./components/About/About.jsx";

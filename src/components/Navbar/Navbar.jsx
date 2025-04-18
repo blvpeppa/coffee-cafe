@@ -15,9 +15,9 @@ const Menu = [
   { id: 1, name: "Home", link: "/" },
   { id: 2, name: "About", link: "/about" },
   { id: 3, name: "Services & Products", link: "/products" },
-  { id: 4, name: "Contact", link: "/contact" },
   { id: 5, name: "Tour", link: "/tour" },
   { id: 6, name: "Training", link: "/training" },
+  { id: 4, name: "Contact", link: "/contact" },
 ];
 
 const Navbar = () => {
