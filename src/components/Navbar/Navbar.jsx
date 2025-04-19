@@ -52,7 +52,7 @@ const Navbar = () => {
               className="flex items-center gap-2 hover:text-green-300 transition-colors"
               aria-label="Email us"
             >
-              <FaPaperPlane /> kigalirabbit@gmail.com
+              <FaPaperPlane /> info@kigalirabbit.org
             </a>
           </div>
           <div className="flex space-x-4 mt-2 md:mt-0">

@@ -9,6 +9,7 @@ import AOS from "aos";
 import Home from "./components/Home/Home.jsx";
 import About from "./components/About/About.jsx";
 import Tour from "./components/Tour/Tour.jsx";
+import Notfound from "./Notfound/Notfound.jsx";
 import "@fortawesome/fontawesome-free/css/all.min.css";
 import "aos/dist/aos.css";
 import { BrowserRouter,Router,Route,Routes,Link } from "react-router-dom";
@@ -40,6 +41,7 @@ const App = () => {
           <Route path="/gallery" element={<Gallery />} />
           <Route path="/tour" element={<Tour />} />
           <Route path="/training" element={<Training />} />
+          <Route path="*" element={<Notfound />} />
         </Routes>
         <Footer />
       </div>

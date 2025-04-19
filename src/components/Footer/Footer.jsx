@@ -3,6 +3,7 @@ import image1 from "../../assets/image_1.jpg";
 import image2 from "../../assets/image_2.jpg";
 import {FaFacebook,FaTwitter,FaInstagram,FaDribbble,FaPhone,FaPaperPlane,FaWhatsapp} from "react-icons/fa";
 import BgImg from "../../assets/website/coffee-texture.jpg";
+import { Link } from "react-router-dom";
 const Footer = () => {
   const FooterMenu = [
     { id: 1, name: "Home", link: "/" },
@@ -26,36 +27,26 @@ const Footer = () => {
           </div>
         </div>
 
-        {/* Latest News */}
         <div>
-          <h2 className="text-xl font-bold mb-4">Latest News</h2>
-          {[{ img: image1 }, { img: image2 }].map((item, idx) => (
-            <div key={idx} className="flex mb-4">
-              <div
-                className="w-16 h-16 bg-cover bg-center rounded mr-4"
-                style={{ backgroundImage: `url(${item.img})` }}
-              />
-              <div>
-                <h3 className="text-sm font-semibold">
-                  <a href="#">Even the all-powerful Pointing has no control about</a>
-                </h3>
-                <div className="text-xs opacity-75">
-                  <div><i className="fa fa-calendar mr-1"></i> April 7, 2020</div>
-                  <div><i className="fa fa-user mr-1"></i> Admin</div>
-                  <div><i className="fa fa-comments mr-1"></i> 19</div>
-                </div>
-              </div>
-            </div>
-          ))}
-        </div>
-
-        {/* Quick Links */}
-        <div>
+          {/* quick links*/}
+      <div>
           <h2 className="text-xl font-bold mb-4">Quick Links</h2>
           <ul className="space-y-2">
-            <li><a href="/" className="hover:underline">Home</a></li>
-            <li><a href="/#about" className="hover:underline">About</a></li>
-            <li><a href="/#contact" className="hover:underline">Contact</a></li>
+            <li><Link to='/'>Home</Link></li>
+            <li><Link to='/About'>About</Link></li>
+            <li><Link to='/Contact'>Contact</Link></li>
+          </ul>
+        </div>
+        </div>
+
+        {/* more Links */}
+        <div>
+          <h2 className="text-xl font-bold mb-4">More Links</h2>
+          <ul className="space-y-2">
+            <li><Link to='/products'>Services&Products</Link></li>
+            <li><Link to='/Gallery'>Gallery</Link></li>
+            <li><Link to='/Tours'>Tours</Link></li>
+            <li><Link to='/Training'>Training</Link></li>
           </ul>
         </div>
 
@@ -65,7 +56,7 @@ const Footer = () => {
           <ul className="space-y-3 text-sm">
             <li><i className="fa fa-map mr-2"></i>nyamirambo, Nyarugenge Kigali, Rwanda</li>
             <li><a href="tel:+250780797881"><i className="fa fa-phone mr-2"></i>+250 780797881</a></li>
-            <li><a href="mailto:kigalirabbit@gmail.com"><i className="fa fa-paper-plane mr-2"></i>kigalirabbit@gmail.com</a></li>
+            <li><a href="mailto:kigalirabbit@gmail.com"><i className="fa fa-paper-plane mr-2"></i>info@kigalirabbit.org</a></li>
           </ul>
         </div>
       </div>
