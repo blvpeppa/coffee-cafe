@@ -5,20 +5,20 @@ import g3 from '../../assets/gallery-3.jpg';
 import g4 from '../../assets/gallery-4.jpg';
 import g5 from '../../assets/gallery-5.jpg';
 import g6 from '../../assets/gallery-6.jpg';
-import g7 from '../../assets/gallery-7.jpg';
+//import g7 from '../../assets/gallery-7.jpg';
 //import g8 from '../../assets/gallery-2.jpg';
 //import g9 from '../../assets/gallery-3.jpg';
 const Gallery = () => {
   const galleryItems = [
     { img: g1},
-    { img: {g2}},
-    { img: {g3}},
-    { img: {g4}},
-    { img: {g5}},
-    { img: {g6}},
-    { img: {g7}},
-    { img: {g7}},
-    { img: {g7}},
+    { img: g2},
+    { img: g3},
+    { img: g4},
+    { img: g5},
+    { img: g6},
+    { img: g2},
+    { img: g1},
+    { img: g3},
   ];
 
   return (
@@ -32,16 +32,12 @@ const Gallery = () => {
               <div key={index} className="group relative overflow-hidden rounded-lg shadow-lg">
                 <div
                   className="h-64 bg-cover bg-center flex items-end transition-transform duration-300 group-hover:scale-105"
-                  style={{ backgroundImage: `url(/images/${item.img})` }}
+                  style={{ backgroundImage: `url(${item.img})` }}
                 >
-                  <a
-                    href={`/images/${item.img}`}
-                    className="absolute inset-0 flex items-center justify-center bg-black bg-opacity-50 text-white opacity-0 group-hover:opacity-100 transition"
-                  >
+                  <div  className="absolute inset-0 flex items-center justify-center bg-black bg-opacity-50 text-white opacity-0 group-hover:opacity-100 transition">
                     <span className="text-2xl">
                       <i className="fa fa-expand"></i>
-                    </span>
-                  </a>
+                    </span></div>
                 </div>
               </div>
             ))}
