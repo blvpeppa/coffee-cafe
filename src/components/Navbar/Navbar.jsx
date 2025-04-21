@@ -10,7 +10,6 @@ import {
   FaWhatsapp
 } from "react-icons/fa";
 import { Link, useLocation } from "react-router-dom";
-
 const Menu = [
   { id: 1, name: "Home", link: "/" },
   { id: 2, name: "About", link: "/about" },

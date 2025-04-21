@@ -19,14 +19,14 @@ const Contact = () => {
       {
         icon: "fa-paper-plane",
         label: "Email",
-        value: "kigalirabbit@gmail.com",
-        link: "mailto:kigalirabbit@gmail.com"
+        value: "info@kigalirabbit.org",
+        link: "mailto:info@kigalirabbit.org"
       },
       {
         icon: "fa-globe",
         label: "Website",
-        value: "kigalirabbitcenter.org",
-        link: "https://www.kigalirabbitcenter.org/"
+        value: "kigalirabbits.org",
+        link: "https://www.kigalirabbits.org/"
       }
     ];
   const [name,setName] = useState("")
@@ -140,6 +140,5 @@ const dataSubmit = async () => {
       </div>
     );
   };
-  
   export default Contact;
   
