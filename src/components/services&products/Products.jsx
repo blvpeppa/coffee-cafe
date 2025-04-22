@@ -1,6 +1,8 @@
 import React from 'react';
+import { useNavigate } from 'react-router-dom';
 
 const Products = () => {
+  const navigate = useNavigate();
   const products = [
     {
       id: 1,
@@ -36,6 +38,10 @@ const Products = () => {
     }
   ];
 
+  const handleOrder = (product) => {
+    navigate('/pay', { state: { selectedProduct: product } });
+  };
+
   return (
     <section className="py-12 bg-gray-50">
       <div className="container mx-auto px-4">
@@ -65,7 +71,10 @@ const Products = () => {
                 <p className="text-gray-600 mb-4">{product.description}</p>
                 <div className="flex justify-between items-center">
                   <span className="text-lg font-bold text-black">{product.price}</span>
-                  <button className="px-4 py-2 bg-green-600 text-white rounded-md hover:bg-green-700 transition-colors">
+                  <button 
+                    onClick={() => handleOrder(product)}
+                    className="px-4 py-2 bg-green-600 text-white rounded-md hover:bg-green-700 transition-colors"
+                  >
                     Order Now
                   </button>
                 </div>
