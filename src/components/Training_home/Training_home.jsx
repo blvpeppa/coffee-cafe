@@ -6,12 +6,12 @@ import { Link } from "react-router-dom";
 const pricingOptions = [
   {
     title: 'Professional Visit',
-    price: '$20',
+    price: '20,000 frws',
     image: `${t1}`,
   },
   {
     title: 'Academic Visit',
-    price: '$400 / 1-30 people',
+    price: '400,000 frws / 1-30 people',
     image: `${t2}`,
   },
   {
@@ -208,7 +208,6 @@ const [selectedOption, setSelectedOption] = useState(null);
                 {message && <p className={`mt-4 ${message.includes('failed') ? 'text-red-600' : 'text-green-600'}`}>{message}</p>}
               </form>
             )}
-
             {step === 2 && (
               <form onSubmit={handlePaymentSubmit} className="bg-white p-8 rounded shadow-lg w-full max-w-md relative">
                 <h3 className="text-2xl font-semibold mb-4">Payment for {selectedOption}</h3>
@@ -305,8 +304,8 @@ const [selectedOption, setSelectedOption] = useState(null);
           </div>
         )}
       </div>
-                {/* More Gallery Button */}
-                <div className="w-full md:w-1/3 px-4 text-center"></div>
+       {/* More Gallery Button */}
+       <div className="w-full md:w-1/3 px-4 text-center"></div>
                   <div className="w-full md:w-1/3 px-4 text-center">
                     <div className="text-center p-6">
                     <Link to="/tour" className="bg-green-600 hover:bg-green-700 text-white py-3 px-6 rounded inline-block text-center">

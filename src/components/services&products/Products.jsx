@@ -27,8 +27,8 @@ const Products = () => {
       id: 1,
       name: 'Premium Breeding Rabbits',
       description: 'Healthy, pedigreed breeding stock of New Zealand White and California breeds.',
-      price: 75,
-      priceDisplay: '$75 each',
+      price: 75000,
+      priceDisplay: '75,000 frw',
       image: 'https://images.unsplash.com/photo-1585969646097-a1b0038c37a1?ixlib=rb-1.2.1&auto=format&fit=crop&w=300&h=200&q=80',
       category: 'Live Stock'
     },
@@ -36,8 +36,8 @@ const Products = () => {
       id: 2,
       name: 'Rabbit Hutch Kit',
       description: 'Complete DIY hutch kit with all materials and instructions for easy assembly.',
-      price: 299,
-      priceDisplay: '$299',
+      price: 299000,
+      priceDisplay: '299,000 frw',
       image: 'https://images.unsplash.com/photo-1596484552834-6a58f850e0a1?ixlib=rb-1.2.1&auto=format&fit=crop&w=300&h=200&q=80',
       category: 'Equipment'
     },
@@ -45,8 +45,8 @@ const Products = () => {
       id: 3,
       name: 'Organic Rabbit Pellets',
       description: 'Nutritionally balanced feed for optimal growth and reproduction.',
-      price: 25,
-      priceDisplay: '$25/bag',
+      price: 25000,
+      priceDisplay: '25,000 frw/bag',
       image: 'https://images.unsplash.com/photo-1607623488994-03c6c4b51a4e?ixlib=rb-1.2.1&auto=format&fit=crop&w=300&h=200&q=80',
       category: 'Feed'
     },
@@ -54,8 +54,8 @@ const Products = () => {
       id: 4,
       name: 'Farming Starter Guide',
       description: 'Comprehensive manual covering all aspects of commercial rabbit farming.',
-      price: 39,
-      priceDisplay: '$39',
+      price: 39000,
+      priceDisplay: '39,000 frw',
       image: 'https://images.unsplash.com/photo-1544947950-fa07a98d237f?ixlib=rb-1.2.1&auto=format&fit=crop&w=300&h=200&q=80',
       category: 'Resources'
     }
@@ -454,7 +454,7 @@ const Products = () => {
                     <p className="font-semibold">Order Summary</p>
                     <div className="flex justify-between mt-2">
                       <span>{selectedProduct.name} (x{quantity})</span>
-                      <span>${calculateTotal()}</span>
+                      <span>{calculateTotal()} frws</span>
                     </div>
                   </div>
                   
@@ -485,7 +485,7 @@ const Products = () => {
                   <div className="mb-6 p-4 bg-gray-50 rounded">
                     <p className="font-semibold mb-2">Order Summary</p>
                     <p className="mb-1">{selectedProduct.name} (x{quantity})</p>
-                    <p className="text-lg font-bold">Total: ${calculateTotal()}</p>
+                    <p className="text-lg font-bold">Total: {calculateTotal()} frws</p>
                   </div>
 
                   {/* Payment Method Selection */}
