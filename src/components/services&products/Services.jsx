@@ -34,7 +34,7 @@ const Services = () => {
         <div className="text-center mb-12">
           <h2 className="text-3xl md:text-4xl font-bold text-black mb-4">Our Rabbit Farming Services</h2>
           <p className="text-gray-600 max-w-2xl mx-auto">
-            Comprehensive services to help you establish and maintain a successful rabbit farming operation.
+          A Rabbitry organization that promotes commercial Rabbit Farming and provision of all other Rabbitry services and logistics.
           </p>
         </div>
         
