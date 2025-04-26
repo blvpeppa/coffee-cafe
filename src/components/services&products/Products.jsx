@@ -22,7 +22,6 @@ const Products = () => {
   const [quantity, setQuantity] = useState(1);
   const [isLoading, setIsLoading] = useState(false);
 
-  // ... (products array remains the same)
   const products = [
     {
       id: 1,
@@ -62,6 +61,22 @@ const Products = () => {
     }
   ];
 
+  const handleOrder = (product) => {
+    setSelectedProduct(product);
+    setStep(1);
+    setQuantity(1);
+    setFormData({ name: '', email: '', phone: '', address: '' });
+    setPaymentData({ 
+      method: 'credit',
+      cardNumber: '', 
+      expiry: '', 
+      cvv: '',
+      mobileNumber: '',
+      network: 'airtel'
+    });
+    setMessage('');
+  };
+
   const handlePaymentMethodChange = (method) => {
     setPaymentData({
       ...paymentData,
@@ -71,6 +86,16 @@ const Products = () => {
       cvv: '',
       mobileNumber: ''
     });
+  };
+
+  const handleOrderSubmit = (e) => {
+    e.preventDefault();
+    if (!formData.name || !formData.email || !formData.address) {
+      setMessage('Please fill all required fields');
+      return;
+    }
+    setStep(2);
+    setMessage('');
   };
 
   const handlePaymentSubmit = async (e) => {
@@ -124,7 +149,7 @@ const Products = () => {
     }
   };
 
-const downloadReceipt = (format = 'both') => {
+  const downloadReceipt = (format = 'both') => {
     const receiptData = JSON.parse(localStorage.getItem('latestReceipt'));
     if (!receiptData) return;
 
@@ -202,6 +227,7 @@ const downloadReceipt = (format = 'both') => {
 
           <div class="section">
             <p><strong>Payment Method:</strong> ${receiptData.paymentMethod}</p>
+            ${receiptData.mobileNumber ? `<p><strong>Mobile Number:</strong> +256 ${receiptData.mobileNumber}</p>` : ''}
           </div>
 
           <div class="footer">
@@ -280,6 +306,9 @@ const downloadReceipt = (format = 'both') => {
       doc.text('Payment Information', 20, 220);
       doc.setTextColor(0, 0, 0);
       doc.text(`Method: ${receiptData.paymentMethod}`, 20, 230);
+      if (receiptData.mobileNumber) {
+        doc.text(`Mobile Number: +256 ${receiptData.mobileNumber}`, 20, 240);
+      }
 
       // Add Footer
       doc.setFontSize(10);
@@ -305,7 +334,7 @@ const downloadReceipt = (format = 'both') => {
 
   return (
     <section className="py-12 bg-gray-50">
- <div className="container mx-auto px-4 sm:px-6 lg:px-8">
+      <div className="container mx-auto px-4 sm:px-6 lg:px-8">
         <div className="text-center mb-12">
           <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-4">
             Rabbit Farming Products
@@ -448,164 +477,165 @@ const downloadReceipt = (format = 'both') => {
                   {message && <p className="mt-4 text-red-600 text-sm">{message}</p>}
                 </form>
               )}
-      {step === 2 && (
-        <form onSubmit={handlePaymentSubmit} className="p-6">
-          <h3 className="text-2xl font-semibold mb-4">Payment Details</h3>
-          
-          <div className="mb-6 p-4 bg-gray-50 rounded">
-            <p className="font-semibold mb-2">Order Summary</p>
-            <p className="mb-1">{selectedProduct.name} (x{quantity})</p>
-            <p className="text-lg font-bold">Total: ${calculateTotal()}</p>
-          </div>
 
-          {/* Payment Method Selection */}
-          <div className="mb-6">
-            <label className="block text-gray-700 mb-3">Payment Method</label>
-            <div className="grid grid-cols-2 gap-3">
-              <button
-                type="button"
-                onClick={() => handlePaymentMethodChange('credit')}
-                className={`px-4 py-2 rounded-md border ${
-                  paymentData.method === 'credit' 
-                    ? 'bg-green-100 border-green-500 text-green-700' 
-                    : 'bg-white border-gray-300'
-                }`}
-              >
-                Credit Card
-              </button>
-              <button
-                type="button"
-                onClick={() => handlePaymentMethodChange('visa')}
-                className={`px-4 py-2 rounded-md border ${
-                  paymentData.method === 'visa' 
-                    ? 'bg-blue-100 border-blue-500 text-blue-700' 
-                    : 'bg-white border-gray-300'
-                }`}
-              >
-                Visa Card
-              </button>
-              <button
-                type="button"
-                onClick={() => handlePaymentMethodChange('airtel')}
-                className={`px-4 py-2 rounded-md border ${
-                  paymentData.method === 'airtel' 
-                    ? 'bg-red-100 border-red-500 text-red-700' 
-                    : 'bg-white border-gray-300'
-                }`}
-              >
-                Airtel Money
-              </button>
-              <button
-                type="button"
-                onClick={() => handlePaymentMethodChange('mtn')}
-                className={`px-4 py-2 rounded-md border ${
-                  paymentData.method === 'mtn' 
-                    ? 'bg-yellow-100 border-yellow-500 text-yellow-700' 
-                    : 'bg-white border-gray-300'
-                }`}
-              >
-                MTN Mobile Money
-              </button>
-            </div>
-          </div>
+              {step === 2 && (
+                <form onSubmit={handlePaymentSubmit} className="p-6">
+                  <h3 className="text-2xl font-semibold mb-4">Payment Details</h3>
+                  
+                  <div className="mb-6 p-4 bg-gray-50 rounded">
+                    <p className="font-semibold mb-2">Order Summary</p>
+                    <p className="mb-1">{selectedProduct.name} (x{quantity})</p>
+                    <p className="text-lg font-bold">Total: ${calculateTotal()}</p>
+                  </div>
 
-          {/* Card Payment Form */}
-          {(paymentData.method === 'credit' || paymentData.method === 'visa') && (
-            <>
-              <div className="mb-4">
-                <label className="block text-gray-700 mb-2">Card Number *</label>
-                <input
-                  type="text"
-                  placeholder="1234 5678 9012 3456"
-                  value={paymentData.cardNumber}
-                  onChange={(e) => setPaymentData({ ...paymentData, cardNumber: e.target.value })}
-                  className="w-full p-2 border rounded focus:ring-2 focus:ring-green-500 focus:border-transparent"
-                />
-              </div>
-              
-              <div className="grid grid-cols-2 gap-4 mb-4">
-                <div>
-                  <label className="block text-gray-700 mb-2">Expiry Date *</label>
-                  <input
-                    type="text"
-                    placeholder="MM/YY"
-                    value={paymentData.expiry}
-                    onChange={(e) => setPaymentData({ ...paymentData, expiry: e.target.value })}
-                    className="w-full p-2 border rounded focus:ring-2 focus:ring-green-500 focus:border-transparent"
-                  />
-                </div>
-                <div>
-                  <label className="block text-gray-700 mb-2">CVV *</label>
-                  <input
-                    type="text"
-                    placeholder="123"
-                    value={paymentData.cvv}
-                    onChange={(e) => setPaymentData({ ...paymentData, cvv: e.target.value })}
-                    className="w-full p-2 border rounded focus:ring-2 focus:ring-green-500 focus:border-transparent"
-                  />
-                </div>
-              </div>
-            </>
-          )}
+                  {/* Payment Method Selection */}
+                  <div className="mb-6">
+                    <label className="block text-gray-700 mb-3">Payment Method</label>
+                    <div className="grid grid-cols-2 gap-3">
+                      <button
+                        type="button"
+                        onClick={() => handlePaymentMethodChange('credit')}
+                        className={`px-4 py-2 rounded-md border ${
+                          paymentData.method === 'credit' 
+                            ? 'bg-green-100 border-green-500 text-green-700' 
+                            : 'bg-white border-gray-300'
+                        }`}
+                      >
+                        Credit Card
+                      </button>
+                      <button
+                        type="button"
+                        onClick={() => handlePaymentMethodChange('visa')}
+                        className={`px-4 py-2 rounded-md border ${
+                          paymentData.method === 'visa' 
+                            ? 'bg-blue-100 border-blue-500 text-blue-700' 
+                            : 'bg-white border-gray-300'
+                        }`}
+                      >
+                        Visa Card
+                      </button>
+                      <button
+                        type="button"
+                        onClick={() => handlePaymentMethodChange('airtel')}
+                        className={`px-4 py-2 rounded-md border ${
+                          paymentData.method === 'airtel' 
+                            ? 'bg-red-100 border-red-500 text-red-700' 
+                            : 'bg-white border-gray-300'
+                        }`}
+                      >
+                        Airtel Money
+                      </button>
+                      <button
+                        type="button"
+                        onClick={() => handlePaymentMethodChange('mtn')}
+                        className={`px-4 py-2 rounded-md border ${
+                          paymentData.method === 'mtn' 
+                            ? 'bg-yellow-100 border-yellow-500 text-yellow-700' 
+                            : 'bg-white border-gray-300'
+                        }`}
+                      >
+                        MTN Mobile Money
+                      </button>
+                    </div>
+                  </div>
 
-          {/* Mobile Money Form */}
-          {(paymentData.method === 'airtel' || paymentData.method === 'mtn') && (
-            <div className="mb-4">
-              <label className="block text-gray-700 mb-2">
-                {paymentData.method === 'airtel' ? 'Airtel' : 'MTN'} Mobile Number *
-              </label>
-              <div className="flex">
-                <span className="inline-flex items-center px-3 rounded-l-md border border-r-0 border-gray-300 bg-gray-50 text-gray-500">
-                  +256
-                </span>
-                <input
-                  type="tel"
-                  placeholder={`7XXXXXXXX (${paymentData.method === 'airtel' ? 'Airtel' : 'MTN'} number)`}
-                  value={paymentData.mobileNumber}
-                  onChange={(e) => setPaymentData({ ...paymentData, mobileNumber: e.target.value })}
-                  className="flex-1 p-2 border rounded-r-md focus:ring-2 focus:ring-green-500 focus:border-transparent"
-                />
-              </div>
-              <p className="mt-2 text-sm text-gray-500">
-                You'll receive a payment request on your {paymentData.method === 'airtel' ? 'Airtel' : 'MTN'} number
-              </p>
-            </div>
-          )}
+                  {/* Card Payment Form */}
+                  {(paymentData.method === 'credit' || paymentData.method === 'visa') && (
+                    <>
+                      <div className="mb-4">
+                        <label className="block text-gray-700 mb-2">Card Number *</label>
+                        <input
+                          type="text"
+                          placeholder="1234 5678 9012 3456"
+                          value={paymentData.cardNumber}
+                          onChange={(e) => setPaymentData({ ...paymentData, cardNumber: e.target.value })}
+                          className="w-full p-2 border rounded focus:ring-2 focus:ring-green-500 focus:border-transparent"
+                        />
+                      </div>
+                      
+                      <div className="grid grid-cols-2 gap-4 mb-4">
+                        <div>
+                          <label className="block text-gray-700 mb-2">Expiry Date *</label>
+                          <input
+                            type="text"
+                            placeholder="MM/YY"
+                            value={paymentData.expiry}
+                            onChange={(e) => setPaymentData({ ...paymentData, expiry: e.target.value })}
+                            className="w-full p-2 border rounded focus:ring-2 focus:ring-green-500 focus:border-transparent"
+                          />
+                        </div>
+                        <div>
+                          <label className="block text-gray-700 mb-2">CVV *</label>
+                          <input
+                            type="text"
+                            placeholder="123"
+                            value={paymentData.cvv}
+                            onChange={(e) => setPaymentData({ ...paymentData, cvv: e.target.value })}
+                            className="w-full p-2 border rounded focus:ring-2 focus:ring-green-500 focus:border-transparent"
+                          />
+                        </div>
+                      </div>
+                    </>
+                  )}
 
-          <div className="flex space-x-3">
-            <button
-              type="button"
-              onClick={() => setStep(1)}
-              className="px-4 py-2 border border-gray-300 rounded-md text-gray-700 hover:bg-gray-50 flex-grow"
-            >
-              Back
-            </button>
-            <button 
-              type="submit" 
-              className="px-4 py-2 bg-green-600 text-white rounded-md hover:bg-green-700 flex-grow flex items-center justify-center"
-              disabled={isLoading}
-            >
-              {isLoading ? (
-                <>
-                  <svg className="animate-spin -ml-1 mr-2 h-4 w-4 text-white" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
-                    <circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4"></circle>
-                    <path className="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
-                  </svg>
-                  Processing...
-                </>
-              ) : `Pay $${calculateTotal()}`}
-            </button>
-          </div>
-          
-          {message && (
-            <p className={`mt-4 text-sm ${message.includes('failed') ? 'text-red-600' : 'text-green-600'}`}>
-              {message}
-            </p>
-          )}
-        </form>
-      )}
+                  {/* Mobile Money Form */}
+                  {(paymentData.method === 'airtel' || paymentData.method === 'mtn') && (
+                    <div className="mb-4">
+                      <label className="block text-gray-700 mb-2">
+                        {paymentData.method === 'airtel' ? 'Airtel' : 'MTN'} Mobile Number *
+                      </label>
+                      <div className="flex">
+                        <span className="inline-flex items-center px-3 rounded-l-md border border-r-0 border-gray-300 bg-gray-50 text-gray-500">
+                          +250
+                        </span>
+                        <input
+                          type="tel"
+                          placeholder={`7XXXXXXXX (${paymentData.method === 'airtel' ? 'Airtel' : 'MTN'} number)`}
+                          value={paymentData.mobileNumber}
+                          onChange={(e) => setPaymentData({ ...paymentData, mobileNumber: e.target.value })}
+                          className="flex-1 p-2 border rounded-r-md focus:ring-2 focus:ring-green-500 focus:border-transparent"
+                        />
+                      </div>
+                      <p className="mt-2 text-sm text-green-700">
+                        You'll receive a payment request on your {paymentData.method === 'airtel' ? 'Airtel' : 'MTN'} number
+                      </p>
+                    </div>
+                  )}
 
-{step === 3 && (
+                  <div className="flex space-x-3">
+                    <button
+                      type="button"
+                      onClick={() => setStep(1)}
+                      className="px-4 py-2 border border-gray-300 rounded-md text-gray-700 hover:bg-gray-50 flex-grow"
+                    >
+                      Back
+                    </button>
+                    <button 
+                      type="submit" 
+                      className="px-4 py-2 bg-green-600 text-white rounded-md hover:bg-green-700 flex-grow flex items-center justify-center"
+                      disabled={isLoading}
+                    >
+                      {isLoading ? (
+                        <>
+                          <svg className="animate-spin -ml-1 mr-2 h-4 w-4 text-white" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
+                            <circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4"></circle>
+                            <path className="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
+                          </svg>
+                          Processing...
+                        </>
+                      ) : `Pay $${calculateTotal()}`}
+                    </button>
+                  </div>
+                  
+                  {message && (
+                    <p className={`mt-4 text-sm ${message.includes('failed') ? 'text-red-600' : 'text-green-600'}`}>
+                      {message}
+                    </p>
+                  )}
+                </form>
+              )}
+
+              {step === 3 && (
                 <div className="p-6">
                   <div className="text-center mb-6">
                     <div className="w-16 h-16 bg-green-100 rounded-full flex items-center justify-center mx-auto mb-4">
