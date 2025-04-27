@@ -15,8 +15,7 @@ import Tour from "./components/Tour/Tour.jsx";
 import Notfound from "./Notfound/Notfound.jsx";
 import "@fortawesome/fontawesome-free/css/all.min.css";
 import "aos/dist/aos.css";
-import { BrowserRouter,Router,Route,Routes,Link } from "react-router-dom";
-
+import { BrowserRouter, Route, Routes } from "react-router-dom";
 
 const App = () => {
   React.useEffect(() => {

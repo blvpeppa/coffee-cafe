@@ -1,144 +1,182 @@
-import React, { useState } from 'react'
+import React, { useState,useEffect } from 'react';
+import { FaCreditCard, FaMobileAlt, FaPrint, FaTimes, FaArrowRight } from 'react-icons/fa';
+import { Link,useNavigate } from "react-router-dom";
+import { jsPDF } from 'jspdf';
 import t1 from '../../assets/pricing-1.jpg';
 import t2 from '../../assets/pricing-2.jpg';
 import t3 from '../../assets/pricing-3.jpg';
-import { Link } from "react-router-dom";
-const pricingOptions = [
-  {
-    title: 'Professional Visit',
-    price: '20,000 frws',
-    image: `${t1}`,
-  },
-  {
-    title: 'Academic Visit',
-    price: '400,000 frws / 1-30 people',
-    image: `${t2}`,
-  },
-  {
-    title: 'Institutional Visit',
-    price: 'Free',
-    image: `${t3}`,
-  }
-];
 
 const Training_home = () => {
-const [selectedOption, setSelectedOption] = useState(null);
-  const [formData, setFormData] = useState({ name: '', email: '', phone: '' });
-  const [paymentData, setPaymentData] = useState({ cardNumber: '', expiry: '', cvv: '' });
-  const [step, setStep] = useState(1);
-  const [message, setMessage] = useState('');
+  const navigate = useNavigate();  // Initialize the navigate function
+  const handleMoreVisitsClick = () => {
+    navigate('/tour');
+    // Scroll to top after navigation
+    window.scrollTo(0, 0);
+  };
+  const pricingOptions = [
+    {
+      id: 1,
+      title: 'Professional Visit',
+      price: '20,000 frws',
+      description: 'For researchers and professionals in cultural fields',
+      image: t1,
+      requiresPayment: true
+    },
+    {
+      id: 2,
+      title: 'Academic Visit',
+      price: '400,000 frws / 1-30 people',
+      description: 'Special rates for educational institutions',
+      image: t2,
+      requiresPayment: true
+    },
+    {
+      id: 3,
+      title: 'Institutional Visit',
+      price: 'Free',
+      description: 'For government and partner organizations',
+      image: t3,
+      requiresPayment: false
+    }
+  ];
+
+  // State management
+  const [selectedOption, setSelectedOption] = useState(null);
+  const [formData, setFormData] = useState({
+    name: '',
+    email: '',
+    phone: '',
+    organization: '',
+    visitDate: '',
+    specialRequests: ''
+  });
+  
+  const [paymentData, setPaymentData] = useState({
+    method: 'credit', // 'credit' or 'mobile'
+    cardNumber: '',
+    expiry: '',
+    cvv: '',
+    mobileNumber: '',
+    network: 'mtn'
+  });
+  
+  const [step, setStep] = useState(1); // 1: application, 2: payment, 3: confirmation
+  const [message, setMessage] = useState({ text: '', isError: false });
   const [receiptData, setReceiptData] = useState(null);
 
-  const handleApply = (option) => {
+  // Handlers
+  const handleSelectOption = (option) => {
     setSelectedOption(option);
     setStep(1);
-    setMessage('');
+    setMessage({ text: '', isError: false });
   };
 
   const handleApplicationSubmit = (e) => {
     e.preventDefault();
+    
     if (!formData.name || !formData.email) {
-      setMessage('Please fill all required fields');
+      setMessage({ text: 'Please fill all required fields', isError: true });
       return;
     }
 
-    const currentOption = pricingOptions.find(opt => opt.title === selectedOption);
-    if (currentOption.price === 'Free' || currentOption.price === 'Negotiable') {
-      generateReceipt();
-      setMessage("Application submitted successfully.");
-      setStep(3);
-    } else {
+    if (selectedOption.requiresPayment) {
       setStep(2);
+    } else {
+      generateReceipt();
+      setStep(3);
     }
   };
 
   const handlePaymentSubmit = (e) => {
     e.preventDefault();
-    if (!paymentData.cardNumber || !paymentData.expiry || !paymentData.cvv) {
-      setMessage('Please fill all payment details');
+    
+    if (paymentData.method === 'credit' && 
+        (!paymentData.cardNumber || !paymentData.expiry || !paymentData.cvv)) {
+      setMessage({ text: 'Please fill all payment details', isError: true });
+      return;
+    }
+    
+    if (paymentData.method === 'mobile' && !paymentData.mobileNumber) {
+      setMessage({ text: 'Please enter mobile number', isError: true });
       return;
     }
 
     generateReceipt();
-    setMessage("Payment successful!");
     setStep(3);
   };
 
-  const getPriceAmount = (optionTitle) => {
-    const option = pricingOptions.find(opt => opt.title === optionTitle);
-    if (!option) return '0';
-    if (option.price === 'Free' || option.price === 'Negotiable') return option.price;
-    return option.price.split(' ')[0];
-  };
-
   const generateReceipt = () => {
-    const option = pricingOptions.find(opt => opt.title === selectedOption);
     const receipt = {
-      id: `REC-${Date.now()}`,
+      id: `VISIT-${Date.now().toString().slice(-6)}`,
       date: new Date().toLocaleDateString(),
-      time: new Date().toLocaleTimeString(),
+      time: new Date().toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' }),
       customer: formData.name,
       email: formData.email,
-      service: selectedOption,
-      amount: getPriceAmount(selectedOption),
-      image: option.image,
-      paymentMethod: 'Credit Card',
-      status: 'Completed'
+      service: selectedOption.title,
+      amount: selectedOption.price,
+      description: selectedOption.description,
+      image: selectedOption.image,
+      paymentMethod: selectedOption.requiresPayment ? 
+                    (paymentData.method === 'credit' ? 'Credit Card' : 'Mobile Money') : 
+                    'Not Applicable',
+      status: 'Confirmed'
     };
+    
     setReceiptData(receipt);
+    setMessage({ text: 'Booking successful!', isError: false });
   };
 
-  const downloadReceipt = () => {
-    const receiptWindow = window.open('', '_blank');
-    receiptWindow.document.write(`
-      <html>
-        <head>
-          <title>Receipt - ${receiptData.id}</title>
-          <style>
-            body { font-family: Arial, sans-serif; max-width: 800px; margin: 0 auto; padding: 20px; }
-            .header { text-align: center; margin-bottom: 30px; }
-            .logo { max-width: 150px; margin-bottom: 10px; }
-            .receipt-title { font-size: 24px; font-weight: bold; margin-bottom: 20px; }
-            .receipt-details { margin-bottom: 30px; }
-            .detail-row { display: flex; margin-bottom: 10px; }
-            .detail-label { font-weight: bold; width: 150px; }
-            .service-image { max-width: 100%; height: auto; margin: 20px 0; border-radius: 8px; }
-            .footer { margin-top: 40px; text-align: center; font-size: 12px; color: #666; }
-            .amount { font-size: 20px; font-weight: bold; color: #2e7d32; margin: 20px 0; }
-          </style>
-        </head>
-        <body>
-          <div class="header">
-            <img src="https://via.placeholder.com/150x50?text=Museum+Logo" alt="Logo" class="logo">
-            <div class="receipt-title">Payment Receipt</div>
-          </div>
-          <div class="receipt-details">
-            <div class="detail-row"><div class="detail-label">Receipt ID:</div><div>${receiptData.id}</div></div>
-            <div class="detail-row"><div class="detail-label">Date:</div><div>${receiptData.date} at ${receiptData.time}</div></div>
-            <div class="detail-row"><div class="detail-label">Customer:</div><div>${receiptData.customer}</div></div>
-            <div class="detail-row"><div class="detail-label">Email:</div><div>${receiptData.email}</div></div>
-            <div class="detail-row"><div class="detail-label">Service:</div><div>${receiptData.service}</div></div>
-            <div class="detail-row"><div class="detail-label">Payment Method:</div><div>${receiptData.paymentMethod}</div></div>
-            <div class="detail-row"><div class="detail-label">Status:</div><div>${receiptData.status}</div></div>
-            <div class="amount">Amount Paid: ${receiptData.amount}</div>
-            <img src="${receiptData.image}" alt="Service" class="service-image">
-          </div>
-          <div class="footer">
-            <p>Thank you for your payment. This receipt confirms your transaction.</p>
-          </div>
-          <script>window.onload = function() { setTimeout(function() { window.print(); }, 500); };</script>
-        </body>
-      </html>
-    `);
-    receiptWindow.document.close();
+  const generatePDFReceipt = () => {
+    const doc = new jsPDF();
+    
+    // Add logo and header
+    doc.setFontSize(20);
+    doc.setTextColor(40, 103, 45); // Dark green
+    doc.text('Cultural Experience Center', 105, 20, null, null, 'center');
+    
+    doc.setFontSize(16);
+    doc.setTextColor(0, 0, 0);
+    doc.text('Visit Confirmation Receipt', 105, 30, null, null, 'center');
+    
+    // Add receipt details
+    doc.setFontSize(12);
+    doc.text(`Receipt ID: ${receiptData.id}`, 20, 50);
+    doc.text(`Date: ${receiptData.date} at ${receiptData.time}`, 20, 60);
+    doc.text(`Visitor: ${receiptData.customer}`, 20, 70);
+    doc.text(`Email: ${receiptData.email}`, 20, 80);
+    doc.text(`Visit Type: ${receiptData.service}`, 20, 90);
+    doc.text(`Amount: ${receiptData.amount}`, 20, 100);
+    doc.text(`Payment Method: ${receiptData.paymentMethod}`, 20, 110);
+    
+    // Add note
+    doc.setFontSize(10);
+    doc.setTextColor(100, 100, 100);
+    doc.text('Thank you for your booking. Present this receipt at the entrance.', 20, 140);
+    
+    // Save the PDF
+    doc.save(`visit_receipt_${receiptData.id}.pdf`);
   };
 
   const resetForm = () => {
     setSelectedOption(null);
-    setFormData({ name: '', email: '', phone: '' });
-    setPaymentData({ cardNumber: '', expiry: '', cvv: '' });
+    setFormData({
+      name: '',
+      email: '',
+      phone: '',
+      organization: '',
+      visitDate: '',
+      specialRequests: ''
+    });
+    setPaymentData({
+      method: 'credit',
+      cardNumber: '',
+      expiry: '',
+      cvv: '',
+      mobileNumber: '',
+      network: 'mtn'
+    });
     setStep(1);
-    setMessage('');
+    setMessage({ text: '', isError: false });
     setReceiptData(null);
   };
 
@@ -146,174 +184,306 @@ const [selectedOption, setSelectedOption] = useState(null);
     <section className="py-16 bg-gray-50">
       <div className="container mx-auto px-4">
         <div className="text-center mb-12">
-          <h2 className="text-3xl font-bold">Price Details</h2>
+          <h2 className="text-3xl font-bold text-gray-800">Visit Options</h2>
+          <p className="text-gray-600 mt-2">Explore our specialized visit programs</p>
         </div>
-        <div className="grid md:grid-cols-3 gap-8">
-          {pricingOptions.map((item, index) => (
-            <div key={index} className="bg-white rounded shadow hover:shadow-lg overflow-hidden transition">
-              <div className="h-80 bg-cover bg-center" style={{ backgroundImage: `url(${item.image})` }} />
-              <div className="p-6 text-center">
-                <h3 className="text-xl font-semibold mb-2">{item.title}</h3>
-                <p className="text-lg text-green-700 font-bold mb-4">{item.price}</p>
-                <button
-                  className="bg-green-700 hover:bg-green-800 text-white px-6 py-2 rounded"
-                  onClick={() => handleApply(item.title)}
-                >
-                  APPLY
-                </button>
+
+        {/* Pricing Cards Grid */}
+        <div className="grid md:grid-cols-3 gap-8 mb-12">
+          {pricingOptions.map((option) => (
+            <div key={option.id} className="bg-white rounded-lg shadow-md overflow-hidden hover:shadow-lg transition-shadow duration-300">
+              <div 
+                className="h-80 bg-cover bg-center" 
+                style={{ backgroundImage: `url(${option.image})` }}
+              />
+              <div className="p-6">
+                <h3 className="text-xl font-bold text-gray-800 mb-2">{option.title}</h3>
+                <p className="text-gray-600 mb-4">{option.description}</p>
+                <div className="flex justify-between items-center">
+                  <span className="text-lg font-bold text-green-700">{option.price}</span>
+                  <button
+                    onClick={() => handleSelectOption(option)}
+                    className="bg-green-700 hover:bg-green-800 text-white px-4 py-2 rounded transition-colors duration-300"
+                  >
+                    Book Now
+                  </button>
+                </div>
               </div>
             </div>
           ))}
         </div>
 
-        {/* Modal */}
+        {/* Registration Modal */}
         {selectedOption && (
-          <div className="fixed inset-0 bg-black bg-opacity-50 flex justify-center items-center z-50">
-            {step === 1 && (
-              <form onSubmit={handleApplicationSubmit} className="bg-white p-8 rounded shadow-lg w-full max-w-md relative">
-                <h3 className="text-2xl font-semibold mb-4">Apply for {selectedOption}</h3>
-                <input
-                  type="text"
-                  required
-                  placeholder="Your Name"
-                  value={formData.name}
-                  onChange={(e) => setFormData({ ...formData, name: e.target.value })}
-                  className="w-full mb-4 p-2 border rounded"
-                />
-                <input
-                  type="email"
-                  required
-                  placeholder="Your Email"
-                  value={formData.email}
-                  onChange={(e) => setFormData({ ...formData, email: e.target.value })}
-                  className="w-full mb-4 p-2 border rounded"
-                />
-                <input
-                  type="tel"
-                  placeholder="Phone Number (optional)"
-                  value={formData.phone}
-                  onChange={(e) => setFormData({ ...formData, phone: e.target.value })}
-                  className="w-full mb-4 p-2 border rounded"
-                />
-                <button type="submit" className="bg-green-700 text-white px-4 py-2 rounded w-full">
-                  {getPriceAmount(selectedOption) === 'Free' || getPriceAmount(selectedOption) === 'Negotiable' ? 'Submit Application' : 'Proceed to Payment'}
-                </button>
+          <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-4">
+            <div className="bg-white rounded-lg shadow-xl w-full max-w-md max-h-[90vh] overflow-y-auto">
+              <div className="p-6 relative">
+                {/* Close button */}
                 <button
                   onClick={resetForm}
-                  type="button"
-                  className="absolute top-2 right-3 text-gray-500 hover:text-red-500 text-xl"
+                  className="absolute top-4 right-4 text-gray-500 hover:text-gray-700"
                 >
-                  &times;
+                  <FaTimes className="w-5 h-5" />
                 </button>
-                {message && <p className={`mt-4 ${message.includes('failed') ? 'text-red-600' : 'text-green-600'}`}>{message}</p>}
-              </form>
-            )}
-            {step === 2 && (
-              <form onSubmit={handlePaymentSubmit} className="bg-white p-8 rounded shadow-lg w-full max-w-md relative">
-                <h3 className="text-2xl font-semibold mb-4">Payment for {selectedOption}</h3>
-                <p className="text-lg font-bold mb-4">Amount: {getPriceAmount(selectedOption)}</p>
-                
-                <div className="mb-4">
-                  <label className="block text-gray-700 mb-2">Card Number</label>
-                  <input
-                    type="text"
-                    placeholder="1234 5678 9012 3456"
-                    value={paymentData.cardNumber}
-                    onChange={(e) => setPaymentData({ ...paymentData, cardNumber: e.target.value })}
-                    className="w-full p-2 border rounded"
-                  />
-                </div>
-                
-                <div className="grid grid-cols-2 gap-4 mb-4">
-                  <div>
-                    <label className="block text-gray-700 mb-2">Expiry Date</label>
-                    <input
-                      type="text"
-                      placeholder="MM/YY"
-                      value={paymentData.expiry}
-                      onChange={(e) => setPaymentData({ ...paymentData, expiry: e.target.value })}
-                      className="w-full p-2 border rounded"
-                    />
-                  </div>
-                  <div>
-                    <label className="block text-gray-700 mb-2">CVV</label>
-                    <input
-                      type="text"
-                      placeholder="123"
-                      value={paymentData.cvv}
-                      onChange={(e) => setPaymentData({ ...paymentData, cvv: e.target.value })}
-                      className="w-full p-2 border rounded"
-                    />
-                  </div>
-                </div>
-                
-                <button type="submit" className="bg-green-700 text-white px-4 py-2 rounded w-full">
-                  Pay Now
-                </button>
-                <button
-                  onClick={() => setStep(1)}
-                  type="button"
-                  className="mt-2 text-gray-600 hover:text-gray-800"
-                >
-                  Back to Application
-                </button>
-                <button
-                  onClick={resetForm}
-                  type="button"
-                  className="absolute top-2 right-3 text-gray-500 hover:text-red-500 text-xl"
-                >
-                  &times;
-                </button>
-                {message && <p className={`mt-4 ${message.includes('failed') ? 'text-red-600' : 'text-green-600'}`}>{message}</p>}
-              </form>
-            )}
 
-            {step === 3 && (
-              <div className="bg-white p-8 rounded shadow-lg w-full max-w-md relative">
-                <h3 className="text-2xl font-semibold mb-4">Payment Successful!</h3>
-                <p className="text-lg mb-4">Thank you for your payment.</p>
-                
-                <div className="border p-4 rounded mb-4">
-                  <h4 className="font-bold mb-2">Receipt Summary</h4>
-                  <p><span className="font-semibold">Service:</span> {selectedOption}</p>
-                  <p><span className="font-semibold">Amount:</span> {getPriceAmount(selectedOption)}</p>
-                  <p><span className="font-semibold">Date:</span> {new Date().toLocaleDateString()}</p>
-                </div>
-                
-                <button
-                  onClick={downloadReceipt}
-                  className="bg-green-700 text-white px-4 py-2 rounded w-full mb-2"
-                >
-                  Download Receipt
-                </button>
-                <button
-                  onClick={resetForm}
-                  className="bg-gray-200 text-gray-800 px-4 py-2 rounded w-full"
-                >
-                  Close
-                </button>
-                <button
-                  onClick={resetForm}
-                  type="button"
-                  className="absolute top-2 right-3 text-gray-500 hover:text-red-500 text-xl"
-                >
-                  &times;
-                </button>
-              </div>
-            )}
-          </div>
-        )}
-      </div>
-       {/* More Gallery Button */}
-       <div className="w-full md:w-1/3 px-4 text-center"></div>
-                  <div className="w-full md:w-1/3 px-4 text-center">
-                    <div className="text-center p-6">
-                    <Link to="/tour" className="bg-green-600 hover:bg-green-700 text-white py-3 px-6 rounded inline-block text-center">
-                        more visits <span className="ml-2">&rarr;</span>
-                      </Link>
+                {/* Step 1: Application Form */}
+                {step === 1 && (
+                  <form onSubmit={handleApplicationSubmit} className="space-y-4">
+                    <h3 className="text-2xl font-bold text-gray-800 mb-4">
+                      Book {selectedOption.title}
+                    </h3>
+                    
+                    <div>
+                      <label className="block text-gray-700 mb-1">Full Name *</label>
+                      <input
+                        type="text"
+                        value={formData.name}
+                        onChange={(e) => setFormData({...formData, name: e.target.value})}
+                        className="w-full p-2 border rounded"
+                        required
+                      />
+                    </div>
+                    
+                    <div>
+                      <label className="block text-gray-700 mb-1">Email *</label>
+                      <input
+                        type="email"
+                        value={formData.email}
+                        onChange={(e) => setFormData({...formData, email: e.target.value})}
+                        className="w-full p-2 border rounded"
+                        required
+                      />
+                    </div>
+                    
+                    <div>
+                      <label className="block text-gray-700 mb-1">Phone Number</label>
+                      <input
+                        type="tel"
+                        value={formData.phone}
+                        onChange={(e) => setFormData({...formData, phone: e.target.value})}
+                        className="w-full p-2 border rounded"
+                      />
+                    </div>
+                    
+                    <div>
+                      <label className="block text-gray-700 mb-1">
+                        {selectedOption.title.includes('Academic') ? 'School/University' : 'Organization'}
+                      </label>
+                      <input
+                        type="text"
+                        value={formData.organization}
+                        onChange={(e) => setFormData({...formData, organization: e.target.value})}
+                        className="w-full p-2 border rounded"
+                      />
+                    </div>
+                    
+                    <div>
+                      <label className="block text-gray-700 mb-1">Preferred Visit Date</label>
+                      <input
+                        type="date"
+                        value={formData.visitDate}
+                        onChange={(e) => setFormData({...formData, visitDate: e.target.value})}
+                        className="w-full p-2 border rounded"
+                      />
+                    </div>
+                    
+                    <div>
+                      <label className="block text-gray-700 mb-1">Special Requests</label>
+                      <textarea
+                        value={formData.specialRequests}
+                        onChange={(e) => setFormData({...formData, specialRequests: e.target.value})}
+                        className="w-full p-2 border rounded"
+                        rows="3"
+                      />
+                    </div>
+                    
+                    {message.text && (
+                      <p className={`mt-2 ${message.isError ? 'text-red-600' : 'text-green-600'}`}>
+                        {message.text}
+                      </p>
+                    )}
+                    
+                    <button
+                      type="submit"
+                      className="w-full bg-green-700 hover:bg-green-800 text-white py-2 px-4 rounded mt-4"
+                    >
+                      {selectedOption.requiresPayment ? 'Continue to Payment' : 'Submit Request'}
+                    </button>
+                  </form>
+                )}
+
+                {/* Step 2: Payment Form */}
+                {step === 2 && (
+                  <form onSubmit={handlePaymentSubmit} className="space-y-4">
+                    <h3 className="text-2xl font-bold text-gray-800 mb-4">
+                      Payment for {selectedOption.title}
+                    </h3>
+                    
+                    <div className="bg-gray-100 p-4 rounded">
+                      <p className="font-semibold">Amount Due: {selectedOption.price}</p>
+                    </div>
+                    
+                    <div className="flex space-x-4 mb-4">
+                      <button
+                        type="button"
+                        onClick={() => setPaymentData({...paymentData, method: 'credit'})}
+                        className={`flex-1 py-2 rounded flex items-center justify-center space-x-2 ${paymentData.method === 'credit' ? 'bg-green-700 text-white' : 'bg-gray-200 text-gray-700'}`}
+                      >
+                        <FaCreditCard />
+                        <span>Credit Card</span>
+                      </button>
+                      <button
+                        type="button"
+                        onClick={() => setPaymentData({...paymentData, method: 'mobile'})}
+                        className={`flex-1 py-2 rounded flex items-center justify-center space-x-2 ${paymentData.method === 'mobile' ? 'bg-green-700 text-white' : 'bg-gray-200 text-gray-700'}`}
+                      >
+                        <FaMobileAlt />
+                        <span>Mobile Money</span>
+                      </button>
+                    </div>
+                    
+                    {paymentData.method === 'credit' ? (
+                      <>
+                        <div>
+                          <label className="block text-gray-700 mb-1">Card Number *</label>
+                          <input
+                            type="text"
+                            placeholder="1234 5678 9012 3456"
+                            value={paymentData.cardNumber}
+                            onChange={(e) => setPaymentData({...paymentData, cardNumber: e.target.value})}
+                            className="w-full p-2 border rounded"
+                            required
+                          />
+                        </div>
+                        
+                        <div className="grid grid-cols-2 gap-4">
+                          <div>
+                            <label className="block text-gray-700 mb-1">Expiry Date *</label>
+                            <input
+                              type="text"
+                              placeholder="MM/YY"
+                              value={paymentData.expiry}
+                              onChange={(e) => setPaymentData({...paymentData, expiry: e.target.value})}
+                              className="w-full p-2 border rounded"
+                              required
+                            />
+                          </div>
+                          <div>
+                            <label className="block text-gray-700 mb-1">CVV *</label>
+                            <input
+                              type="text"
+                              placeholder="123"
+                              value={paymentData.cvv}
+                              onChange={(e) => setPaymentData({...paymentData, cvv: e.target.value})}
+                              className="w-full p-2 border rounded"
+                              required
+                            />
+                          </div>
+                        </div>
+                      </>
+                    ) : (
+                      <>
+                        <div>
+                          <label className="block text-gray-700 mb-1">Mobile Number *</label>
+                          <input
+                            type="tel"
+                            placeholder="0781234567"
+                            value={paymentData.mobileNumber}
+                            onChange={(e) => setPaymentData({...paymentData, mobileNumber: e.target.value})}
+                            className="w-full p-2 border rounded"
+                            required
+                          />
+                        </div>
+                        
+                        <div>
+                          <label className="block text-gray-700 mb-1">Network *</label>
+                          <select
+                            value={paymentData.network}
+                            onChange={(e) => setPaymentData({...paymentData, network: e.target.value})}
+                            className="w-full p-2 border rounded"
+                          >
+                            <option value="mtn">MTN</option>
+                            <option value="airtel">Airtel</option>
+                          </select>
+                        </div>
+                      </>
+                    )}
+                    
+                    {message.text && (
+                      <p className={`mt-2 ${message.isError ? 'text-red-600' : 'text-green-600'}`}>
+                        {message.text}
+                      </p>
+                    )}
+                    
+                    <div className="flex space-x-4">
+                      <button
+                        type="button"
+                        onClick={() => setStep(1)}
+                        className="flex-1 bg-gray-200 hover:bg-gray-300 text-gray-800 py-2 px-4 rounded"
+                      >
+                        Back
+                      </button>
+                      <button
+                        type="submit"
+                        className="flex-1 bg-green-700 hover:bg-green-800 text-white py-2 px-4 rounded"
+                      >
+                        Complete Payment
+                      </button>
+                    </div>
+                  </form>
+                )}
+
+                {/* Step 3: Confirmation */}
+                {step === 3 && receiptData && (
+                  <div className="text-center">
+                    <h3 className="text-2xl font-bold text-gray-800 mb-2">Booking Confirmed!</h3>
+                    <p className="text-green-600 mb-6">Thank you for your cultural visit request.</p>
+                    
+                    <div className="bg-gray-100 p-4 rounded-lg mb-6 text-left">
+                      <h4 className="font-bold mb-3">Booking Summary</h4>
+                      <p><span className="font-semibold">Reference:</span> {receiptData.id}</p>
+                      <p><span className="font-semibold">Visit Type:</span> {receiptData.service}</p>
+                      <p><span className="font-semibold">Date:</span> {receiptData.date}</p>
+                      <p><span className="font-semibold">Amount:</span> {receiptData.amount}</p>
+                      {receiptData.paymentMethod !== 'Not Applicable' && (
+                        <p><span className="font-semibold">Payment Method:</span> {receiptData.paymentMethod}</p>
+                      )}
+                    </div>
+                    
+                    <div className="flex flex-col space-y-3">
+                      <button
+                        onClick={generatePDFReceipt}
+                        className="bg-green-700 hover:bg-green-800 text-white py-2 px-4 rounded flex items-center justify-center space-x-2"
+                      >
+                        <FaPrint />
+                        <span>Download Receipt</span>
+                      </button>
+                      <button
+                        onClick={resetForm}
+                        className="bg-gray-200 hover:bg-gray-300 text-gray-800 py-2 px-4 rounded"
+                      >
+                        Close
+                      </button>
                     </div>
                   </div>
+                )}
+              </div>
+            </div>
+          </div>
+        )}
+
+        {/* More Tours Button */}
+        <div className="text-center mt-12">
+        <button 
+      onClick={handleMoreVisitsClick}
+      className="bg-green-600 hover:bg-green-700 text-white py-3 px-6 rounded inline-flex items-center"
+    >
+      Explore More Visits <FaArrowRight className="ml-2" />
+    </button>
+        </div>
+      </div>
     </section>
   );
 };
+
 export default Training_home;

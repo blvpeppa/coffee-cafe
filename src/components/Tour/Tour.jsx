@@ -202,7 +202,7 @@ const PricingCards = () => {
           {pricingOptions.map((option) => (
             <div key={option.id} className="bg-white rounded-lg shadow-md overflow-hidden hover:shadow-lg transition-shadow duration-300">
               <div 
-                className="h-48 bg-cover bg-center" 
+                className="h-80 bg-cover bg-center" 
                 style={{ backgroundImage: `url(${option.image})` }}
               />
               <div className="p-6">

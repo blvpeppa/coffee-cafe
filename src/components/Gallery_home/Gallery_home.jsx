@@ -1,9 +1,16 @@
-import React,{useState} from 'react'
+import React,{useState,useEffect} from 'react'
+import { FaCreditCard, FaMobileAlt, FaPrint, FaTimes, FaArrowRight } from 'react-icons/fa';
 import g1 from '../../assets/gallery-1.jpg';
 import g2 from '../../assets/gallery-2.jpg';
 import g3 from '../../assets/gallery-3.jpg';
-import {Link} from 'react-router-dom';
+import {Link,useNavigate} from 'react-router-dom';
 const Gallery = () => {
+const navigate = useNavigate();
+  const handleMoreVisitsClick = () => {
+    navigate('/gallery');
+    // Scroll to top after navigation
+    window.scrollTo(0, 0);
+  };
   const galleryItems = [
     { img: g1 },
     { img: g2 },
@@ -92,15 +99,15 @@ const Gallery = () => {
           </div>
         </div>
       )}
-       {/* More Gallery Button */}
- <div className="w-full md:w-1/3 px-4 text-center"></div>
-            <div className="w-full md:w-1/3 px-4 text-center">
-              <div className="text-center p-6">
-              <Link to="/gallery" className="bg-green-600 hover:bg-green-700 text-white py-3 px-6 rounded inline-block text-center">
-                  more on gallery <span className="ml-2">&rarr;</span>
-                </Link>
+      {/* More Tours Button */}
+              <div className="text-center mt-12">
+              <button 
+      onClick={handleMoreVisitsClick}
+      className="bg-green-600 hover:bg-green-700 text-white py-3 px-6 rounded inline-flex items-center"
+    >
+      Explore More Images <FaArrowRight className="ml-2" />
+    </button>
               </div>
-            </div>
     </>
   );
 };

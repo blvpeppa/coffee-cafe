@@ -18,6 +18,12 @@ const bgImage = {
 };
 
 const Banner = () => {
+  const scrollToTop = () => {
+    window.scrollTo({
+      top: 0,
+      behavior: "smooth" // Smooth scrolling animation
+    });
+  };
   return (
     <>
       <span id="about"></span>
@@ -92,7 +98,7 @@ const Banner = () => {
                       latest technologies.
                     </p>
                     <div className="mt-6 flex justify-center sm:justify-start">
-                <Link to="/about" className="inline-flex items-center gap-2 border border-green-700 px-6 py-2 sm:px-8 sm:py-3 rounded-sm text-sm sm:text-base text-green-700 hover:bg-green-700 hover:text-white transition duration-300"> More About
+                <Link to="/about" onClick={scrollToTop} className="inline-flex items-center gap-2 border border-green-700 px-6 py-2 sm:px-8 sm:py-3 rounded-sm text-sm sm:text-base text-green-700 hover:bg-green-700 hover:text-white transition duration-300"> More About
                 <svg
                   className="w-5 h-5"
                   fill="none"
