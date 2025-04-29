@@ -1,12 +1,33 @@
-import React from "react";
+import React, { useState } from 'react';
 import BgImage from "../../assets/bg_4.jpg";
 import CEOImage from "../../assets/CEO.jpg";
-import Banner from "../Banner/Banner";
 import AboutMain from "../../assets/about.jpg";
 import AboutImg2 from "../../assets/about-2.jpg";
 import AboutImg3 from "../../assets/about-3.jpg";
 import { Link } from "react-router-dom";
+import BannerImg from "../../assets/about-1.jpg"; 
+import { MdHealthAndSafety } from "react-icons/md";
+import { MdSupportAgent } from "react-icons/md";
+import { MdEmergency } from "react-icons/md";
+import { GiRabbit } from "react-icons/gi";
+const bgImage = { 
+  //backgroundImage: `url(${BgImg})`,
+  backgroundColor: "white",
+  backgroundPosition: "center",
+  backgroundRepeat: "no-repeat",
+  backgroundSize: "cover",
+  height: "100%",
+  width: "100%",
+};
 const About = () => {
+  const [showNewsModal, setShowNewsModal] = useState(false);
+  const [showVideoModal, setShowVideoModal] = useState(false);
+  const toggleNewsModal = () => {
+    setShowNewsModal(!showNewsModal);
+  };
+  const toggleVideoModal = () => {
+    setShowVideoModal(!showVideoModal);
+  };
   return (
     <>
       {/* Hero Section */}
@@ -131,23 +152,206 @@ const About = () => {
           </div>
         </div>
       </section>
-      <Banner />
+      {/* banner Section */}
+       {/* Banner Section */}
+       <span id="about"></span>
+      <div style={bgImage}>
+        <div className="min-h-[550px] flex justify-center items-center py-12 sm:py-0">
+          <div className="container">
+            <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
+              {/* Image section */}
+              <div data-aos="zoom-in">
+                <img
+                  src={BannerImg}
+                  alt="kigali rabbit center"
+                  className="max-w-[430px] w-full mx-auto rounded-lg"
+                />
+              </div>
+      
+              {/* Text content section */}
+              <div className="flex flex-col justify-center gap-6 sm:pt-0">
+                <h1
+                  data-aos="fade-up"
+                  className="text-3xl sm:text-4xl font-bold font-sans text"
+                >
+                  Why Choose Kigali Rabbit Center?
+                </h1>
+                <p
+                  data-aos="fade-up"
+                  className="text-sm text-gray-700 tracking-wide leading-5"
+                >
+                  We are the first company to introduce Rabbit Artificial
+                  Insemination system in East African Community. Since 2018, we
+                  have been a leading force in sustainable rabbit farming,
+                  genetics, training, and innovation.
+                </p>
+      
+                <div className="grid grid-cols-2 gap-6">
+                  <div className="space-y-5">
+                    <div
+                      data-aos="fade-up"
+                      className="flex items-center gap-3 text-gray-700"
+                    >
+                      <MdHealthAndSafety className="text-3xl h-12 w-12 shadow-sm p-3 rounded-full bg-green-100 text-green-700" />
+                      <span>Care Advices</span>
+                    </div>
+                    <div
+                      data-aos="fade-up"
+                      data-aos-delay="300"
+                      className="flex items-center gap-3 text-gray-700"
+                    >
+                      <MdSupportAgent className="text-3xl h-12 w-12 shadow-sm p-3 rounded-full bg-blue-100 text-blue-700" />
+                      <span>Customer Supports</span>
+                    </div>
+                    <div
+                      data-aos="fade-up"
+                      data-aos-delay="500"
+                      className="flex items-center gap-3 text-gray-700"
+                    >
+                      <MdEmergency className="text-3xl h-12 w-12 shadow-sm p-3 rounded-full bg-red-100 text-red-700" />
+                      <span>Emergency Services</span>
+                    </div>
+                  </div>
+      
+                  <div
+                    data-aos="slide-left"
+                    className="border-l-4 border-primary/50 pl-6 space-y-2 text-white"
+                  >
+                    <h1 className="text-2xl font-semibold font-cursive2 text-black">
+                      Veterinary <GiRabbit className="text-4xl text-green-600 inline" /> Help
+                    </h1>
+                    <p className="text-sm text-gray-700">
+                      Our experienced team provides expert veterinary assistance
+                      to ensure optimal health and breeding of rabbits using the
+                      latest technologies.
+                    </p>
+                    <div className="mt-6 flex justify-center sm:justify-start gap-4">
+                      <button
+                        onClick={toggleNewsModal}
+                        className="inline-flex items-center gap-2 border border-blue-700 px-6 py-2 sm:px-8 sm:py-3 rounded-sm text-sm sm:text-base text-blue-700 hover:bg-blue-700 hover:text-white transition duration-300"
+                      >
+                        Latest News
+                        <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 14l-7 7m0 0l-7-7m7 7V3" />
+                        </svg>
+                      </button>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              {/* End text content */}
+            </div>
+          </div>
+        </div>
+      </div>
+      {/* End banner section */}
+
+      {/* News Modal */}
+      {showNewsModal && (
+        <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-4">
+          <div className="bg-white rounded-lg shadow-xl max-w-2xl w-full max-h-[80vh] overflow-y-auto">
+            <div className="p-6">
+              <div className="flex justify-between items-center mb-4">
+                <h2 className="text-2xl font-bold text-gray-800">Latest News & Updates</h2>
+                <button 
+                  onClick={toggleNewsModal}
+                  className="text-gray-500 hover:text-gray-700"
+                >
+                  <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
+                  </svg>
+                </button>
+              </div>
+
+              <div className="space-y-6">
+                {/* News Item 1 */}
+                <div className="border-b pb-4">
+                  <h3 className="text-xl font-semibold text-green-700">New Rabbit Breeding Techniques</h3>
+                  <p className="text-gray-600 text-sm mt-1">June 15, 2023</p>
+                  <p className="text-gray-700 mt-2">
+                    We've introduced innovative breeding techniques that increase success rates by 40%. 
+                    Join our upcoming workshop to learn more.
+                  </p>
+                </div>
+
+                {/* News Item 2 */}
+                <div className="border-b pb-4">
+                  <h3 className="text-xl font-semibold text-green-700">Farm Expansion Complete</h3>
+                  <p className="text-gray-600 text-sm mt-1">May 28, 2023</p>
+                  <p className="text-gray-700 mt-2">
+                    Our new state-of-the-art facility is now open, doubling our capacity for 
+                    rabbit production and research.
+                  </p>
+                </div>
+
+                {/* News Item 3 */}
+                <div className="border-b pb-4">
+                  <h3 className="text-xl font-semibold text-green-700">AI Training Program</h3>
+                  <p className="text-gray-600 text-sm mt-1">April 10, 2023</p>
+                  <p className="text-gray-700 mt-2">
+                    Registration is now open for our Artificial Insemination certification 
+                    program starting next month.
+                  </p>
+                </div>
+
+                <div className="pt-4">
+                  <button
+                    onClick={toggleNewsModal}
+                    className="w-full bg-green-700 hover:bg-green-800 text-white py-2 px-4 rounded transition-colors duration-300"
+                  >
+                    Close
+                  </button>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      )}
+            {/* End banner section */}
       <section className="bg-green-50 py-16">
       <div className="container mx-auto px-4 grid lg:grid-cols-2 gap-12 items-start">
         
         {/* Video & Images */}
         <div className="flex flex-col space-y-6 order-2 lg:order-1">
-          <div
-            className="relative bg-cover bg-center h-72 flex items-center justify-center rounded-md shadow-md"
-            style={{ backgroundImage: `url(${AboutMain})` }}
-          >
-            <a
-              href="/videos/sample-video.mp4"
-              className="flex items-center justify-center w-16 h-16 bg-green-600 rounded-full text-white text-2xl hover:bg-green-700 transition"
+          {/* Video Thumbnail Section */}
+      <div
+        className="relative bg-cover bg-center h-96 flex items-center justify-center rounded-md shadow-md"
+        style={{ backgroundImage: `url(${AboutMain})` }}
+      >
+        <button
+          onClick={toggleVideoModal}
+          className="flex items-center justify-center w-16 h-16 bg-green-600 rounded-full text-white text-2xl hover:bg-green-700 transition"
+          aria-label="Play video"
+        >
+          ▶
+        </button>
+      </div>
+
+      {/* Video Modal */}
+      {showVideoModal && (
+        <div className="fixed inset-0 bg-black bg-opacity-75 flex items-center justify-center z-50 p-4">
+          <div className="relative w-full max-w-4xl">
+            <button 
+              onClick={toggleVideoModal}
+              className="absolute -top-10 right-0 text-white hover:text-gray-300 text-3xl"
+              aria-label="Close video"
             >
-              ▶
-            </a>
+              &times;
+            </button>
+            
+            <div className="aspect-w-16 aspect-h-9">
+              <video 
+                controls 
+                autoPlay 
+                className="w-full rounded-lg shadow-xl"
+              >
+                <source src="/videos/sample-video.mp4" type="video/mp4" />
+                Your browser does not support the video tag.
+              </video>
+            </div>
           </div>
+        </div>
+      )}
           <div className="flex gap-4">
             <div
               className="w-1/2 h-60 bg-cover bg-center rounded-md shadow"

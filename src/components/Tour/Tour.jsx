@@ -3,7 +3,9 @@ import { FaCreditCard, FaMobileAlt, FaPrint, FaTimes } from 'react-icons/fa';
 import { jsPDF } from 'jspdf';
 import pricing1 from "../../assets/pricing-1.jpg";
 import pricing2 from "../../assets/pricing-2.jpg";
-import pricing3 from "../../assets/pricing-3.jpg";
+import pricing3 from "../../assets/kids.jpg";
+import pricing4 from "../../assets/academic.jpg";
+import pricing5 from "../../assets/government.jpg";
 
 const PricingCards = () => {
   const pricingOptions = [
@@ -20,7 +22,7 @@ const PricingCards = () => {
       title: 'Academic Visit',
       price: '400,000 frws / 1-30 people',
       description: 'Special rates for school and university groups',
-      image: pricing2,
+      image: pricing4,
       requiresPayment: true
     },
     {
@@ -28,7 +30,7 @@ const PricingCards = () => {
       title: 'Institutional Visit',
       price: 'Free',
       description: 'For government and partner organizations',
-      image: pricing3,
+      image: pricing5,
       requiresPayment: false
     },
     {

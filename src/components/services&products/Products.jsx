@@ -27,8 +27,8 @@ const Products = () => {
       id: 1,
       name: 'Premium Breeding Rabbits',
       description: 'Healthy, pedigreed breeding stock of New Zealand White and California breeds.',
-      price: 75000,
-      priceDisplay: '75,000 frw',
+      price: 40000,
+      priceDisplay: '40,000 frw',
       image: 'https://images.unsplash.com/photo-1585969646097-a1b0038c37a1?ixlib=rb-1.2.1&auto=format&fit=crop&w=300&h=200&q=80',
       category: 'Live Stock'
     },
@@ -36,8 +36,8 @@ const Products = () => {
       id: 2,
       name: 'Rabbit Hutch Kit',
       description: 'Complete DIY hutch kit with all materials and instructions for easy assembly.',
-      price: 299000,
-      priceDisplay: '299,000 frw',
+      price: 350000,
+      priceDisplay: '350,000 frw',
       image: 'https://images.unsplash.com/photo-1596484552834-6a58f850e0a1?ixlib=rb-1.2.1&auto=format&fit=crop&w=300&h=200&q=80',
       category: 'Equipment'
     },
@@ -45,8 +45,8 @@ const Products = () => {
       id: 3,
       name: 'Organic Rabbit Pellets',
       description: 'Nutritionally balanced feed for optimal growth and reproduction.',
-      price: 25000,
-      priceDisplay: '25,000 frw/bag',
+      price: 15000,
+      priceDisplay: '15,000 frw/bag',
       image: 'https://images.unsplash.com/photo-1607623488994-03c6c4b51a4e?ixlib=rb-1.2.1&auto=format&fit=crop&w=300&h=200&q=80',
       category: 'Feed'
     },
@@ -54,8 +54,8 @@ const Products = () => {
       id: 4,
       name: 'Farming Starter Guide',
       description: 'Comprehensive manual covering all aspects of commercial rabbit farming.',
-      price: 39000,
-      priceDisplay: '39,000 frw',
+      price: 50000,
+      priceDisplay: '50,000 frw',
       image: 'https://images.unsplash.com/photo-1544947950-fa07a98d237f?ixlib=rb-1.2.1&auto=format&fit=crop&w=300&h=200&q=80',
       category: 'Resources'
     }
