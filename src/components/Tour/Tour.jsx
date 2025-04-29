@@ -2,8 +2,8 @@ import React, { useState } from 'react';
 import { FaCreditCard, FaMobileAlt, FaPrint, FaTimes } from 'react-icons/fa';
 import { jsPDF } from 'jspdf';
 import pricing1 from "../../assets/pricing-1.jpg";
-import pricing2 from "../../assets/pricing-2.jpg";
-import pricing3 from "../../assets/kids.jpg";
+import pricing2 from "../../assets/gallery-7.jpg";
+import pricing3 from "../../assets/gallery-8.jpg";
 import pricing4 from "../../assets/academic.jpg";
 import pricing5 from "../../assets/government.jpg";
 
@@ -44,7 +44,7 @@ const PricingCards = () => {
     {
       id: 5,
       title: 'Kids Visit',
-      price: 'Negotiable',
+      price: '100,000 frws',
       description: 'Special programs for children under 12',
       image: pricing3,
       requiresPayment: false
