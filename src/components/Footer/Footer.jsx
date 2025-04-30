@@ -72,7 +72,7 @@ const Footer = () => {
           <ul className="space-y-2">
             <li><Link to='/products' onClick={scrollToTop}>Services & Products</Link></li>
             <li><Link to='/Gallery' onClick={scrollToTop}>Gallery</Link></li>
-            <li><Link to='/Tours' onClick={scrollToTop}>Tours</Link></li>
+            <li><Link to='/Tour' onClick={scrollToTop}>Visits</Link></li>
             <li><Link to='/Training' onClick={scrollToTop}>Training</Link></li>
           </ul>
         </div>
