@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { jsPDF } from 'jspdf';
-
+import g5 from '../../assets/gallery-5.jpg';//manue product image
 const Products = () => {
   const [selectedProduct, setSelectedProduct] = useState(null);
   const [formData, setFormData] = useState({ 
@@ -58,6 +58,15 @@ const Products = () => {
       priceDisplay: '50,000 frw',
       image: 'https://images.unsplash.com/photo-1544947950-fa07a98d237f?ixlib=rb-1.2.1&auto=format&fit=crop&w=300&h=200&q=80',
       category: 'Resources'
+    },
+    {
+      id: 5,
+      name: 'Organic felterizer',
+      description: 'Comprehensive manual covering all aspects of commercial rabbit farming.',
+      price:"",
+      priceDisplay: 'negociable',
+      image: g5,
+      category: 'Manue'
     }
   ];
 
