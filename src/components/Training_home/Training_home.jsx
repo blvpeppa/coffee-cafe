@@ -25,7 +25,7 @@ const Training_home = () => {
     {
       id: 2,
       title: 'Academic Visit',
-      price: '400,000 frws / 1-30 people',
+      price: '400,000 frws / 1-40 people',
       description: 'Special rates for educational institutions',
       image: t2,
       requiresPayment: true
