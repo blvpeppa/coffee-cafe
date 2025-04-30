@@ -134,7 +134,7 @@ const About = () => {
         <div className="container mx-auto px-4">
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8 text-center">
             <div className="bg-gray-100 p-6 rounded shadow-md">
-              <h2 className="text-4xl font-bold text-green-600">120</h2>
+              <h2 className="text-4xl font-bold text-green-600">128</h2>
               <p className="mt-2 text-gray-700">Outgrowers</p>
             </div>
             <div className="bg-gray-100 p-6 rounded shadow-md">
