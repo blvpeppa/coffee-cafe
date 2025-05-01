@@ -10,6 +10,7 @@ import { MdHealthAndSafety } from "react-icons/md";
 import { MdSupportAgent } from "react-icons/md";
 import { MdEmergency } from "react-icons/md";
 import { GiRabbit } from "react-icons/gi";
+import { Helmet } from 'react-helmet-async';
 const bgImage = { 
   //backgroundImage: `url(${BgImg})`,
   backgroundColor: "white",
@@ -30,6 +31,27 @@ const About = () => {
   };
   return (
     <>
+    <Helmet>
+        <title>About Kigali Rabbit Center | Sustainable Rabbit Farming in Rwanda</title>
+        <meta name="description" content="Learn about Kigali Rabbit Center, Rwanda's pioneer in rabbit artificial insemination, sustainable farming, and rabbit breeding training." />
+        <meta name="keywords" content="Rabbit farming Rwanda, Kigali Rabbit Center, rabbit breeding, sustainable agriculture, rabbit artificial insemination" />
+        <link rel="canonical" href="https://yourdomain.com/about" />
+        <script type="application/ld+json">
+          {JSON.stringify({
+            "@context": "https://schema.org",
+            "@type": "LocalBusiness",
+            "name": "Kigali Rabbit Center",
+            "url": "https://kigalirabbits.org",
+            "logo": "https://kigalirabbits.org/logo.png",
+            "address": {
+              "@type": "PostalAddress",
+              "addressLocality": "Kigali",
+              "addressCountry": "RW"
+            },
+            "description": "Rabbit farming tours and sales in Kigali, Rwanda"
+          })}
+        </script>
+      </Helmet>
       {/* Hero Section */}
       <div
   className="relative w-full bg-cover bg-center min-h-[70vh] lg:min-h-[90vh] flex items-center justify-center overflow-hidden"
@@ -57,7 +79,7 @@ const About = () => {
         <div className="container mx-auto px-4 grid md:grid-cols-2 gap-10">
           <div className="flex justify-center">
             <div className="w-80 bg-white shadow-lg rounded-md overflow-hidden">
-              <img src={CEOImage} alt="CEO" className="w-full object-cover" />
+              <img src={CEOImage} alt="Dieudonne Musoni, CEO of Kigali Rabbit Center" className="w-full object-cover" />
               <div className="p-4 text-center">
                 <h1 className="text-2xl font-semibold">Dieudonne Musoni</h1>
                 <h2 className="text-green-700 font-semibold text-sm">

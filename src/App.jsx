@@ -16,6 +16,7 @@ import Notfound from "./Notfound/Notfound.jsx";
 import "@fortawesome/fontawesome-free/css/all.min.css";
 import "aos/dist/aos.css";
 import { BrowserRouter, Route, Routes } from "react-router-dom";
+import { Helmet } from 'react-helmet-async';
 
 const App = () => {
   React.useEffect(() => {
@@ -29,28 +30,45 @@ const App = () => {
   }, []);
 
   return (
-  <>
-    <div className="bg-white dark:bg-gray-900 dark:text-white duration-200 overflow-x-hidden">
-   
-    <BrowserRouter>
-      <div className="bg-white dark:bg-gray-900 dark:text-white duration-200">
-        <Navbar />
-        <Routes>
-          <Route path="/" element={<Home />} />
-          <Route path="/about" element={<About />} />
-          <Route path="/products" element={<SP />} />
-          <Route path="/contact" element={<Contact />} />
-          <Route path="/gallery" element={<Gallery />} />
-          <Route path="/tour" element={<Tour />} />
-          <Route path="/training" element={<Training />} />
-          <Route path="*" element={<Notfound />} />
-      <Route path="/pay" element={<PaymentMethod />} />
-      <Route path="/receipt" element={<Receipt />} />
-        </Routes>
-        <Footer />
+    <>
+      <Helmet>
+        <script type="application/ld+json">{`
+          {
+            "@context": "https://schema.org",
+            "@type": "Organization",
+            "name": "Kigali Rabbit Center",
+            "url": "https://kigalirabbits.org",
+            "logo": "https://kigalirabbits.org/logo.png",
+            "description": "Kigali Rabbit Center is a pioneer in rabbit breeding and artificial insemination in Rwanda.",
+            "sameAs": [
+              "https://facebook.com/kigalirabbits",
+              "https://instagram.com/kigalirabbits"
+            ]
+          }
+        `}</script>
+      </Helmet>
+
+      <div className="bg-white dark:bg-gray-900 dark:text-white duration-200 overflow-x-hidden">
+        <BrowserRouter>
+          <div className="bg-white dark:bg-gray-900 dark:text-white duration-200">
+            <Navbar />
+            <Routes>
+              <Route path="/" element={<Home />} />
+              <Route path="/about" element={<About />} />
+              <Route path="/products" element={<SP />} />
+              <Route path="/contact" element={<Contact />} />
+              <Route path="/gallery" element={<Gallery />} />
+              <Route path="/tour" element={<Tour />} />
+              <Route path="/training" element={<Training />} />
+              <Route path="/pay" element={<PaymentMethod />} />
+              <Route path="/receipt" element={<Receipt />} />
+              <Route path="*" element={<Notfound />} />
+            </Routes>
+            <Footer />
+          </div>
+        </BrowserRouter>
       </div>
-    </BrowserRouter>
-    </div> </>
+    </>
   );
 };
 
