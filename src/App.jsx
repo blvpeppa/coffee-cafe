@@ -5,7 +5,7 @@ import Contact from "./components/Contact/Contact.jsx";
 import Training from "./components/Traininig/Training.jsx";
 import SP from "./components/services&products/SP.jsx";
 import Gallery from "./components/Gallery/Gallery.jsx";
-//import  PricingCards from "./components/Pricingcards/PricingCards.jsx";
+// import PricingCards from "./components/Pricingcards/PricingCards.jsx";
 import PaymentMethod from "./components/PaymentMethod/PaymentMethod.jsx";
 import Receipt from "./components/Receipt/Receipt.jsx";
 import AOS from "aos";
@@ -16,7 +16,7 @@ import Notfound from "./Notfound/Notfound.jsx";
 import "@fortawesome/fontawesome-free/css/all.min.css";
 import "aos/dist/aos.css";
 import { BrowserRouter, Route, Routes } from "react-router-dom";
-import { Helmet } from 'react-helmet-async';
+import { Helmet } from "react-helmet-async";
 
 const App = () => {
   React.useEffect(() => {
@@ -32,20 +32,21 @@ const App = () => {
   return (
     <>
       <Helmet>
-        <script type="application/ld+json">{`
-          {
+        <script type="application/ld+json">
+          {JSON.stringify({
             "@context": "https://schema.org",
             "@type": "Organization",
             "name": "Kigali Rabbit Center",
             "url": "https://kigalirabbits.org",
             "logo": "https://kigalirabbits.org/logo.png",
-            "description": "Kigali Rabbit Center is a pioneer in rabbit breeding and artificial insemination in Rwanda.",
+            "description":
+              "Kigali Rabbit Center is a pioneer in rabbit breeding and artificial insemination in Rwanda.",
             "sameAs": [
               "https://facebook.com/kigalirabbits",
               "https://instagram.com/kigalirabbits"
             ]
-          }
-        `}</script>
+          })}
+        </script>
       </Helmet>
 
       <div className="bg-white dark:bg-gray-900 dark:text-white duration-200 overflow-x-hidden">
