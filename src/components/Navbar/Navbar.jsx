@@ -105,7 +105,7 @@ const Navbar = () => {
             onClick={() => setIsOpen(false)}
             aria-label="Home"
           >
-            KRF
+            KRC
           </Link>
 
           {/* Desktop Menu */}

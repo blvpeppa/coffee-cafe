@@ -3,6 +3,7 @@ import { jsPDF } from 'jspdf';
 import g5 from '../../assets/gallery-5.jpg';//manue product image
 import s2 from '../../assets/S3.jpg';//manue product image
 import s3 from '../../assets/gallery-1.jpg';//manue product image
+import s4 from '../../assets/satyabratasm-u_kMWN-BWyU-unsplash.jpg';//manue product image
 const Products = () => {
   const [selectedProduct, setSelectedProduct] = useState(null);
   const [formData, setFormData] = useState({ 
@@ -58,7 +59,7 @@ const Products = () => {
       description: 'Comprehensive manual covering all aspects of commercial rabbit farming.',
       price: 50000,
       priceDisplay: '50,000 frw',
-      image: 'https://images.unsplash.com/photo-1544947950-fa07a98d237f?ixlib=rb-1.2.1&auto=format&fit=crop&w=300&h=200&q=80',
+      image: s4,
       category: 'Resources'
     },
     {
