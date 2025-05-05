@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { FaCreditCard, FaMobileAlt, FaPrint, FaTimes } from 'react-icons/fa';
+import { FaCreditCard, FaMobileAlt, FaPrint, FaTimes, FaSpinner } from 'react-icons/fa';
 import { jsPDF } from 'jspdf';
 import pricing1 from "../../assets/pricing-1.jpg";
 import pricing2 from "../../assets/gallery-7.jpg";
@@ -13,6 +13,7 @@ const PricingCards = () => {
       id: 1,
       title: 'Professional Visit',
       price: '20,000 frws',
+      numericPrice: 20000,
       description: 'For researchers and professionals in related fields',
       image: pricing1,
       requiresPayment: true
@@ -21,6 +22,7 @@ const PricingCards = () => {
       id: 2,
       title: 'Academic Visit',
       price: '400,000 frws / 1-30 people',
+      numericPrice: 400000,
       description: 'Special rates for school and university groups',
       image: pricing4,
       requiresPayment: true
@@ -29,6 +31,7 @@ const PricingCards = () => {
       id: 3,
       title: 'Institutional Visit',
       price: 'Free',
+      numericPrice: 0,
       description: 'For government and partner organizations',
       image: pricing5,
       requiresPayment: false
@@ -37,6 +40,7 @@ const PricingCards = () => {
       id: 4,
       title: 'Group Visit',
       price: '50,000 frws / 1-10',
+      numericPrice: 50000,
       description: 'Small group tours with guided experience',
       image: pricing2,
       requiresPayment: true
@@ -45,6 +49,7 @@ const PricingCards = () => {
       id: 5,
       title: 'Kids Visit',
       price: '100,000 frws',
+      numericPrice: 100000,
       description: 'Special programs for children under 12',
       image: pricing3,
       requiresPayment: false
@@ -74,6 +79,7 @@ const PricingCards = () => {
   const [step, setStep] = useState(1); // 1: application, 2: payment, 3: confirmation
   const [message, setMessage] = useState({ text: '', isError: false });
   const [receiptData, setReceiptData] = useState(null);
+  const [isProcessing, setIsProcessing] = useState(false);
 
   // Handlers
   const handleSelectOption = (option) => {
@@ -93,12 +99,50 @@ const PricingCards = () => {
     if (selectedOption.requiresPayment) {
       setStep(2);
     } else {
-      generateReceipt();
-      setStep(3);
+      handleFreeBooking();
     }
   };
 
-  const handlePaymentSubmit = (e) => {
+  const handleFreeBooking = async () => {
+    try {
+      setIsProcessing(true);
+      setMessage({ text: 'Processing booking...', isError: false });
+
+      const response = await fetch('http://localhost:4700/api/tour/payment', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({
+          name: formData.name,
+          email: formData.email,
+          phone: formData.phone,
+          institution: formData.institution,
+          visitDate: formData.visitDate,
+          specialRequests: formData.specialRequests,
+          visitType: selectedOption.title,
+          amount: selectedOption.numericPrice,
+          paymentMethod: 'free'
+        })
+      });
+
+      const data = await response.json();
+
+      if (data.success) {
+        generateReceipt(data.data);
+        setStep(3);
+      } else {
+        setMessage({ text: data.message || 'Booking failed', isError: true });
+      }
+    } catch (error) {
+      console.error('Booking error:', error);
+      setMessage({ text: 'An error occurred during booking', isError: true });
+    } finally {
+      setIsProcessing(false);
+    }
+  };
+
+  const handlePaymentSubmit = async (e) => {
     e.preventDefault();
     
     if (paymentData.method === 'credit' && 
@@ -112,29 +156,74 @@ const PricingCards = () => {
       return;
     }
 
-    generateReceipt();
-    setStep(3);
+    try {
+      setIsProcessing(true);
+      setMessage({ text: 'Processing payment...', isError: false });
+
+      const paymentPayload = {
+        name: formData.name,
+        email: formData.email,
+        phone: formData.phone,
+        institution: formData.institution,
+        visitDate: formData.visitDate,
+        specialRequests: formData.specialRequests,
+        visitType: selectedOption.title,
+        amount: selectedOption.numericPrice,
+        paymentMethod: paymentData.method,
+        ...(paymentData.method === 'mobile' && {
+          mobileNumber: paymentData.mobileNumber,
+          network: paymentData.network
+        })
+      };
+
+      const response = await fetch('http://localhost:4700/api/tour/payment', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(paymentPayload)
+      });
+
+      const data = await response.json();
+
+      if (data.success) {
+        generateReceipt(data.data);
+        setStep(3);
+      } else {
+        setMessage({ text: data.message || 'Payment failed', isError: true });
+      }
+    } catch (error) {
+      console.error('Payment error:', error);
+      setMessage({ text: 'An error occurred during payment', isError: true });
+    } finally {
+      setIsProcessing(false);
+    }
   };
 
-  const generateReceipt = () => {
+  const generateReceipt = (apiData) => {
     const receipt = {
-      id: `KRC-${Date.now().toString().slice(-6)}`,
+      id: apiData.bookingId ? `KRC-${apiData.bookingId.toString().padStart(6, '0')}` : `KRC-${Date.now().toString().slice(-6)}`,
       date: new Date().toLocaleDateString(),
       time: new Date().toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' }),
-      customer: formData.name,
-      email: formData.email,
+      customer: apiData.name || formData.name,
+      email: apiData.email || formData.email,
       service: selectedOption.title,
       amount: selectedOption.price,
       description: selectedOption.description,
       image: selectedOption.image,
-      paymentMethod: selectedOption.requiresPayment ? 
-                    (paymentData.method === 'credit' ? 'Credit Card' : 'Mobile Money') : 
-                    'Not Applicable',
-      status: 'Completed'
+      paymentMethod: apiData.paymentMethod || 
+                   (selectedOption.requiresPayment ? 
+                    (paymentData.method === 'credit' ? 'Credit Card' : `${paymentData.network.toUpperCase()} Mobile Money`) : 
+                    'Not Applicable'),
+      status: apiData.status || 'Completed',
+      transactionId: apiData.transactionId || null
     };
     
     setReceiptData(receipt);
-    setMessage({ text: 'Registration successful!', isError: false });
+    setMessage({ text: apiData.status === 'pending' ? 
+      'Payment initiated! Check your phone to complete the transaction' : 
+      'Registration successful!', 
+      isError: false });
   };
 
   const generatePDFReceipt = () => {
@@ -158,11 +247,15 @@ const PricingCards = () => {
     doc.text(`Visit Type: ${receiptData.service}`, 20, 90);
     doc.text(`Amount: ${receiptData.amount}`, 20, 100);
     doc.text(`Payment Method: ${receiptData.paymentMethod}`, 20, 110);
+    if (receiptData.transactionId) {
+      doc.text(`Transaction ID: ${receiptData.transactionId}`, 20, 120);
+    }
     
     // Add note
     doc.setFontSize(10);
     doc.setTextColor(100, 100, 100);
-    doc.text('Thank you for your visit request. Present this receipt at the KRC entrance.', 20, 140);
+    const noteY = receiptData.transactionId ? 150 : 140;
+    doc.text('Thank you for your visit request. Present this receipt at the KRC entrance.', 20, noteY);
     
     // Save the PDF
     doc.save(`KRC_receipt_${receiptData.id}.pdf`);
@@ -189,13 +282,14 @@ const PricingCards = () => {
     setStep(1);
     setMessage({ text: '', isError: false });
     setReceiptData(null);
+    setIsProcessing(false);
   };
 
   return (
     <section className="py-16 bg-gray-50">
       <div className="container mx-auto px-4">
         <div className="text-center mb-12">
-          <h2 className="text-3xl font-bold text-gray-800"> Visit Options</h2>
+          <h2 className="text-3xl font-bold text-gray-800">Visit Options</h2>
           <p className="text-gray-600 mt-2">Choose the visit type that fits your needs</p>
         </div>
 
@@ -316,9 +410,17 @@ const PricingCards = () => {
                     
                     <button
                       type="submit"
-                      className="w-full bg-green-700 hover:bg-green-800 text-white py-2 px-4 rounded mt-4"
+                      className="w-full bg-green-700 hover:bg-green-800 text-white py-2 px-4 rounded mt-4 flex items-center justify-center"
+                      disabled={isProcessing}
                     >
-                      {selectedOption.requiresPayment ? 'Continue to Payment' : 'Submit Request'}
+                      {isProcessing ? (
+                        <>
+                          <FaSpinner className="animate-spin mr-2" />
+                          Processing...
+                        </>
+                      ) : (
+                        selectedOption.requiresPayment ? 'Continue to Payment' : 'Submit Request'
+                      )}
                     </button>
                   </form>
                 )}
@@ -431,14 +533,23 @@ const PricingCards = () => {
                         type="button"
                         onClick={() => setStep(1)}
                         className="flex-1 bg-gray-200 hover:bg-gray-300 text-gray-800 py-2 px-4 rounded"
+                        disabled={isProcessing}
                       >
                         Back
                       </button>
                       <button
                         type="submit"
-                        className="flex-1 bg-green-700 hover:bg-green-800 text-white py-2 px-4 rounded"
+                        className="flex-1 bg-green-700 hover:bg-green-800 text-white py-2 px-4 rounded flex items-center justify-center"
+                        disabled={isProcessing}
                       >
-                        Complete Payment
+                        {isProcessing ? (
+                          <>
+                            <FaSpinner className="animate-spin mr-2" />
+                            Processing...
+                          </>
+                        ) : (
+                          'Complete Payment'
+                        )}
                       </button>
                     </div>
                   </form>
@@ -448,7 +559,7 @@ const PricingCards = () => {
                 {step === 3 && receiptData && (
                   <div className="text-center">
                     <h3 className="text-2xl font-bold text-gray-800 mb-2">Booking Confirmed!</h3>
-                    <p className="text-green-600 mb-6">Thank you for your KRC visit request.</p>
+                    <p className="text-green-600 mb-6">{message.text}</p>
                     
                     <div className="bg-gray-100 p-4 rounded-lg mb-6 text-left">
                       <h4 className="font-bold mb-3">Booking Summary</h4>
@@ -458,6 +569,9 @@ const PricingCards = () => {
                       <p><span className="font-semibold">Amount:</span> {receiptData.amount}</p>
                       {receiptData.paymentMethod !== 'Not Applicable' && (
                         <p><span className="font-semibold">Payment Method:</span> {receiptData.paymentMethod}</p>
+                      )}
+                      {receiptData.transactionId && (
+                        <p><span className="font-semibold">Transaction ID:</span> {receiptData.transactionId}</p>
                       )}
                     </div>
                     
