@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { jsPDF } from 'jspdf';
 import g5 from '../../assets/gallery-5.jpg';//manue product image
-import s2 from '../../assets/Rabbit Hutch Kit 3.JFIF';
+import s2 from '../../assets/S3.jpg';//manue product image
 import s3 from '../../assets/gallery-1.jpg';//manue product image
 const Products = () => {
   const [selectedProduct, setSelectedProduct] = useState(null);

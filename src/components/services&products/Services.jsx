@@ -1,5 +1,5 @@
 import React from 'react';
-import s2 from '../../assets/Rabbit Hutch Kit 3.JFIF';//manue product image
+import s2 from '../../assets/S3.jpg';//manue product image
 import s3 from '../../assets/gallery-1.jpg';//manue product image
 const Services = () => {
   const services = [
