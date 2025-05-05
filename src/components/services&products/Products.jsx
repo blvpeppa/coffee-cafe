@@ -1,6 +1,8 @@
 import React, { useState } from 'react';
 import { jsPDF } from 'jspdf';
 import g5 from '../../assets/gallery-5.jpg';//manue product image
+import s2 from '../../assets/Rabbit Hutch Kit 3.JFIF';
+import s3 from '../../assets/gallery-1.jpg';//manue product image
 const Products = () => {
   const [selectedProduct, setSelectedProduct] = useState(null);
   const [formData, setFormData] = useState({ 
@@ -38,7 +40,7 @@ const Products = () => {
       description: 'Complete DIY hutch kit with all materials and instructions for easy assembly.',
       price: 350000,
       priceDisplay: '350,000 frw',
-      image: 'https://images.unsplash.com/photo-1596484552834-6a58f850e0a1?ixlib=rb-1.2.1&auto=format&fit=crop&w=300&h=200&q=80',
+      image: s2,
       category: 'Equipment'
     },
     {
@@ -47,7 +49,7 @@ const Products = () => {
       description: 'Nutritionally balanced feed for optimal growth and reproduction.',
       price: 15000,
       priceDisplay: '15,000 frw/bag',
-      image: 'https://images.unsplash.com/photo-1607623488994-03c6c4b51a4e?ixlib=rb-1.2.1&auto=format&fit=crop&w=300&h=200&q=80',
+      image: s3,
       category: 'Feed'
     },
     {

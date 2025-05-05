@@ -1,5 +1,6 @@
 import React from 'react';
-
+import s2 from '../../assets/Rabbit Hutch Kit 3.JFIF';//manue product image
+import s3 from '../../assets/gallery-1.jpg';//manue product image
 const Services = () => {
   const services = [
     {
@@ -14,14 +15,14 @@ const Services = () => {
       title: 'Hutch Design',
       description: 'Custom rabbit hutch designs for optimal space, ventilation, and easy maintenance.',
       icon: '🏠',
-      image: 'https://images.unsplash.com/photo-1596484552834-6a58f850e0a1?ixlib=rb-1.2.1&auto=format&fit=crop&w=772&q=80'
+      image: s2
     },
     {
       id: 3,
       title: 'Nutrition Planning',
       description: 'Tailored feeding programs for different rabbit breeds and growth stages.',
       icon: '🥕',
-      image: 'https://images.unsplash.com/photo-1607623488994-03c6c4b51a4e?ixlib=rb-1.2.1&auto=format&fit=crop&w=772&q=80'
+      image: s3
     },
     {
       id: 4,
