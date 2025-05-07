@@ -305,7 +305,7 @@ const PricingCards = () => {
                 <h3 className="text-xl font-bold text-gray-800 mb-2">{option.title}</h3>
                 <p className="text-gray-600 mb-4">{option.description}</p>
                 <div className="flex justify-between items-center">
-                  <span className="text-lg font-bold text-green-700">{option.price}</span>
+                  
                   <button
                     onClick={() => handleSelectOption(option)}
                     className="bg-green-700 hover:bg-green-800 text-white px-4 py-2 rounded transition-colors duration-300"

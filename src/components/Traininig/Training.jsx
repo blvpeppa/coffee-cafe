@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { FaCalendarAlt, FaMapMarkerAlt, FaUser, FaPhone, FaEnvelope, FaInfoCircle, FaSpinner } from 'react-icons/fa';
+import { FaCalendarAlt, FaMapMarkerAlt, FaUser, FaPhone, FaEnvelope, FaInfoCircle, FaSpinner, FaCheck, FaTimes } from 'react-icons/fa';
 import { jsPDF } from 'jspdf';
 
 const Training = () => {
@@ -36,9 +36,16 @@ const Training = () => {
       description: "Learn the fundamentals of rabbit husbandry, housing, and basic care.",
       duration: "2 days",
       price: 100000,
-      priceDisplay: "100,000 frw",
       dates: ["15-16 June 2024", "20-21 July 2024"],
-      requiresPayment: true
+      requiresPayment: true,
+      features: [
+        { text: "Basic rabbit care", included: true },
+        { text: "Housing setup", included: true },
+        { text: "Feeding techniques", included: true },
+        { text: "Breeding basics", included: false },
+        { text: "Disease prevention", included: false },
+        { text: "Business fundamentals", included: false }
+      ]
     },
     {
       id: 2,
@@ -46,29 +53,50 @@ const Training = () => {
       description: "Master rabbit breeding, genetics, and reproduction management.",
       duration: "3 days",
       price: 200000,
-      priceDisplay: "200,000 frw",
       dates: ["5-7 August 2024", "10-12 September 2024"],
-      requiresPayment: true
+      requiresPayment: true,
+      features: [
+        { text: "Advanced genetics", included: true },
+        { text: "Breeding strategies", included: true },
+        { text: "Reproduction management", included: true },
+        { text: "Pedigree analysis", included: true },
+        { text: "Disease prevention", included: false },
+        { text: "Business planning", included: false }
+      ]
     },
     {
       id: 3,
       title: "Rabbit Health & Disease Management",
       description: "Comprehensive training on rabbit health, common diseases, and prevention.",
       duration: "2 days",
-      price: 100000,
-      priceDisplay: "100,000 frw",
+      price: 150000,
       dates: ["25-26 October 2024", "15-16 November 2024"],
-      requiresPayment: true
+      requiresPayment: true,
+      features: [
+        { text: "Common diseases", included: true },
+        { text: "Prevention methods", included: true },
+        { text: "Treatment protocols", included: true },
+        { text: "Vaccination schedules", included: true },
+        { text: "Biosecurity", included: true },
+        { text: "Business planning", included: false }
+      ]
     },
     {
       id: 4,
-      title: "Rabbits Artificial Insemination Course",
-      description: "Learn advanced artificial insemination techniques for rabbits.",
-      duration: "2 days",
-      price: 0,
-      priceDisplay: "Negotiable",
-      dates: ["25-26 October 2024", "15-16 November 2024"],
-      requiresPayment: false
+      title: "Rabbit Farming Business Mastery",
+      description: "Learn how to turn your rabbit farming into a profitable business.",
+      duration: "3 days",
+      price: 250000,
+      dates: ["5-7 December 2024", "10-12 January 2025"],
+      requiresPayment: true,
+      features: [
+        { text: "Market analysis", included: true },
+        { text: "Business planning", included: true },
+        { text: "Financial management", included: true },
+        { text: "Marketing strategies", included: true },
+        { text: "Value addition", included: true },
+        { text: "Export opportunities", included: true }
+      ]
     }
   ];
 
@@ -401,41 +429,54 @@ const Training = () => {
             Gain practical skills and knowledge from experienced rabbit farming professionals.
           </p>
         </div>
-        <div className="grid md:grid-cols-3 gap-8 mb-16">
-          {trainingPrograms.map(program => (
-            <div key={program.id} className="bg-white rounded-lg shadow-md overflow-hidden hover:shadow-lg transition-shadow duration-300">
-              <div className="p-6">
-                <h3 className="text-2xl font-bold text-green-700 mb-3">{program.title}</h3>
-                <p className="text-gray-600 mb-4">{program.description}</p>
-                <div className="flex items-center text-gray-700 mb-2">
-                  <FaCalendarAlt className="mr-2 text-green-600" />
-                  <span><strong>Duration:</strong> {program.duration}</span>
+        
+        {/* Updated Cards Section */}
+        <div className="max-w-screen-xl px-4 py-8 sm:px-6 sm:py-12 lg:px-8 lg:py-16">
+          <div className="grid grid-cols-1 gap-4 sm:grid-cols-2 sm:items-stretch md:grid-cols-4 md:gap-8">
+            {trainingPrograms.map(program => (
+              <div key={program.id} className="divide-y divide-gray-200 rounded-2xl border border-gray-200 shadow-sm hover:shadow-md transition-shadow">
+                <div className="p-6 sm:px-8">
+                  <h2 className="text-lg font-medium text-gray-900">
+                    {program.title}
+                    <span className="sr-only">Plan</span>
+                  </h2>
+
+                  <p className="mt-2 text-gray-700">{program.description}</p>
+
+                  <p className="mt-2 sm:mt-4">
+                    <strong className="text-3xl font-bold text-gray-900 sm:text-4xl">
+                      {program.priceDisplay}
+                    </strong>
+                    <span className="text-sm font-medium text-gray-700"> / {program.duration}</span>
+                  </p>
+
+                  <button
+                    onClick={() => handleProgramSelect(program)}
+                    className="mt-4 block w-full rounded-md border border-green-600 bg-green-600 px-12 py-3 text-center text-sm font-medium text-white hover:bg-transparent hover:text-green-600 focus:outline-none focus:ring-2 focus:ring-green-500 focus:ring-offset-2 sm:mt-6"
+                  >
+                    Register Now
+                  </button>
                 </div>
-                <div className="flex items-center text-gray-700 mb-2">
-                  <span className="font-bold">Price:</span> {program.priceDisplay}
-                </div>
-                <div className="mt-4">
-                  <h4 className="font-semibold mb-2">Available Dates:</h4>
-                  <ul className="space-y-1">
-                    {program.dates.map((date, idx) => (
-                      <li key={idx} className="flex items-center">
-                        <span className="inline-block w-2 h-2 bg-green-500 rounded-full mr-2"></span>
-                        {date}
+
+                <div className="p-6 sm:px-8">
+                  <p className="text-lg font-medium text-gray-900 sm:text-xl">What's included:</p>
+
+                  <ul className="mt-2 space-y-2 sm:mt-4">
+                    {program.features.map((feature, index) => (
+                      <li key={index} className="flex items-center gap-1">
+                        {feature.included ? (
+                          <FaCheck className="h-5 w-5 text-green-600" />
+                        ) : (
+                          <FaTimes className="h-5 w-5 text-red-600" />
+                        )}
+                        <span className="text-gray-700">{feature.text}</span>
                       </li>
                     ))}
                   </ul>
                 </div>
               </div>
-              <div className="bg-gray-50 px-6 py-4">
-                <button 
-                  onClick={() => handleProgramSelect(program)}
-                  className="w-full bg-green-700 hover:bg-green-800 text-white font-bold py-2 px-4 rounded transition-colors duration-300"
-                >
-                  Register Now
-                </button>
-              </div>
-            </div>
-          ))}
+            ))}
+          </div>
         </div>
 
         {/* Modal */}
