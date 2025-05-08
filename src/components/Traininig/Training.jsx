@@ -28,7 +28,6 @@ const Training = () => {
   const [selectedProgram, setSelectedProgram] = useState(null);
   const [showModal, setShowModal] = useState(false);
   const [receiptData, setReceiptData] = useState(null);
-
   const trainingPrograms = [
     {
       id: 1,
@@ -36,7 +35,6 @@ const Training = () => {
       description: "Learn the fundamentals of rabbit husbandry, housing, and basic care.",
       duration: "2 days",
       price: 100000,
-      dates: ["15-16 June 2024", "20-21 July 2024"],
       requiresPayment: true,
       features: [
         { text: "Basic rabbit care", included: true },
@@ -53,7 +51,6 @@ const Training = () => {
       description: "Master rabbit breeding, genetics, and reproduction management.",
       duration: "3 days",
       price: 200000,
-      dates: ["5-7 August 2024", "10-12 September 2024"],
       requiresPayment: true,
       features: [
         { text: "Advanced genetics", included: true },
@@ -70,7 +67,6 @@ const Training = () => {
       description: "Comprehensive training on rabbit health, common diseases, and prevention.",
       duration: "2 days",
       price: 150000,
-      dates: ["25-26 October 2024", "15-16 November 2024"],
       requiresPayment: true,
       features: [
         { text: "Common diseases", included: true },
@@ -83,11 +79,10 @@ const Training = () => {
     },
     {
       id: 4,
-      title: "Rabbit Farming Business Mastery",
+      title: "Rabbits Artificial Insemination Course",
       description: "Learn how to turn your rabbit farming into a profitable business.",
       duration: "3 days",
       price: 250000,
-      dates: ["5-7 December 2024", "10-12 January 2025"],
       requiresPayment: true,
       features: [
         { text: "Market analysis", included: true },
@@ -602,27 +597,6 @@ const Training = () => {
                           <option value="advanced">Advanced (3+ years)</option>
                         </select>
                       </div>
-                    
-                      <div className="md:col-span-2">
-                        <label htmlFor="preferredDate" className="block text-gray-700 font-medium mb-2">
-                          Preferred Training Date
-                        </label>
-                        <select
-                          id="preferredDate"
-                          name="preferredDate"
-                          value={formData.preferredDate}
-                          onChange={handleChange}
-                          className="w-full px-4 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-green-500"
-                        >
-                          <option value="">Select preferred date</option>
-                          {selectedProgram.dates.map((date, idx) => (
-                            <option key={idx} value={date}>
-                              {date}
-                            </option>
-                          ))}
-                        </select>
-                      </div>
-                    
                       <div className="md:col-span-2">
                         <label htmlFor="questions" className="block text-gray-700 font-medium mb-2">
                           Questions or Special Requests
