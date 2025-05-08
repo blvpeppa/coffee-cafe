@@ -356,7 +356,7 @@ const Products = () => {
               className="group relative overflow-hidden rounded-lg shadow-md transition-all duration-300 hover:shadow-xl"
             >
               {/* Enhanced Image Hover Effect */}
-              <div className="relative h-[350px] sm:h-[450px]">
+              <div className="relative h-[250px] sm:h-[350px]">
                 <img 
                   src={product.image} 
                   alt={product.name}
@@ -377,16 +377,6 @@ const Products = () => {
                     </h3>
                     <p className="text-sm text-gray-500">{product.category}</p>
                   </div>
-                  
-                  {product.price === "" ? (
-                    <span className="inline-flex items-center rounded-full bg-yellow-100 px-3 py-1 text-xs font-medium text-yellow-800">
-                      Price Negotiable
-                    </span>
-                  ) : (
-                    <p className="text-lg font-bold text-green-600">
-                      {product.price} frws
-                    </p>
-                  )}
                 </div>
 
                 <div className="mt-4 space-y-2">
@@ -395,16 +385,6 @@ const Products = () => {
                     className="w-full rounded-md bg-green-600 py-2 text-white transition-colors hover:bg-green-700 focus:outline-none focus:ring-2 focus:ring-green-500 focus:ring-offset-2"
                   >
                     {product.price === "" ? 'Contact Us' : 'Order Now'}
-                  </button>
-                  
-                  <button
-                    onClick={() => {
-                      setSelectedProduct(null);
-                      setStep(1);
-                    }}
-                    className="w-full rounded-md bg-gray-200 py-2 text-gray-800 transition-colors hover:bg-gray-300 focus:outline-none focus:ring-2 focus:ring-gray-500 focus:ring-offset-2"
-                  >
-                    Continue Shopping
                   </button>
                 </div>
 

@@ -1,6 +1,9 @@
 import React from 'react';
-import s2 from '../../assets/S3.jpg';//manue product image
-import s3 from '../../assets/gallery-1.jpg';//manue product image
+import s2 from '../../assets/S3.jpg'; // manue product image
+import s3 from '../../assets/gallery-1.jpg'; // manue product image
+import s5 from '../../assets/kit.jpg';
+import s6 from '../../assets/Rabbit.jpeg';
+import s7 from '../../assets/rabbits.jpg';
 const Services = () => {
   const services = [
     {
@@ -8,28 +11,32 @@ const Services = () => {
       title: 'Breeding Consultation',
       description: 'Expert advice on rabbit breeding techniques, genetic selection, and breeding schedules.',
       icon: '🐇',
-      image: 'https://images.unsplash.com/photo-1585969646097-a1b0038c37a1?ixlib=rb-1.2.1&auto=format&fit=crop&w=772&q=80'
+      image: 'https://images.unsplash.com/photo-1585969646097-a1b0038c37a1?ixlib=rb-1.2.1&auto=format&fit=crop&w=772&q=80',
+      hoverImage: s7
     },
     {
       id: 2,
       title: 'Hutch Design',
       description: 'Custom rabbit hutch designs for optimal space, ventilation, and easy maintenance.',
       icon: '🏠',
-      image: s2
+      image: s2,
+      hoverImage: s5
     },
     {
       id: 3,
       title: 'Nutrition Planning',
       description: 'Tailored feeding programs for different rabbit breeds and growth stages.',
       icon: '🥕',
-      image: s3
+      image: s3,
+      hoverImage: s6
     },
     {
       id: 4,
       title: 'Health Management',
       description: 'Preventive care and treatment plans to keep your rabbits healthy and productive.',
       icon: '💉',
-      image: 'https://images.unsplash.com/photo-1584308666744-24d5c474f2ae?ixlib=rb-1.2.1&auto=format&fit=crop&w=772&q=80'
+      image: 'https://images.unsplash.com/photo-1584308666744-24d5c474f2ae?ixlib=rb-1.2.1&auto=format&fit=crop&w=772&q=80',
+      hoverImage: 'https://images.unsplash.com/photo-1544716278-ca5e3f4abd8c?ixlib=rb-1.2.1&auto=format&fit=crop&w=772&q=80'
     }
   ];
 
@@ -50,18 +57,25 @@ const Services = () => {
         
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
           {services.map((service) => (
-            <a 
+            <div 
               key={service.id} 
-              href="#"
               className="group relative block h-96 overflow-hidden rounded-lg shadow-xl"
             >
-              <img
-                alt={service.title}
-                src={service.image}
-                className="absolute inset-0 h-full w-full object-cover opacity-75 transition-opacity group-hover:opacity-50"
-              />
+              {/* Enhanced Image Hover Effect */}
+              <div className="absolute inset-0 h-full w-full">
+                <img
+                  alt={service.title}
+                  src={service.image}
+                  className="absolute inset-0 h-full w-full object-cover opacity-100 group-hover:opacity-0 transition-opacity duration-500"
+                />
+                <img
+                  alt={`${service.title} alternate view`}
+                  src={service.hoverImage}
+                  className="absolute inset-0 h-full w-full object-cover opacity-0 group-hover:opacity-100 transition-opacity duration-500"
+                />
+              </div>
 
-              <div className="relative p-6 h-full flex flex-col">
+              <div className="relative p-6 h-full flex flex-col bg-gradient-to-t from-black/70 via-black/40 to-transparent">
                 <div className="mb-4">
                   <span className="text-sm font-medium tracking-widest text-pink-500 uppercase">
                     {service.icon} {service.title.split(' ')[0]}
@@ -85,7 +99,7 @@ const Services = () => {
                   </div>
                 </div>
               </div>
-            </a>
+            </div>
           ))}
         </div>
       </div>
