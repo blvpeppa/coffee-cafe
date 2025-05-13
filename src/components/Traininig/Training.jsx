@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
-import { FaCalendarAlt, FaMapMarkerAlt, FaUser, FaPhone, FaEnvelope, FaInfoCircle, FaSpinner, FaCheck, FaTimes } from 'react-icons/fa';
+import { FaCalendarAlt, FaMapMarkerAlt, FaUser, FaPhone, FaEnvelope, FaInfoCircle, FaSpinner, FaCheck, FaTimes, FaPrint } from 'react-icons/fa';
 import { jsPDF } from 'jspdf';
+import { FlutterWaveButton, closePaymentModal } from 'flutterwave-react-v3';
 
 const Training = () => {
   const [formData, setFormData] = useState({
@@ -14,7 +15,7 @@ const Training = () => {
   });
 
   const [paymentData, setPaymentData] = useState({ 
-    method: 'credit',
+    method: 'flutterwave', // Default to Flutterwave
     cardNumber: '', 
     expiry: '', 
     cvv: '',
@@ -28,6 +29,7 @@ const Training = () => {
   const [selectedProgram, setSelectedProgram] = useState(null);
   const [showModal, setShowModal] = useState(false);
   const [receiptData, setReceiptData] = useState(null);
+  
   const trainingPrograms = [
     {
       id: 1,
@@ -35,6 +37,7 @@ const Training = () => {
       description: "Learn the fundamentals of rabbit husbandry, housing, and basic care.",
       duration: "2 days",
       price: 100000,
+      priceDisplay: "100,000 frws",
       requiresPayment: true,
       features: [
         { text: "Basic rabbit care", included: true },
@@ -57,8 +60,8 @@ const Training = () => {
         { text: "Breeding strategies", included: true },
         { text: "Reproduction management", included: true },
         { text: "Pedigree analysis", included: true },
-        { text: "Disease prevention", included: false },
-        { text: "Business planning", included: false }
+        { text: "Disease prevention", included: true },
+        { text: "Business planning", included: true }
       ]
     },
     {
@@ -95,7 +98,55 @@ const Training = () => {
     }
   ];
 
-  const handleProgramSelect = (program) => {
+  // Flutterwave payment configuration
+  const fwConfig = {
+    public_key: 'FLWPUBK_TEST-XXXXXXXXXXXXXXXXXXXX', // Replace with your public key
+    tx_ref: Date.now().toString(),
+    amount: selectedProgram?.price || 0,
+    currency: 'RWF',
+    payment_options: 'card,mobilemoney,ussd',
+    customer: {
+      email: formData.email,
+      phone_number: formData.phone || '250780000000',
+      name: formData.name,
+    },
+    customizations: {
+      title: 'Kigali Rabbit Farm',
+      description: `Payment for ${selectedProgram?.title || 'Training Program'}`,
+      logo: 'https://your-logo-url.png', // Add your logo URL
+    },
+  };
+
+  const handleFlutterwavePayment = () => {
+    if (!formData.email || !formData.name) {
+      setMessage({ text: 'Please complete the application form first', isError: true });
+      return null;
+    }
+
+    return {
+      ...fwConfig,
+      callback: (response) => {
+        console.log('Payment response:', response);
+        if (response.status === 'successful') {
+          generateReceipt({
+            registrationId: Date.now(),
+            status: 'completed',
+            transactionId: response.transaction_id,
+            paymentMethod: response.payment_type
+          });
+          setStep(3);
+        } else {
+          setMessage({ text: 'Payment was not successful', isError: true });
+        }
+        closePaymentModal();
+      },
+      onClose: () => {
+        setMessage({ text: 'Payment window closed', isError: false });
+      },
+    };
+  };
+
+const handleProgramSelect = (program) => {
     setSelectedProgram(program);
     setStep(1);
     resetForm();
@@ -205,9 +256,13 @@ const Training = () => {
       setIsLoading(false);
     }
   };
-
   const handlePaymentSubmit = async (e) => {
     e.preventDefault();
+    
+    if (paymentData.method === 'flutterwave') {
+      // Flutterwave handles the payment process
+      return;
+    }
     
     if ((paymentData.method === 'credit' || paymentData.method === 'visa') && 
         (!paymentData.cardNumber || !paymentData.expiry || !paymentData.cvv)) {
@@ -651,170 +706,140 @@ const Training = () => {
                   </form>
                 )}
 
-                {step === 2 && (
-                  <form onSubmit={handlePaymentSubmit} className="space-y-6">
-                    <h2 className="text-3xl font-bold text-green-800 mb-6 text-center">
-                      Payment for {selectedProgram.title}
-                    </h2>
-                    <div className="p-4 bg-gray-50 rounded-lg">
-                      <h3 className="font-bold text-lg mb-2">Order Summary</h3>
-                      <div className="flex justify-between mb-1">
-                        <span>Training Program:</span>
-                        <span>{selectedProgram.title}</span>
-                      </div>
-                      <div className="flex justify-between mb-1">
-                        <span>Duration:</span>
-                        <span>{selectedProgram.duration}</span>
-                      </div>
-                      <div className="flex justify-between mb-1">
-                        <span>Selected Date:</span>
-                        <span>{formData.preferredDate || 'Not selected'}</span>
-                      </div>
-                      <div className="flex justify-between font-bold text-lg mt-3">
-                        <span>Total:</span>
-                        <span>{selectedProgram.priceDisplay}</span>
-                      </div>
-                    </div>
+  {step === 2 && (
+    <form onSubmit={handlePaymentSubmit} className="space-y-6">
+      <h2 className="text-3xl font-bold text-green-800 mb-6 text-center">
+        Payment for {selectedProgram.title}
+      </h2>
+      <div className="p-4 bg-gray-50 rounded-lg">
+        <h3 className="font-bold text-lg mb-2">Order Summary</h3>
+        <div className="flex justify-between mb-1">
+          <span>Training Program:</span>
+          <span>{selectedProgram.title}</span>
+        </div>
+        <div className="flex justify-between mb-1">
+          <span>Duration:</span>
+          <span>{selectedProgram.duration}</span>
+        </div>
+        <div className="flex justify-between mb-1">
+          <span>Selected Date:</span>
+          <span>{formData.preferredDate || 'Not selected'}</span>
+        </div>
+        <div className="flex justify-between font-bold text-lg mt-3">
+          <span>Total:</span>
+          <span>{selectedProgram.priceDisplay}</span>
+        </div>
+      </div>
 
-                    {/* Payment Method Selection */}
-                    <div className="mb-6">
-                      <label className="block text-gray-700 font-medium mb-3">Payment Method</label>
-                      <div className="grid grid-cols-2 gap-3">
-                        <button
-                          type="button"
-                          onClick={() => handlePaymentMethodChange('credit')}
-                          className={`px-4 py-2 rounded-md border ${
-                            paymentData.method === 'credit' 
-                              ? 'bg-green-100 border-green-500 text-green-700' 
-                              : 'bg-white border-gray-300'
-                          }`}
-                        >
-                          Credit Card
-                        </button>
-                        <button
-                          type="button"
-                          onClick={() => handlePaymentMethodChange('mtn')}
-                          className={`px-4 py-2 rounded-md border ${
-                            paymentData.method === 'mtn' 
-                              ? 'bg-yellow-100 border-yellow-500 text-yellow-700' 
-                              : 'bg-white border-gray-300'
-                          }`}
-                        >
-                          MTN Mobile Money
-                        </button>
-                        <button
-                          type="button"
-                          onClick={() => handlePaymentMethodChange('airtel')}
-                          className={`px-4 py-2 rounded-md border ${
-                            paymentData.method === 'airtel' 
-                              ? 'bg-red-100 border-red-500 text-red-700' 
-                              : 'bg-white border-gray-300'
-                          }`}
-                        >
-                          Airtel Money
-                        </button>
-                      </div>
-                    </div>
+      {/* Updated Payment Method Selection */}
+      <div className="mb-6">
+        <label className="block text-gray-700 font-medium mb-3">Payment Method</label>
+        <div className="grid grid-cols-2 gap-3">
+          <button
+            type="button"
+            onClick={() => handlePaymentMethodChange('flutterwave')}
+            className={`px-4 py-2 rounded-md border ${
+              paymentData.method === 'flutterwave' 
+                ? 'bg-blue-100 border-blue-500 text-blue-700' 
+                : 'bg-white border-gray-300'
+            }`}
+          >
+            Flutterwave
+          </button>
+          <button
+            type="button"
+            onClick={() => handlePaymentMethodChange('mtn')}
+            className={`px-4 py-2 rounded-md border ${
+              paymentData.method === 'mtn' 
+                ? 'bg-yellow-100 border-yellow-500 text-yellow-700' 
+                : 'bg-white border-gray-300'
+            }`}
+          >
+            MTN Mobile Money
+          </button>
+          <button
+            type="button"
+            onClick={() => handlePaymentMethodChange('airtel')}
+            className={`px-4 py-2 rounded-md border ${
+              paymentData.method === 'airtel' 
+                ? 'bg-red-100 border-red-500 text-red-700' 
+                : 'bg-white border-gray-300'
+            }`}
+          >
+            Airtel Money
+          </button>
+        </div>
+      </div>
 
-                    {/* Card Payment Form */}
-                    {paymentData.method === 'credit' && (
-                      <>
-                        <div className="mb-4">
-                          <label className="block text-gray-700 font-medium mb-2">Card Number *</label>
-                          <input
-                            type="text"
-                            placeholder="1234 5678 9012 3456"
-                            value={paymentData.cardNumber}
-                            onChange={(e) => setPaymentData({ ...paymentData, cardNumber: e.target.value })}
-                            className="w-full px-4 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-green-500"
-                            required
-                          />
-                        </div>
-                        
-                        <div className="grid grid-cols-2 gap-4 mb-4">
-                          <div>
-                            <label className="block text-gray-700 font-medium mb-2">Expiry Date *</label>
-                            <input
-                              type="text"
-                              placeholder="MM/YY"
-                              value={paymentData.expiry}
-                              onChange={(e) => setPaymentData({ ...paymentData, expiry: e.target.value })}
-                              className="w-full px-4 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-green-500"
-                              required
-                            />
-                          </div>
-                          <div>
-                            <label className="block text-gray-700 font-medium mb-2">CVV *</label>
-                            <input
-                              type="text"
-                              placeholder="123"
-                              value={paymentData.cvv}
-                              onChange={(e) => setPaymentData({ ...paymentData, cvv: e.target.value })}
-                              className="w-full px-4 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-green-500"
-                              required
-                            />
-                          </div>
-                        </div>
-                      </>
-                    )}
+      {/* Show Flutterwave payment button when selected */}
+      {paymentData.method === 'flutterwave' && (
+        <div className="text-center">
+          <FlutterWaveButton 
+            {...handleFlutterwavePayment()}
+            className="w-full bg-blue-600 hover:bg-blue-700 text-white py-2 px-4 rounded"
+          />
+        </div>
+      )}
 
-                    {/* Mobile Money Form */}
-                    {(paymentData.method === 'mtn' || paymentData.method === 'airtel') && (
-                      <div className="mb-4">
-                        <label className="block text-gray-700 font-medium mb-2">
-                          {paymentData.method === 'mtn' ? 'MTN' : 'Airtel'} Mobile Number *
-                        </label>
-                        <div className="flex">
-                          <span className="inline-flex items-center px-3 rounded-l-md border border-r-0 border-gray-300 bg-gray-50 text-gray-500">
-                            +250
-                          </span>
-                          <input
-                            type="tel"
-                            placeholder={`7XXXXXXXX (${paymentData.method === 'mtn' ? 'MTN' : 'Airtel'} number)`}
-                            value={paymentData.mobileNumber}
-                            onChange={(e) => setPaymentData({ ...paymentData, mobileNumber: e.target.value })}
-                            className="flex-1 px-4 py-2 border rounded-r-md focus:outline-none focus:ring-2 focus:ring-green-500"
-                            required
-                          />
-                        </div>
-                        <p className="mt-2 text-sm text-gray-500">
-                          You'll receive a payment request on your {paymentData.method === 'mtn' ? 'MTN' : 'Airtel'} number
-                        </p>
-                      </div>
-                    )}
+      {/* Keep existing payment forms for other methods */}
+      {(paymentData.method === 'mtn' || paymentData.method === 'airtel') && (
+        <div className="mb-4">
+          <label className="block text-gray-700 font-medium mb-2">
+            {paymentData.method === 'mtn' ? 'MTN' : 'Airtel'} Mobile Number *
+          </label>
+          <div className="flex">
+            <span className="inline-flex items-center px-3 rounded-l-md border border-r-0 border-gray-300 bg-gray-50 text-gray-500">
+              +250
+            </span>
+            <input
+              type="tel"
+              placeholder={`7XXXXXXXX (${paymentData.method === 'mtn' ? 'MTN' : 'Airtel'} number)`}
+              value={paymentData.mobileNumber}
+              onChange={(e) => setPaymentData({ ...paymentData, mobileNumber: e.target.value })}
+              className="flex-1 px-4 py-2 border rounded-r-md focus:outline-none focus:ring-2 focus:ring-green-500"
+              required
+            />
+          </div>
+          <p className="mt-2 text-sm text-gray-500">
+            You'll receive a payment request on your {paymentData.method === 'mtn' ? 'MTN' : 'Airtel'} number
+          </p>
+        </div>
+      )}
 
-                    {message.text && (
-                      <p className={`mt-2 text-center ${message.isError ? 'text-red-600' : 'text-green-600'}`}>
-                        {message.text}
-                      </p>
-                    )}
+      {message.text && (
+        <p className={`mt-2 text-center ${message.isError ? 'text-red-600' : 'text-green-600'}`}>
+          {message.text}
+        </p>
+      )}
 
-                    <div className="flex space-x-3">
-                      <button
-                        type="button"
-                        onClick={() => setStep(1)}
-                        className="px-4 py-2 border border-gray-300 rounded-md text-gray-700 hover:bg-gray-50 flex-grow"
-                        disabled={isLoading}
-                      >
-                        Back
-                      </button>
-                      <button 
-                        type="submit" 
-                        className="px-4 py-2 bg-green-600 text-white rounded-md hover:bg-green-700 flex-grow flex items-center justify-center"
-                        disabled={isLoading}
-                      >
-                        {isLoading ? (
-                          <>
-                            <FaSpinner className="animate-spin mr-2" />
-                            Processing...
-                          </>
-                        ) : `Pay ${selectedProgram.priceDisplay}`}
-                      </button>
-                    </div>
-                  </form>
-                )}
+      <div className="flex space-x-3">
+        <button
+          type="button"
+          onClick={() => setStep(1)}
+          className="px-4 py-2 border border-gray-300 rounded-md text-gray-700 hover:bg-gray-50 flex-grow"
+          disabled={isLoading}
+        >
+          Back
+        </button>
+        {paymentData.method !== 'flutterwave' && (
+          <button 
+            type="submit" 
+            className="px-4 py-2 bg-green-600 text-white rounded-md hover:bg-green-700 flex-grow flex items-center justify-center"
+            disabled={isLoading}
+          >
+            {isLoading ? (
+              <>
+                <FaSpinner className="animate-spin mr-2" />
+                Processing...
+              </>
+            ) : `Pay ${selectedProgram.priceDisplay}`}
+          </button>
+        )}
+      </div>
+    </form>
+  )}
 
-                {step === 3 && receiptData && (
+   {step === 3 && receiptData && (
                   <div className="text-center py-8">
                     <div className="inline-flex items-center justify-center w-16 h-16 bg-green-100 rounded-full mb-4">
                       <svg className="w-8 h-8 text-green-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
