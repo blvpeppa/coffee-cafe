@@ -1,11 +1,17 @@
 import React, { useState } from 'react';
 import { FaCreditCard, FaMobileAlt, FaPrint, FaTimes, FaSpinner } from 'react-icons/fa';
+import { FlutterWaveButton, closePaymentModal } from 'flutterwave-react-v3';
 import { jsPDF } from 'jspdf';
 import pricing1 from "../../assets/pricing-1.jpg";
 import pricing2 from "../../assets/gallery-7.jpg";
 import pricing3 from "../../assets/gallery-8.jpg";
 import pricing4 from "../../assets/academic.jpg";
 import pricing5 from "../../assets/government.jpg";
+import s4 from '../../assets/satyabratasm-u_kMWN-BWyU-unsplash.jpg';
+import s5 from '../../assets/kit.jpg';
+import s6 from '../../assets/Rabbit.jpeg';
+import s7 from '../../assets/rabbits.jpg';
+import logo from '../../assets/logo2.png';
 
 const PricingCards = () => {
   const pricingOptions = [
@@ -16,6 +22,7 @@ const PricingCards = () => {
       numericPrice: 20000,
       description: 'For researchers and professionals in related fields',
       image: pricing1,
+      hoverImage: s7,
       requiresPayment: true
     },
     {
@@ -25,6 +32,7 @@ const PricingCards = () => {
       numericPrice: 400000,
       description: 'Special rates for school and university groups',
       image: pricing4,
+      hoverImage: s6,
       requiresPayment: true
     },
     {
@@ -34,6 +42,7 @@ const PricingCards = () => {
       numericPrice: 0,
       description: 'For government and partner organizations',
       image: pricing5,
+      hoverImage: s5,
       requiresPayment: false
     },
     {
@@ -43,6 +52,7 @@ const PricingCards = () => {
       numericPrice: 50000,
       description: 'Small group tours with guided experience',
       image: pricing2,
+      hoverImage: s4,
       requiresPayment: true
     },
     {
@@ -52,6 +62,7 @@ const PricingCards = () => {
       numericPrice: 100000,
       description: 'Special programs for children under 12',
       image: pricing3,
+      hoverImage: 'https://images.unsplash.com/photo-1584308666744-24d5c474f2ae?ixlib=rb-1.2.1&auto=format&fit=crop&w=772&q=80',
       requiresPayment: false
     }
   ];
@@ -108,32 +119,13 @@ const PricingCards = () => {
       setIsProcessing(true);
       setMessage({ text: 'Processing booking...', isError: false });
 
-      const response = await fetch('http://localhost:4700/api/tour/payment', {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify({
-          name: formData.name,
-          email: formData.email,
-          phone: formData.phone,
-          institution: formData.institution,
-          visitDate: formData.visitDate,
-          specialRequests: formData.specialRequests,
-          visitType: selectedOption.title,
-          amount: selectedOption.numericPrice,
-          paymentMethod: 'free'
-        })
+      // Generate receipt for free booking
+      generateReceipt({
+        bookingId: Date.now(),
+        status: 'completed',
+        paymentMethod: 'free'
       });
-
-      const data = await response.json();
-
-      if (data.success) {
-        generateReceipt(data.data);
-        setStep(3);
-      } else {
-        setMessage({ text: data.message || 'Booking failed', isError: true });
-      }
+      setStep(3);
     } catch (error) {
       console.error('Booking error:', error);
       setMessage({ text: 'An error occurred during booking', isError: true });
@@ -142,62 +134,47 @@ const PricingCards = () => {
     }
   };
 
-  const handlePaymentSubmit = async (e) => {
-    e.preventDefault();
-    
-    if (paymentData.method === 'credit' && 
-        (!paymentData.cardNumber || !paymentData.expiry || !paymentData.cvv)) {
-      setMessage({ text: 'Please fill all payment details', isError: true });
-      return;
-    }
-    
-    if (paymentData.method === 'mobile' && !paymentData.mobileNumber) {
-      setMessage({ text: 'Please enter mobile number', isError: true });
-      return;
+  const handleFlutterwavePayment = () => {
+    if (!formData.email || !formData.name) {
+      setMessage({ text: 'Please complete the application form first', isError: true });
+      return null;
     }
 
-    try {
-      setIsProcessing(true);
-      setMessage({ text: 'Processing payment...', isError: false });
-
-      const paymentPayload = {
-        name: formData.name,
+    return {
+      public_key: 'FLWPUBK_TEST-33a6aff2a70fd1845eed0d3784f9e212-X',
+      tx_ref: Date.now().toString(),
+      amount: selectedOption.numericPrice,
+      currency: 'RWF',
+      payment_options: 'card,mobilemoney,ussd',
+      customer: {
         email: formData.email,
-        phone: formData.phone,
-        institution: formData.institution,
-        visitDate: formData.visitDate,
-        specialRequests: formData.specialRequests,
-        visitType: selectedOption.title,
-        amount: selectedOption.numericPrice,
-        paymentMethod: paymentData.method,
-        ...(paymentData.method === 'mobile' && {
-          mobileNumber: paymentData.mobileNumber,
-          network: paymentData.network
-        })
-      };
-
-      const response = await fetch('http://localhost:4700/api/tour/payment', {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify(paymentPayload)
-      });
-
-      const data = await response.json();
-
-      if (data.success) {
-        generateReceipt(data.data);
-        setStep(3);
-      } else {
-        setMessage({ text: data.message || 'Payment failed', isError: true });
-      }
-    } catch (error) {
-      console.error('Payment error:', error);
-      setMessage({ text: 'An error occurred during payment', isError: true });
-    } finally {
-      setIsProcessing(false);
-    }
+        phone_number: formData.phone || '250780000000', // fallback if phone not provided
+        name: formData.name,
+      },
+      customizations: {
+        title: 'Kigali Rabbit Farm',
+        description: `Payment for ${selectedOption.title} Visit`,
+        logo: logo,
+      },
+      callback: (response) => {
+        console.log('Payment response:', response);
+        if (response.status === 'successful') {
+          generateReceipt({
+            bookingId: Date.now(),
+            status: 'completed',
+            transactionId: response.transaction_id,
+            paymentMethod: response.payment_type
+          });
+          setStep(3);
+        } else {
+          setMessage({ text: 'Payment was not successful', isError: true });
+        }
+        closePaymentModal();
+      },
+      onClose: () => {
+        setMessage({ text: 'Payment window closed', isError: false });
+      },
+    };
   };
 
   const generateReceipt = (apiData) => {
@@ -293,19 +270,34 @@ const PricingCards = () => {
           <p className="text-gray-600 mt-2">Choose the visit type that fits your needs</p>
         </div>
 
-        {/* Pricing Cards Grid */}
+        {/* Pricing Cards Grid with Hover Effect */}
         <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8 mb-12">
           {pricingOptions.map((option) => (
-            <div key={option.id} className="bg-white rounded-lg shadow-md overflow-hidden hover:shadow-lg transition-shadow duration-300">
-              <div 
-                className="h-80 bg-cover bg-center" 
-                style={{ backgroundImage: `url(${option.image})` }}
-              />
+            <div 
+              key={option.id} 
+              className="bg-white rounded-lg shadow-md overflow-hidden hover:shadow-lg transition-shadow duration-300 group"
+            >
+              {/* Enhanced Image Hover Container */}
+              <div className="relative h-80 overflow-hidden">
+                {/* Main Image */}
+                <img
+                  src={option.image}
+                  alt={option.title}
+                  className="absolute inset-0 w-full h-full object-cover opacity-100 group-hover:opacity-0 transition-opacity duration-500"
+                />
+                {/* Hover Image */}
+                <img
+                  src={option.hoverImage}
+                  alt={`${option.title} alternate view`}
+                  className="absolute inset-0 w-full h-full object-cover opacity-0 group-hover:opacity-100 transition-opacity duration-500"
+                />
+              </div>
+              
               <div className="p-6">
                 <h3 className="text-xl font-bold text-gray-800 mb-2">{option.title}</h3>
                 <p className="text-gray-600 mb-4">{option.description}</p>
                 <div className="flex justify-between items-center">
-                  
+                  <span className="text-lg font-semibold text-green-700">{option.price}</span>
                   <button
                     onClick={() => handleSelectOption(option)}
                     className="bg-green-700 hover:bg-green-800 text-white px-4 py-2 rounded transition-colors duration-300"
@@ -426,134 +418,40 @@ const PricingCards = () => {
                 )}
 
                 {/* Step 2: Payment Form */}
-                {step === 2 && (
-                  <form onSubmit={handlePaymentSubmit} className="space-y-4">
-                    <h3 className="text-2xl font-bold text-gray-800 mb-4">
-                      Payment for {selectedOption.title}
-                    </h3>
-                    
-                    <div className="bg-gray-100 p-4 rounded">
-                      <p className="font-semibold">Amount Due: {selectedOption.price}</p>
-                    </div>
-                    
-                    <div className="flex space-x-4 mb-4">
-                      <button
-                        type="button"
-                        onClick={() => setPaymentData({...paymentData, method: 'credit'})}
-                        className={`flex-1 py-2 rounded flex items-center justify-center space-x-2 ${paymentData.method === 'credit' ? 'bg-green-700 text-white' : 'bg-gray-200 text-gray-700'}`}
-                      >
-                        <FaCreditCard />
-                        <span>Credit Card</span>
-                      </button>
-                      <button
-                        type="button"
-                        onClick={() => setPaymentData({...paymentData, method: 'mobile'})}
-                        className={`flex-1 py-2 rounded flex items-center justify-center space-x-2 ${paymentData.method === 'mobile' ? 'bg-green-700 text-white' : 'bg-gray-200 text-gray-700'}`}
-                      >
-                        <FaMobileAlt />
-                        <span>Mobile Money</span>
-                      </button>
-                    </div>
-                    
-                    {paymentData.method === 'credit' ? (
-                      <>
-                        <div>
-                          <label className="block text-gray-700 mb-1">Card Number *</label>
-                          <input
-                            type="text"
-                            placeholder="1234 5678 9012 3456"
-                            value={paymentData.cardNumber}
-                            onChange={(e) => setPaymentData({...paymentData, cardNumber: e.target.value})}
-                            className="w-full p-2 border rounded"
-                            required
-                          />
-                        </div>
-                        
-                        <div className="grid grid-cols-2 gap-4">
-                          <div>
-                            <label className="block text-gray-700 mb-1">Expiry Date *</label>
-                            <input
-                              type="text"
-                              placeholder="MM/YY"
-                              value={paymentData.expiry}
-                              onChange={(e) => setPaymentData({...paymentData, expiry: e.target.value})}
-                              className="w-full p-2 border rounded"
-                              required
-                            />
-                          </div>
-                          <div>
-                            <label className="block text-gray-700 mb-1">CVV *</label>
-                            <input
-                              type="text"
-                              placeholder="123"
-                              value={paymentData.cvv}
-                              onChange={(e) => setPaymentData({...paymentData, cvv: e.target.value})}
-                              className="w-full p-2 border rounded"
-                              required
-                            />
-                          </div>
-                        </div>
-                      </>
-                    ) : (
-                      <>
-                        <div>
-                          <label className="block text-gray-700 mb-1">Mobile Number *</label>
-                          <input
-                            type="tel"
-                            placeholder="0781234567"
-                            value={paymentData.mobileNumber}
-                            onChange={(e) => setPaymentData({...paymentData, mobileNumber: e.target.value})}
-                            className="w-full p-2 border rounded"
-                            required
-                          />
-                        </div>
-                        
-                        <div>
-                          <label className="block text-gray-700 mb-1">Network *</label>
-                          <select
-                            value={paymentData.network}
-                            onChange={(e) => setPaymentData({...paymentData, network: e.target.value})}
-                            className="w-full p-2 border rounded"
-                          >
-                            <option value="mtn">MTN</option>
-                            <option value="airtel">Airtel</option>
-                          </select>
-                        </div>
-                      </>
-                    )}
-                    
-                    {message.text && (
-                      <p className={`mt-2 ${message.isError ? 'text-red-600' : 'text-green-600'}`}>
-                        {message.text}
-                      </p>
-                    )}
-                    
-                    <div className="flex space-x-4">
-                      <button
-                        type="button"
-                        onClick={() => setStep(1)}
-                        className="flex-1 bg-gray-200 hover:bg-gray-300 text-gray-800 py-2 px-4 rounded"
-                        disabled={isProcessing}
-                      >
-                        Back
-                      </button>
-                      <button
-                        type="submit"
-                        className="flex-1 bg-green-700 hover:bg-green-800 text-white py-2 px-4 rounded flex items-center justify-center"
-                        disabled={isProcessing}
-                      >
-                        {isProcessing ? (
-                          <>
-                            <FaSpinner className="animate-spin mr-2" />
-                            Processing...
-                          </>
-                        ) : (
-                          'Complete Payment'
-                        )}
-                      </button>
-                    </div>
-                  </form>
-                )}
+{step === 2 && (
+  <div className="space-y-4">
+    <h3 className="text-2xl font-bold text-gray-800 mb-4">
+      Payment for {selectedOption.title}
+    </h3>
+    
+    <div className="bg-gray-100 p-4 rounded">
+      <p className="font-semibold">Amount Due: {selectedOption.price}</p>
+    </div>
+    
+    <div className="text-center">
+      <FlutterWaveButton 
+        {...handleFlutterwavePayment()}
+        className="w-full bg-green-700 hover:bg-green-800 text-white py-2 px-4 rounded mt-4"
+      >
+        PAY
+      </FlutterWaveButton>
+    </div>
+    
+    {message.text && (
+      <p className={`mt-2 ${message.isError ? 'text-red-600' : 'text-green-600'}`}>
+        {message.text}
+      </p>
+    )}
+    
+    <button
+      type="button"
+      onClick={() => setStep(1)}
+      className="w-full bg-gray-200 hover:bg-gray-300 text-gray-800 py-2 px-4 rounded"
+    >
+      Back
+    </button>
+  </div>
+)}
 
                 {/* Step 3: Confirmation */}
                 {step === 3 && receiptData && (
