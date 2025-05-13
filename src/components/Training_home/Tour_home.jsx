@@ -4,6 +4,7 @@ import { Link, useNavigate } from "react-router-dom";
 import { FlutterWaveButton, closePaymentModal } from 'flutterwave-react-v3';
 import { jsPDF } from 'jspdf';
 import logo from "../../assets/logo2.png";
+import l from "../../assets/pure-julia-uLoWIMCeodM-unsplash.jpg";
 
 const Training = () => {
   const navigate = useNavigate();
@@ -20,7 +21,7 @@ const Training = () => {
       duration: "2 days",
       price: "100,000 frws",
       numericPrice: 100000,
-      image: "https://images.unsplash.com/photo-1585494186315-624d9464c578?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=80",
+      image: l,
       requiresPayment: true
     },
     {
@@ -30,7 +31,7 @@ const Training = () => {
       duration: "3 days",
       price: "200,000 frws",
       numericPrice: 200000,
-      image: "https://images.unsplash.com/photo-1516467508483-a7212febe31a?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=80",
+      image: l,
       requiresPayment: true
     },
     {
@@ -40,7 +41,7 @@ const Training = () => {
       duration: "2 days",
       price: "150,000 frws",
       numericPrice: 150000,
-      image: "https://images.unsplash.com/photo-1579273166152-d725a4e2b755?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=80",
+      image: l,
       requiresPayment: true
     },
     {
@@ -50,7 +51,7 @@ const Training = () => {
       duration: "3 days",
       price: "250,000 frws",
       numericPrice: 250000,
-      image: "https://images.unsplash.com/photo-1504384308090-c894fdcc538d?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=80",
+      image: l,
       requiresPayment: true
     }
   ];

@@ -37,7 +37,6 @@ const Training = () => {
       description: "Learn the fundamentals of rabbit husbandry, housing, and basic care.",
       duration: "2 days",
       price: 100000,
-      priceDisplay: "100,000 frws",
       requiresPayment: true,
       features: [
         { text: "Basic rabbit care", included: true },
