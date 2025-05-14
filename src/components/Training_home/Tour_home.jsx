@@ -19,7 +19,6 @@ const Training = () => {
       title: "Beginner Rabbit Farming",
       description: "Learn the fundamentals of rabbit husbandry, housing, and basic care.",
       duration: "2 days",
-      price: "100,000 frws",
       numericPrice: 100000,
       image: l,
       requiresPayment: true
@@ -29,7 +28,6 @@ const Training = () => {
       title: "Advanced Breeding Techniques",
       description: "Master rabbit breeding, genetics, and reproduction management.",
       duration: "3 days",
-      price: "200,000 frws",
       numericPrice: 200000,
       image: l,
       requiresPayment: true
@@ -39,7 +37,6 @@ const Training = () => {
       title: "Rabbit Health & Disease Management",
       description: "Comprehensive training on rabbit health, common diseases, and prevention.",
       duration: "2 days",
-      price: "150,000 frws",
       numericPrice: 150000,
       image: l,
       requiresPayment: true
@@ -49,7 +46,6 @@ const Training = () => {
       title: "Rabbit Business Fundamentals",
       description: "Learn how to turn your rabbit farming into a profitable business.",
       duration: "3 days",
-      price: "250,000 frws",
       numericPrice: 250000,
       image: l,
       requiresPayment: true

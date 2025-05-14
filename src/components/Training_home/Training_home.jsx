@@ -19,7 +19,6 @@ const Training_home = () => {
     {
       id: 1,
       title: 'Professional Visit',
-      price: '20,000 frws',
       numericPrice: 20000,
       description: 'For researchers and professionals in related fields',
       image: pricing1,
@@ -28,7 +27,6 @@ const Training_home = () => {
     {
       id: 2,
       title: 'Academic Visit',
-      price: '400,000 frws / 1-30 people',
       numericPrice: 400000,
       description: 'Special rates for school and university groups',
       image: pricing4,
@@ -37,7 +35,6 @@ const Training_home = () => {
     {
       id: 3,
       title: 'Institutional Visit',
-      price: 'Free',
       numericPrice: 0,
       description: 'For government and partner organizations',
       image: pricing5,

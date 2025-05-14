@@ -18,7 +18,6 @@ const PricingCards = () => {
     {
       id: 1,
       title: 'Professional Visit',
-      price: '20,000 frws',
       numericPrice: 20000,
       description: 'For researchers and professionals in related fields',
       image: pricing1,
@@ -28,7 +27,6 @@ const PricingCards = () => {
     {
       id: 2,
       title: 'Academic Visit',
-      price: '400,000 frws / 1-30 people',
       numericPrice: 400000,
       description: 'Special rates for school and university groups',
       image: pricing4,
@@ -38,7 +36,6 @@ const PricingCards = () => {
     {
       id: 3,
       title: 'Institutional Visit',
-      price: 'Free',
       numericPrice: 0,
       description: 'For government and partner organizations',
       image: pricing5,
@@ -48,7 +45,6 @@ const PricingCards = () => {
     {
       id: 4,
       title: 'Group Visit',
-      price: '50,000 frws / 1-10',
       numericPrice: 50000,
       description: 'Small group tours with guided experience',
       image: pricing2,
@@ -58,7 +54,6 @@ const PricingCards = () => {
     {
       id: 5,
       title: 'Kids Visit',
-      price: '100,000 frws',
       numericPrice: 100000,
       description: 'Special programs for children under 12',
       image: pricing3,
