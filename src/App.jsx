@@ -5,9 +5,6 @@ import Contact from "./components/Contact/Contact.jsx";
 import Training from "./components/Traininig/Training.jsx";
 import SP from "./components/services&products/SP.jsx";
 import Gallery from "./components/Gallery/Gallery.jsx";
-// import PricingCards from "./components/Pricingcards/PricingCards.jsx";
-import PaymentMethod from "./components/PaymentMethod/PaymentMethod.jsx";
-import Receipt from "./components/Receipt/Receipt.jsx";
 import AOS from "aos";
 import Home from "./components/Home/Home.jsx";
 import About from "./components/About/About.jsx";
@@ -61,8 +58,6 @@ const App = () => {
               <Route path="/gallery" element={<Gallery />} />
               <Route path="/tour" element={<Tour />} />
               <Route path="/training" element={<Training />} />
-              <Route path="/pay" element={<PaymentMethod />} />
-              <Route path="/receipt" element={<Receipt />} />
               <Route path="*" element={<Notfound />} />
             </Routes>
             <Footer />

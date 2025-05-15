@@ -76,107 +76,179 @@ const About = () => {
 </div>
 
 {/* CEO Section */}
-      <section className="py-10">
-        <div className="container mx-auto px-4 grid md:grid-cols-2 gap-10">
-          <div className="flex justify-center">
-            <div className="w-80 bg-white shadow-lg rounded-md overflow-hidden">
-              <img src={CEOImage} alt="Dieudonne Musoni, CEO of Kigali Rabbit Center" className="w-full object-cover" />
-              <div className="p-4 text-center">
-                <h1 className="text-2xl font-semibold">Dieudonne Musoni</h1>
-                <h2 className="text-green-700 font-semibold text-sm">
-                  CEO of Kigali Rabbit Center
-                </h2>
-<h4 className="text-green-800 font-semibold text-sm">
-                  Rabbit Expert
-                </h4>
-              </div>
+      <section className="py-10 overflow-hidden bg-gray-50">
+  <div className="px-4 mx-auto sm:px-6 lg:px-8 max-w-7xl">
+    <div className="grid items-center grid-cols-1 md:grid-cols-2 gap-8">
+
+      {/* Image Section - Made more compact */}
+      <div className="relative order-last md:order-first">
+        <div className="relative w-full max-w-md mx-auto">
+          <div className="w-full bg-white shadow-lg rounded-lg overflow-hidden">
+            <img 
+              src={CEOImage} 
+              alt="Dieudonne Musoni, CEO of Kigali Rabbit Center" 
+              className="w-full h-47 object-cover" 
+            />
+            <div className="p-4 text-center">
+              <h1 className="text-xl font-bold text-gray-900">Dieudonne Musoni</h1>
+              <h2 className="text-green-600 font-semibold text-md">
+                CEO of Kigali Rabbit Center
+              </h2>
+              <h4 className="text-green-700 font-medium text-sm">
+                Rabbit Expert
+              </h4>
             </div>
           </div>
-          {}
-          <div className="text-gray-700 space-y-4">
-            <h2 className="text-2xl font-bold">KIGALI RABBIT FARM</h2>
-            <p>
-              is a limited liability company incorporated in Rwanda under the
-              Companies Act (NO 17/2018 of 13/04/2018) Laws of Rwanda.
-            </p>
-            <p>
-              It was set up in 2018 primarily as a sustainable farming breeding,
-              trainer, and consultancy firm. And now it became a{" "}
-              <span className="text-green-600 font-semibold">
-                RABBIT GENETIC CENTER
-              </span>
-              .
-            </p>
-            <p>
-              We are the first company to{" "}
-              <span className="text-green-600 font-semibold">
-                introduce Rabbit Artificial Insemination
-              </span>{" "}
-              system in EAC. It was geared towards encouraging farmers to set up
-              and put in place sustainable projects in various corners in Rwanda
-              and in Africa.
-            </p>
-          </div>
         </div>
-      </section>
+      </div>
+
+      {/* Content Section */}
+      <div>
+        <h2 className="text-2xl font-bold leading-tight text-gray-900 sm:text-3xl">
+          KIGALI RABBIT FARM
+        </h2>
+        
+        <div className="space-y-4 mt-4 text-gray-600">
+          <p>
+            is a limited liability company incorporated in Rwanda under the
+            Companies Act (NO 17/2018 of 13/04/2018) Laws of Rwanda.
+          </p>
+          
+          <p>
+            It was set up in 2018 primarily as a sustainable farming breeding,
+            trainer, and consultancy firm. And now it became a{" "}
+            <span className="font-semibold text-green-700">
+              RABBIT GENETIC CENTER
+            </span>.
+          </p>
+          
+          <p>
+            We are the first company to{" "}
+            <span className="font-semibold text-green-700">
+              introduce Rabbit Artificial Insemination
+            </span>{" "}
+            system in EAC. It was geared towards encouraging farmers to set up
+            and put in place sustainable projects in various corners in Rwanda
+            and in Africa.
+          </p>
+        </div>
+
+        <p className="mt-6 text-gray-600">
+          <span className="font-medium">Want to learn more? </span>
+          Contact us at{" "}
+          <a href="#" className="text-green-600 hover:underline">
+            info@kigalirabbit.com
+          </a>
+        </p>
+      </div>
+
+    </div>
+  </div>
+</section>
 
       {/* Farming Info */}
-      <section className="bg-green-50 py-10">
-        <div className="container mx-auto px-4 space-y-4">
-          <h2 className="text-2xl font-bold text-gray-800">RABBIT FARMING</h2>
-          <h3 className="text-xl font-semibold text-gray-700">
-            A Sustainable and Profitable Venture
-          </h3>
-          <p className="text-gray-800">
-            Rabbit farming is a lucrative and sustainable agricultural practice
-            that has gained popularity in recent years. At KIGALI RABBIT CENTER,
-            we are dedicated to promoting and supporting rabbit farming as a
-            viable business opportunity for farmers in Rwanda and across Africa.
-          </p>
-          <p className="text-gray-800">
-            Rabbits are known for their high reproductive rate, efficient feed
-            conversion, and ability to thrive in various environments. This makes
-            them ideal livestock for small-scale farmers looking to increase
-            income. Additionally, rabbit meat is lean, high in protein, and in
-            demand in the market.
-          </p>
-          <p className="text-gray-800">
-            Our team at KIGALI RABBIT CENTER offers training and consultancy to
-            help farmers with breeding, feeding, disease management, and
-            marketing.
-          </p>
-          <p className="text-gray-800">
-            Join us at KIGALI RABBIT CENTER and embark on a journey toward a more
-            sustainable and profitable future in agriculture through rabbit
-            farming.
-          </p>
-        </div>
-      </section>
+     <section className="relative flex items-center justify-center min-h-screen">
+  {/* Background Image with Overlay */}
+  <div className="absolute inset-0 bg-black/50">
+    <img 
+      src="https://images.unsplash.com/photo-1585110396000-c9ffd4e4b308?w=600&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8Mnx8cmFiYml0fGVufDB8fDB8fHww" 
+      alt="Rabbit farming" 
+      className="h-full w-full object-cover object-center"
+    />
+  </div>
+
+  {/* Content Container */}
+  <div className="container relative mx-auto px-4 py-20 text-white max-w-4xl space-y-6">
+    <div className="bg-green-800/90 backdrop-blur-sm p-8 rounded-lg">
+      <h2 className="text-3xl md:text-4xl font-bold mb-2">RABBIT FARMING</h2>
+      <h3 className="text-2xl md:text-3xl font-semibold text-green-200 mb-6">
+        A Sustainable and Profitable Venture
+      </h3>
+      
+      <div className="space-y-4 text-lg">
+        <p>
+          Rabbit farming is a lucrative and sustainable agricultural practice
+          that has gained popularity in recent years. At KIGALI RABBIT CENTER,
+          we are dedicated to promoting and supporting rabbit farming as a
+          viable business opportunity for farmers in Rwanda and across Africa.
+        </p>
+        <p>
+          Rabbits are known for their high reproductive rate, efficient feed
+          conversion, and ability to thrive in various environments. This makes
+          them ideal livestock for small-scale farmers looking to increase
+          income. Additionally, rabbit meat is lean, high in protein, and in
+          demand in the market.
+        </p>
+        <p>
+          Our team at KIGALI RABBIT CENTER offers training and consultancy to
+          help farmers with breeding, feeding, disease management, and
+          marketing.
+        </p>
+        <p className="font-medium text-green-100">
+          Join us at KIGALI RABBIT CENTER and embark on a journey toward a more
+          sustainable and profitable future in agriculture through rabbit
+          farming.
+        </p>
+      </div>
+    </div>
+  </div>
+</section>
 
       {/* Counter Section */}
-      <section className="py-12 bg-white">
-        <div className="container mx-auto px-4">
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8 text-center">
-            <div className="bg-gray-100 p-6 rounded shadow-md">
-              <h2 className="text-4xl font-bold text-green-600">128</h2>
-              <p className="mt-2 text-gray-700">Outgrowers</p>
-            </div>
-            <div className="bg-gray-100 p-6 rounded shadow-md">
-              <h2 className="text-4xl font-bold text-green-600">16</h2>
-              <p className="mt-2 text-gray-700">Veterinarians</p>
-            </div>
-            <div className="bg-gray-100 p-6 rounded shadow-md">
-              <h2 className="text-4xl font-bold text-green-600">34</h2>
-              <p className="mt-2 text-gray-700">Farm Workers</p>
-            </div>
-            <div className="bg-gray-100 p-6 rounded shadow-md">
-              <h2 className="text-4xl font-bold text-green-600">10</h2>
-              <p className="mt-2 text-gray-700">Limited Tours/Day</p>
-            </div>
-          </div>
+     <section className="min-h-screen bg-black py-12">
+  <div className="container mx-auto px-4 sm:px-6 lg:px-8">
+    <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+      {/* Outgrowers Card */}
+      <div className="flex flex-col rounded-xl border border-gray-800 p-6 hover:border-gray-600 transition-colors">
+        <div className="inline-flex items-center justify-center w-12 h-12 rounded-lg bg-gray-900 mb-4">
+          <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" className="w-6 h-6 text-green-500">
+            <path d="M17 21V19C17 17.9391 16.5786 16.9217 15.8284 16.1716C15.0783 15.4214 14.0609 15 13 15H5C3.93913 15 2.92172 15.4214 2.17157 16.1716C1.42143 16.9217 1 17.9391 1 19V21" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"></path>
+            <path d="M9 11C11.2091 11 13 9.20914 13 7C13 4.79086 11.2091 3 9 3C6.79086 3 5 4.79086 5 7C5 9.20914 6.79086 11 9 11Z" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"></path>
+            <path d="M23 21V19C22.9993 18.1137 22.7044 17.2528 22.1614 16.5523C21.6184 15.8519 20.8581 15.3516 20 15.13" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"></path>
+            <path d="M16 3.13C16.8604 3.35031 17.623 3.85071 18.1676 4.55232C18.7122 5.25392 19.0078 6.11683 19.0078 7.005C19.0078 7.89318 18.7122 8.75608 18.1676 9.45769C17.623 10.1593 16.8604 10.6597 16 10.88" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"></path>
+          </svg>
         </div>
-      </section>
-      {/* banner Section */}
+        <h3 className="text-4xl font-bold text-green-500 mb-2">128</h3>
+        <p className="text-gray-400 text-sm sm:text-base">Outgrowers</p>
+      </div>
+
+      {/* Veterinarians Card */}
+      <div className="flex flex-col rounded-xl border border-gray-800 p-6 hover:border-gray-600 transition-colors">
+        <div className="inline-flex items-center justify-center w-12 h-12 rounded-lg bg-gray-900 mb-4">
+          <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" className="w-6 h-6 text-green-500">
+            <path d="M14 16H9M12 7V5M12 21V19M9 9H5M19 9H15M17 3H7C5.89543 3 5 3.89543 5 5V19C5 20.1046 5.89543 21 7 21H17C18.1046 21 19 20.1046 19 19V5C19 3.89543 18.1046 3 17 3Z" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"></path>
+          </svg>
+        </div>
+        <h3 className="text-4xl font-bold text-green-500 mb-2">16</h3>
+        <p className="text-gray-400 text-sm sm:text-base">Veterinarians</p>
+      </div>
+
+      {/* Farm Workers Card */}
+      <div className="flex flex-col rounded-xl border border-gray-800 p-6 hover:border-gray-600 transition-colors">
+        <div className="inline-flex items-center justify-center w-12 h-12 rounded-lg bg-gray-900 mb-4">
+          <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" className="w-6 h-6 text-green-500">
+            <path d="M12 15C13.6569 15 15 13.6569 15 12C15 10.3431 13.6569 9 12 9C10.3431 9 9 10.3431 9 12C9 13.6569 10.3431 15 12 15Z" stroke="currentColor" strokeWidth="2" strokeMiterlimit="10"></path>
+            <path d="M2 12.88V11.12C2 10.08 2.85 9.22 3.9 9.22C5.71 9.22 6.45 7.94 5.54 6.37C5.02 5.47 5.33 4.3 6.24 3.78L7.97 2.79C8.76 2.32 9.78 2.6 10.25 3.39L10.36 3.58C11.26 5.15 12.74 5.15 13.65 3.58L13.76 3.39C14.23 2.6 15.25 2.32 16.04 2.79L17.77 3.78C18.68 4.3 18.99 5.47 18.47 6.37C17.56 7.94 18.3 9.22 20.11 9.22C21.15 9.22 22.01 10.07 22.01 11.12V12.88C22.01 13.92 21.16 14.78 20.11 14.78C18.3 14.78 17.56 16.06 18.47 17.63C18.99 18.54 18.68 19.7 17.77 20.22L16.04 21.21C15.25 21.68 14.23 21.4 13.76 20.61L13.65 20.42C12.75 18.85 11.27 18.85 10.36 20.42L10.25 20.61C9.78 21.4 8.76 21.68 7.97 21.21L6.24 20.22C5.33 19.7 5.02 18.53 5.54 17.63C6.45 16.06 5.71 14.78 3.9 14.78C2.85 14.78 2 13.92 2 12.88Z" stroke="currentColor" strokeWidth="2" strokeMiterlimit="10"></path>
+          </svg>
+        </div>
+        <h3 className="text-4xl font-bold text-green-500 mb-2">34</h3>
+        <p className="text-gray-400 text-sm sm:text-base">Farm Workers</p>
+      </div>
+
+      {/* Limited Tours Card */}
+      <div className="flex flex-col rounded-xl border border-gray-800 p-6 hover:border-gray-600 transition-colors">
+        <div className="inline-flex items-center justify-center w-12 h-12 rounded-lg bg-gray-900 mb-4">
+          <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" className="w-6 h-6 text-green-500">
+            <path d="M12 22C17.5228 22 22 17.5228 22 12C22 6.47715 17.5228 2 12 2C6.47715 2 2 6.47715 2 12C2 17.5228 6.47715 22 12 22Z" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"></path>
+            <path d="M12 6V12L16 14" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"></path>
+          </svg>
+        </div>
+        <h3 className="text-4xl font-bold text-green-500 mb-2">10</h3>
+        <p className="text-gray-400 text-sm sm:text-base">Limited Tours/Day</p>
+      </div>
+    </div>
+  </div>
+</section>
        {/* Banner Section */}
        <span id="about"></span>
       <div style={bgImage}>
