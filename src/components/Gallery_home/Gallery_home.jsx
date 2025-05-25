@@ -32,6 +32,13 @@ const navigate = useNavigate();
   return (
     <>
       <section className="py-16">
+        <div className="w-full mx-auto text-left md:w-11/12 xl:w-9/12 md:text-center mb-12">
+          <h1 className="text-4xl font-extrabold leading-none tracking-normal text-gray-900 md:text-6xl md:tracking-tight">
+            <span className="block w-full text-transparent bg-clip-text bg-gradient-to-r from-green-400 to-purple-500 lg:inline">
+              Our Gallery Collection
+            </span>
+          </h1>
+        </div>
         <div className="container mx-auto px-4">
           <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-8">
             {galleryItems.map((item, index) => (
