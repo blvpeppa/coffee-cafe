@@ -29,7 +29,7 @@ const Training = () => {
   const navigate = useNavigate();
 
   // API configuration
-  const API_BASE_URL = 'http://localhost:7000/api/training';
+  const API_BASE_URL = 'https://umuhuza.store/api/training';
 
   // Fetch training programs from API
   useEffect(() => {
@@ -52,6 +52,44 @@ const Training = () => {
     };
     fetchPrograms();
   }, []);
+
+  const makePayment = () => {
+    if (!window.IremboPay) {
+      setMessage({
+        text: 'Payment system is not available. Please try again later.',
+        isError: true
+      });
+      return;
+    }
+
+    // For testing purposes - use sandbox environment
+    IremboPay.initiate({
+      publicKey: "pk_live_ae75302d3d84495e9c6282287f2a4643", // Replace with your test public key
+      invoiceNumber: `880523640095`, // Generate a unique invoice number
+      amount: selectedProgram.price, // Amount from the selected program
+      currency: "RWF",
+      locale: IremboPay.locale.EN,
+      callback: (err, resp) => {
+        if (!err) {
+          // Payment was successful
+          setPaymentData(prev => ({
+            ...prev,
+            transactionId: resp.transactionId
+          }));
+          setMessage({
+            text: 'Payment successful! Please confirm to complete registration.',
+            isError: false
+          });
+        } else {
+          // Handle error
+          setMessage({
+            text: err.message || 'Payment failed. Please try again.',
+            isError: true
+          });
+        }
+      }
+    });
+  };
 
   const handleProgramSelect = (program) => {
     setSelectedProgram(program);
@@ -152,7 +190,7 @@ const Training = () => {
     e.preventDefault();
     
     if (!paymentData.transactionId) {
-      setMessage({ text: 'Please enter your transaction ID', isError: true });
+      setMessage({ text: 'Please complete the payment first', isError: true });
       return;
     }
 
@@ -175,7 +213,7 @@ const Training = () => {
       }
     } catch (error) {
       console.error('Payment error:', error);
-      const errorMsg = error.response?.data?.message || 'An error occurred during payment';
+      const errorMsg = error.response?.data?.message || 'An error occurred during payment confirmation';
       setMessage({ text: errorMsg, isError: true });
     } finally {
       setIsLoading(false);
@@ -301,7 +339,6 @@ const Training = () => {
                 <h2 className="text-xl font-bold text-gray-800 mb-2">{program.title}</h2>
                 <p className="text-gray-600 mb-4">{program.description}</p>
                 <div className="flex items-center justify-between mb-4">
-                  <span className="text-lg font-bold text-green-700">{program.priceDisplay}</span>
                   <span className="text-sm text-gray-500">{program.duration}</span>
                 </div>
                 <button
@@ -557,36 +594,37 @@ const Training = () => {
                     </div>
                   </div>
 
-                  {/* Payment Method */}
+                  {/* Payment Action */}
                   <div className="mb-6">
-                    <label className="block text-gray-700 font-medium mb-3">Payment Method</label>
-                    <div className="grid grid-cols-2 gap-3">
-                      <button
-                        type="button"
-                        onClick={() => handlePaymentMethodChange('mobile')}
-                        className={`px-4 py-2 rounded-md border ${
-                          paymentData.method === 'mobile'
-                            ? 'bg-blue-100 border-blue-500 text-blue-700'
-                            : 'bg-white border-gray-300'
-                        }`}
-                      >
-                        Mobile Money
-                      </button>
-                      <button
-                        type="button"
-                        onClick={() => handlePaymentMethodChange('card')}
-                        className={`px-4 py-2 rounded-md border ${
-                          paymentData.method === 'card'
-                            ? 'bg-blue-100 border-blue-500 text-blue-700'
-                            : 'bg-white border-gray-300'
-                        }`}
-                      >
-                        Credit Card
-                      </button>
-                    </div>
+                    <button
+                      type="button"
+                      onClick={makePayment}
+                      className="w-full bg-green-600 hover:bg-green-700 text-white font-bold py-3 px-4 rounded-md transition-colors duration-300 mb-4"
+                    >
+                      Pay with IremboPay
+                    </button>
+
+                    {/* Test Payment Button (remove in production) 
+                    <button
+                      type="button"
+                      onClick={() => {
+                        setPaymentData(prev => ({
+                          ...prev,
+                          transactionId: `TEST-${Math.random().toString(36).substr(2, 9)}`,
+                          method: 'mobile'
+                        }));
+                        setMessage({
+                          text: 'Test payment successful. Click confirm to proceed.',
+                          isError: false
+                        });
+                      }}
+                      className="w-full bg-gray-300 hover:bg-gray-400 text-gray-800 font-bold py-3 px-4 rounded-md transition-colors duration-300"
+                    >
+                      Simulate Test Payment
+                    </button>*/}
                   </div>
 
-                  {/* Transaction ID */}
+                  {/* Transaction ID 
                   <div className="mb-4">
                     <label className="block text-gray-700 font-medium mb-2">
                       Transaction ID <span className="text-red-500">*</span>
@@ -600,10 +638,9 @@ const Training = () => {
                       required
                     />
                     <p className="mt-2 text-sm text-gray-500">
-                      After making payment via {paymentData.method === 'mobile' ? 'Mobile Money' : 'Credit Card'},
-                      enter the transaction ID you received here.
+                      After making payment, enter the transaction ID you received here.
                     </p>
-                  </div>
+                  </div>*/}
 
                   {/* Message Display */}
                   {message.text && (
@@ -625,7 +662,7 @@ const Training = () => {
                     <button
                       type="submit"
                       className="flex-1 px-4 py-2 bg-green-600 text-white rounded-md hover:bg-green-700 flex items-center justify-center"
-                      disabled={isLoading}
+                      disabled={isLoading || !paymentData.transactionId}
                     >
                       {isLoading ? (
                         <>
@@ -633,7 +670,7 @@ const Training = () => {
                           Confirming...
                         </>
                       ) : (
-                        `Confirm Payment`
+                        'Confirm Payment'
                       )}
                     </button>
                   </div>

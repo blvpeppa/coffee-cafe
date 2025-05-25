@@ -89,7 +89,7 @@ const Contact = () => {
 
     try {
       const response = await axios.post(
-        "http://localhost:7000/send/contact",
+        "https://umuhuza.store/send/contact",
         formData
       );
       if (response.status === 201) {
