@@ -6,6 +6,7 @@ import s4 from '../../assets/satyabratasm-u_kMWN-BWyU-unsplash.jpg';
 import s5 from '../../assets/kit.jpg';
 import s6 from '../../assets/Rabbit.jpeg';
 import s7 from '../../assets/rabbits.jpg';
+import Imite from '../../assets/Imite.jpg';
 const Notification = ({ type = "info", message, onClose }) => {
   const colors = {
     success: "bg-green-100 text-green-700 border-green-400",

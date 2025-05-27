@@ -11,7 +11,7 @@ import s4 from '../../assets/satyabratasm-u_kMWN-BWyU-unsplash.jpg';
 import s5 from '../../assets/kit.jpg';
 import s6 from '../../assets/Rabbit.jpeg';
 import s7 from '../../assets/rabbits.jpg';
-
+import Imite from '../../assets/Imite.jpg';
 const PricingCards = () => {
   // State management
   const [pricingOptions, setPricingOptions] = useState([]);
@@ -85,7 +85,7 @@ const PricingCards = () => {
       case 2: return s6;
       case 3: return s5;
       case 4: return s4;
-      case 5: return 'https://images.unsplash.com/photo-1584308666744-24d5c474f2ae?ixlib=rb-1.2.1&auto=format&fit=crop&w=772&q=80';
+      case 5: return Imite;
       default: return s7;
     }
   };

@@ -4,7 +4,8 @@ import s3 from '../../assets/gallery-1.jpg'; // manue product image
 import s5 from '../../assets/kit.jpg';
 import s6 from '../../assets/Rabbit.jpeg';
 import s7 from '../../assets/rabbits.jpg';
-import s8 from '../../assets/bleeding.jpg';
+import s8 from '../../assets/bleeding7.jpg';
+import Imite from '../../assets/Imite.jpg';
 const Services = () => {
   const services = [
     {
@@ -36,7 +37,7 @@ const Services = () => {
       title: 'Health Management',
       description: 'Preventive care and treatment plans to keep your rabbits healthy and productive.',
       icon: '💉',
-      image: 'https://images.unsplash.com/photo-1584308666744-24d5c474f2ae?ixlib=rb-1.2.1&auto=format&fit=crop&w=772&q=80',
+      image: Imite,
       hoverImage: 'https://images.unsplash.com/photo-1544716278-ca5e3f4abd8c?ixlib=rb-1.2.1&auto=format&fit=crop&w=772&q=80'
     }
   ];
