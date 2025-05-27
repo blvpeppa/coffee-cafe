@@ -4,6 +4,7 @@ import s3 from '../../assets/gallery-1.jpg'; // manue product image
 import s5 from '../../assets/kit.jpg';
 import s6 from '../../assets/Rabbit.jpeg';
 import s7 from '../../assets/rabbits.jpg';
+import s8 from '../../assets/bleeding.jpg';
 const Services = () => {
   const services = [
     {
@@ -11,7 +12,7 @@ const Services = () => {
       title: 'Breeding Consultation',
       description: 'Expert advice on rabbit breeding techniques, genetic selection, and breeding schedules.',
       icon: '🐇',
-      image: 'https://images.unsplash.com/photo-1585969646097-a1b0038c37a1?ixlib=rb-1.2.1&auto=format&fit=crop&w=772&q=80',
+      image: s8,
       hoverImage: s7
     },
     {

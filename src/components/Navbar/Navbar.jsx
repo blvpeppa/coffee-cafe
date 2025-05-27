@@ -56,7 +56,7 @@ const Navbar = () => {
           </div>
           <div className="flex space-x-4 mt-2 md:mt-0">
             <a 
-              href="https://facebook.com" 
+              href="https://www.facebook.com/share/1CcbvjuHKw/" 
               target="_blank" 
               rel="noopener noreferrer" 
               className="hover:text-green-300 transition-colors"
@@ -65,7 +65,7 @@ const Navbar = () => {
               <FaFacebook />
             </a>
             <a 
-              href="https://twitter.com" 
+              href="https://x.com/kigalirabbit?s=11" 
               target="_blank" 
               rel="noopener noreferrer" 
               className="hover:text-green-300 transition-colors"

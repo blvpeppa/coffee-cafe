@@ -49,10 +49,10 @@ const Footer = () => {
             <h1>Join us :</h1> 
           </p>
           <div className="flex gap-4">
-            <a href="#"><FaFacebook /></a>
+            <a href="https://www.facebook.com/share/1CcbvjuHKw/"><FaFacebook /></a>
             <a href="#"><FaWhatsapp /></a>
             <a href="#"><FaInstagram /></a>
-            <a href="#"><FaTwitter /></a>
+            <a href="https://x.com/kigalirabbit?s=11"><FaTwitter /></a>
           </div>
         </div>
 
