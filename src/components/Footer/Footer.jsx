@@ -82,7 +82,7 @@ const Footer = () => {
           <h2 className="text-xl font-bold mb-4">Have a Question?</h2>
           <ul className="space-y-3 text-sm">
             <li>nyamirambo, Nyarugenge Kigali, Rwanda</li>
-            <li><a href="tel:+250780797881">+250 780797881</a></li>
+            <li><a href="tel:+250795880784">+250 795880784</a></li>
             <li><a href="mailto:kigalirabbit@gmail.com">info@kigalirabbit.org</a></li>
           </ul>
         </div>

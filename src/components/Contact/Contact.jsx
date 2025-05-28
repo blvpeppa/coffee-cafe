@@ -35,14 +35,14 @@ const Contact = () => {
     {
       icon: "fa-phone",
       label: "Phone",
-      value: "(+250) 780797881",
-      link: "tel:+250780797881",
+      value: "(+250) 795880784",
+      link: "tel:+250795880784",
     },
     {
       icon: "fa-paper-plane",
       label: "Email",
       value: "info@kigalirabbit.org",
-      link: "mailto:info@kigalirabbit.org",
+      link: "kigalirabbit@gmail.com",
     },
     {
       icon: "fa-globe",

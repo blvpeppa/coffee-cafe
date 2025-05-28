@@ -40,11 +40,11 @@ const Navbar = () => {
         <div className="container mx-auto px-4 py-2 flex flex-col md:flex-row justify-between items-center">
           <div className="flex items-center gap-4 flex-wrap">
             <a 
-              href="tel:+250780797881" 
+              href="tel:+250795880784" 
               className="flex items-center gap-2 hover:text-green-300 transition-colors"
               aria-label="Call us"
             >
-              <FaPhone /> +250 780797881
+              <FaPhone /> +250 795880784
             </a>
             <a 
               href="mailto:kigalirabbit@gmail.com" 
@@ -83,7 +83,7 @@ const Navbar = () => {
               <FaInstagram />
             </a>
             <a 
-              href="https://wa.me/250780797881" 
+              href="https://wa.me/250795880784" 
               target="_blank" 
               rel="noopener noreferrer" 
               className="hover:text-green-300 transition-colors"

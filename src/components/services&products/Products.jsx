@@ -2,11 +2,13 @@ import React, { useState, useEffect } from 'react';
 import g5 from '../../assets/gallery-5.jpg';
 import s2 from '../../assets/S3.jpg';
 import s3 from '../../assets/gallery-1.jpg';
-import s4 from '../../assets/satyabratasm-u_kMWN-BWyU-unsplash.jpg';
+import s from '../../assets/satyabratasm-u_kMWN-BWyU-unsplash.jpg';
 import s5 from '../../assets/kit.jpg';
 import s6 from '../../assets/Rabbit.jpeg';
 import s7 from '../../assets/rabbits.jpg';
 import Imite from '../../assets/Imite.jpg';
+import s8 from '../../assets/bleeding.jpg';
+import s4 from '../../assets/bleeding7.jpg';
 const Notification = ({ type = "info", message, onClose }) => {
   const colors = {
     success: "bg-green-100 text-green-700 border-green-400",
@@ -58,8 +60,8 @@ const Products = () => {
             id: 1,
             name: 'Premium Breeding Rabbits',
             description: 'Healthy, pedigreed breeding stock of New Zealand White and California breeds.',
-            image: 'https://images.unsplash.com/photo-1585969646097-a1b0038c37a1?ixlib=rb-1.2.1&auto=format&fit=crop&w=300&h=200&q=80',
-            hoverImage: s7,
+            image: s8,
+            hoverImage: s4,
             category: 'Live Stock'
           },
           {
@@ -82,8 +84,8 @@ const Products = () => {
                 id: 4,
                 name: 'Farming Starter Guide',
                 description: 'Comprehensive manual covering all aspects of commercial rabbit farming.',
-                image: s4,
-                hoverImage: 'https://images.unsplash.com/photo-1544716278-ca5e3f4abd8c?ixlib=rb-1.2.1&auto=format&fit=crop&w=300&h=200&q=80',
+                image: Imite,
+                hoverImage: 'https://images.unsplash.com/photo-1544716278-ca5e3f4abd8c?ixlib=rb-1.2.1&auto=format&fit=crop&w=772&q=80',
                 category: 'Resources'
               },
               {
