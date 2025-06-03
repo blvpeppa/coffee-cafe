@@ -2,13 +2,13 @@ import React, { useState, useEffect } from 'react';
 import g5 from '../../assets/gallery-5.jpg';
 import s2 from '../../assets/S3.jpg';
 import s3 from '../../assets/gallery-1.jpg';
-import s from '../../assets/satyabratasm-u_kMWN-BWyU-unsplash.jpg';
 import s5 from '../../assets/kit.jpg';
 import s6 from '../../assets/Rabbit.jpeg';
 import s7 from '../../assets/rabbits.jpg';
 import Imite from '../../assets/Imite.jpg';
 import s8 from '../../assets/bleeding.jpg';
 import s4 from '../../assets/bleeding7.jpg';
+import s from '../../assets/WhatsApp Image 2025-05-28 at 08.54.48_0cb807a8.jpg';
 const Notification = ({ type = "info", message, onClose }) => {
   const colors = {
     success: "bg-green-100 text-green-700 border-green-400",
@@ -93,7 +93,7 @@ const Products = () => {
                 name: 'Organic Fertilizer',
                 description: 'High-quality organic fertilizer for optimal plant growth.',
                 image: g5,
-                hoverImage: 'https://images.unsplash.com/photo-1586771107445-d3ca888129ce?ixlib=rb-1.2.1&auto=format&fit=crop&w=300&h=200&q=80',
+                hoverImage: s,
                 category: 'Manure'
               }
         ]);
