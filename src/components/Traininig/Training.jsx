@@ -3,6 +3,7 @@ import { FaCalendarAlt, FaMapMarkerAlt, FaUser, FaPhone, FaEnvelope, FaSpinner, 
 import { jsPDF } from 'jspdf';
 import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
+
 const Training = () => {
   const [formData, setFormData] = useState({
     name: '',
@@ -13,11 +14,6 @@ const Training = () => {
     preferredDate: '',
     questions: ''
   });
-  const [paymentData, setPaymentData] = useState({
-    method: 'mobile',
-    transactionId: '',
-    amount: 0
-  });
   const [step, setStep] = useState(1);
   const [message, setMessage] = useState({ text: '', isError: false });
   const [isLoading, setIsLoading] = useState(false);
@@ -26,6 +22,7 @@ const Training = () => {
   const [receiptData, setReceiptData] = useState(null);
   const [programs, setPrograms] = useState([]);
   const navigate = useNavigate();
+  
   // API configuration
   const API_BASE_URL = 'https://umuhuza.store/api/training';
 
@@ -51,50 +48,8 @@ const Training = () => {
     fetchPrograms();
   }, []);
 
-  const makePayment = () => {
-    if (!window.IremboPay) {
-      setMessage({
-        text: 'Payment system is not available. Please try again later.',
-        isError: true
-      });
-      return;
-    }
-
-    // For testing purposes - use sandbox environment
-    IremboPay.initiate({
-      publicKey: "pk_live_ae75302d3d84495e9c6282287f2a4643", // Replace with your test public key
-      invoiceNumber: `880523640095`, // Generate a unique invoice number
-      amount: selectedProgram.price, // Amount from the selected program
-      currency: "RWF",
-      locale: IremboPay.locale.EN,
-      callback: (err, resp) => {
-        if (!err) {
-          // Payment was successful
-          setPaymentData(prev => ({
-            ...prev,
-            transactionId: resp.transactionId
-          }));
-          setMessage({
-            text: 'Payment successful! Please confirm to complete registration.',
-            isError: false
-          });
-        } else {
-          // Handle error
-          setMessage({
-            text: err.message || 'Payment failed. Please try again.',
-            isError: true
-          });
-        }
-      }
-    });
-  };
-
   const handleProgramSelect = (program) => {
     setSelectedProgram(program);
-    setPaymentData(prev => ({
-      ...prev,
-      amount: program.price
-    }));
     setStep(1);
     resetForm();
     setShowModal(true);
@@ -115,11 +70,6 @@ const Training = () => {
       preferredDate: '',
       questions: ''
     });
-    setPaymentData({
-      method: 'mobile',
-      transactionId: '',
-      amount: selectedProgram?.price || 0
-    });
     setMessage({ text: '', isError: false });
     setReceiptData(null);
   };
@@ -127,10 +77,6 @@ const Training = () => {
   const handleChange = (e) => {
     const { name, value } = e.target;
     setFormData(prev => ({ ...prev, [name]: value }));
-  };
-
-  const handlePaymentMethodChange = (method) => {
-    setPaymentData({ ...paymentData, method });
   };
 
   const validateForm = () => {
@@ -165,53 +111,27 @@ const Training = () => {
       });
 
       if (response.data.success) {
-        if (selectedProgram.requiresPayment) {
-          setStep(2);
-          setReceiptData(response.data.data.receiptData);
-        } else {
-          setReceiptData(response.data.data.receiptData);
-          setStep(3);
-        }
+        setReceiptData(response.data.data.receiptData || {
+          registrationId: `TR-${Math.random().toString(36).substr(2, 8).toUpperCase()}`,
+          date: new Date().toLocaleDateString(),
+          time: new Date().toLocaleTimeString(),
+          customer: formData.name,
+          email: formData.email,
+          phone: formData.phone,
+          program: selectedProgram.title,
+          duration: selectedProgram.duration,
+          trainingDate: formData.preferredDate || 'To be confirmed',
+          price: selectedProgram.priceDisplay,
+          paymentMethod: 'Pending',
+          status: 'Pending Contact'
+        });
+        setStep(2);
       } else {
         setMessage({ text: response.data.message || 'Registration failed', isError: true });
       }
     } catch (error) {
       console.error('Registration error:', error);
       const errorMsg = error.response?.data?.message || 'An error occurred during registration';
-      setMessage({ text: errorMsg, isError: true });
-    } finally {
-      setIsLoading(false);
-    }
-  };
-
-  const handlePaymentSubmit = async (e) => {
-    e.preventDefault();
-    
-    if (!paymentData.transactionId) {
-      setMessage({ text: 'Please complete the payment first', isError: true });
-      return;
-    }
-
-    try {
-      setIsLoading(true);
-      setMessage({ text: 'Confirming payment...', isError: false });
-
-      const response = await axios.post(`${API_BASE_URL}/confirm-payment`, {
-        registrationId: receiptData.registrationId.replace('KRC-TR-', ''),
-        transactionId: paymentData.transactionId,
-        paymentMethod: paymentData.method,
-        amount: selectedProgram.price
-      });
-
-      if (response.data.success) {
-        setReceiptData(response.data.data);
-        setStep(3);
-      } else {
-        setMessage({ text: response.data.message || 'Payment confirmation failed', isError: true });
-      }
-    } catch (error) {
-      console.error('Payment error:', error);
-      const errorMsg = error.response?.data?.message || 'An error occurred during payment confirmation';
       setMessage({ text: errorMsg, isError: true });
     } finally {
       setIsLoading(false);
@@ -243,10 +163,6 @@ const Training = () => {
       doc.text(`Training Date: ${receiptData.trainingDate}`, 20, 110);
       doc.text(`Amount: ${receiptData.price}`, 20, 120);
       doc.text(`Payment Method: ${receiptData.paymentMethod}`, 20, 130);
-      
-      if (receiptData.transactionId) {
-        doc.text(`Transaction ID: ${receiptData.transactionId}`, 20, 140);
-      }
       
       // Save the PDF
       doc.save(`training-receipt-${receiptData.registrationId}.pdf`);
@@ -297,7 +213,6 @@ const Training = () => {
           <div class="section">
             <h3>Payment Information</h3>
             <p><strong>Method:</strong> ${receiptData.paymentMethod}</p>
-            ${receiptData.transactionId ? `<p><strong>Transaction ID:</strong> ${receiptData.transactionId}</p>` : ''}
           </div>
           <div class="divider"></div>
           <div class="footer">
@@ -338,6 +253,9 @@ const Training = () => {
                 <p className="text-gray-600 mb-4">{program.description}</p>
                 <div className="flex items-center justify-between mb-4">
                   <span className="text-sm text-gray-500">{program.duration}</span>
+                  {program.price > 0 && (
+                    <span className="text-lg font-bold text-green-700">{program.priceDisplay}</span>
+                  )}
                 </div>
                 <button
                   onClick={() => handleProgramSelect(program)}
@@ -559,123 +477,13 @@ const Training = () => {
                           <FaSpinner className="animate-spin mr-2 inline" />
                           Processing...
                         </>
-                      ) : selectedProgram.requiresPayment ? 'Continue to Payment' : 'Submit Registration'}
+                      ) : 'Submit Registration'}
                     </button>
                   </div>
                 </form>
               )}
 
-              {step === 2 && (
-                <form onSubmit={handlePaymentSubmit} className="space-y-6">
-                  <h2 className="text-2xl font-bold text-green-800 mb-6 text-center">
-                    Payment for {selectedProgram.title}
-                  </h2>
-                  
-                  {/* Order Summary */}
-                  <div className="bg-gray-50 p-4 rounded-lg mb-6">
-                    <h3 className="font-bold text-lg mb-2">Order Summary</h3>
-                    <div className="flex justify-between mb-1">
-                      <span className="text-gray-600">Program:</span>
-                      <span>{selectedProgram.title}</span>
-                    </div>
-                    <div className="flex justify-between mb-1">
-                      <span className="text-gray-600">Duration:</span>
-                      <span>{selectedProgram.duration}</span>
-                    </div>
-                    <div className="flex justify-between mb-1">
-                      <span className="text-gray-600">Date:</span>
-                      <span>{formData.preferredDate || 'To be confirmed'}</span>
-                    </div>
-                    <div className="flex justify-between font-bold text-lg mt-3 pt-2 border-t border-gray-200">
-                      <span>Total:</span>
-                      <span>{selectedProgram.priceDisplay}</span>
-                    </div>
-                  </div>
-
-                  {/* Payment Action */}
-                  <div className="mb-6">
-                    <button
-                      type="button"
-                      onClick={makePayment}
-                      className="w-full bg-green-600 hover:bg-green-700 text-white font-bold py-3 px-4 rounded-md transition-colors duration-300 mb-4"
-                    >
-                      Pay with IremboPay
-                    </button>
-
-                    {/* Test Payment Button (remove in production) 
-                    <button
-                      type="button"
-                      onClick={() => {
-                        setPaymentData(prev => ({
-                          ...prev,
-                          transactionId: `TEST-${Math.random().toString(36).substr(2, 9)}`,
-                          method: 'mobile'
-                        }));
-                        setMessage({
-                          text: 'Test payment successful. Click confirm to proceed.',
-                          isError: false
-                        });
-                      }}
-                      className="w-full bg-gray-300 hover:bg-gray-400 text-gray-800 font-bold py-3 px-4 rounded-md transition-colors duration-300"
-                    >
-                      Simulate Test Payment
-                    </button>*/}
-                  </div>
-
-                  {/* Transaction ID 
-                  <div className="mb-4">
-                    <label className="block text-gray-700 font-medium mb-2">
-                      Transaction ID <span className="text-red-500">*</span>
-                    </label>
-                    <input
-                      type="text"
-                      value={paymentData.transactionId}
-                      onChange={(e) => setPaymentData({ ...paymentData, transactionId: e.target.value })}
-                      className="w-full px-4 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-green-500"
-                      placeholder="Enter your payment transaction ID"
-                      required
-                    />
-                    <p className="mt-2 text-sm text-gray-500">
-                      After making payment, enter the transaction ID you received here.
-                    </p>
-                  </div>*/}
-
-                  {/* Message Display */}
-                  {message.text && (
-                    <p className={`mt-2 text-center ${message.isError ? 'text-red-600' : 'text-green-600'}`}>
-                      {message.text}
-                    </p>
-                  )}
-
-                  {/* Navigation Buttons */}
-                  <div className="flex space-x-3">
-                    <button
-                      type="button"
-                      onClick={() => setStep(1)}
-                      className="flex-1 px-4 py-2 border border-gray-300 rounded-md text-gray-700 hover:bg-gray-50"
-                      disabled={isLoading}
-                    >
-                      Back
-                    </button>
-                    <button
-                      type="submit"
-                      className="flex-1 px-4 py-2 bg-green-600 text-white rounded-md hover:bg-green-700 flex items-center justify-center"
-                      disabled={isLoading || !paymentData.transactionId}
-                    >
-                      {isLoading ? (
-                        <>
-                          <FaSpinner className="animate-spin mr-2" />
-                          Confirming...
-                        </>
-                      ) : (
-                        'Confirm Payment'
-                      )}
-                    </button>
-                  </div>
-                </form>
-              )}
-
-              {step === 3 && receiptData && (
+              {step === 2 && receiptData && (
                 <div className="text-center py-8">
                   <div className="inline-flex items-center justify-center w-16 h-16 bg-green-100 rounded-full mb-4">
                     <svg
@@ -688,14 +496,11 @@ const Training = () => {
                     </svg>
                   </div>
                   <h3 className="text-2xl font-bold text-green-700 mb-2">
-                    {receiptData.status === 'Pending'
-                      ? 'Registration Received!'
-                      : 'Registration Complete!'}
+                    Registration Received!
                   </h3>
                   <p className="text-gray-600 mb-6">
-                    {receiptData.status === 'Pending'
-                      ? 'Please complete your payment to confirm your registration.'
-                      : `Thank you for registering for ${selectedProgram.title}. We'll contact you with further details.`}
+                    Thank you for registering for {selectedProgram.title}. Our team will contact you within 
+                    24 hours via phone or email to confirm your registration and provide payment details.
                   </p>
 
                   {/* Registration Details */}
@@ -704,13 +509,10 @@ const Training = () => {
                     <p className="mb-1">{selectedProgram.title}</p>
                     <p className="mb-1">Duration: {selectedProgram.duration}</p>
                     <p className="mb-1">Date: {receiptData.trainingDate}</p>
-                    {selectedProgram.requiresPayment && (
+                    {selectedProgram.price > 0 && (
                       <p className="font-bold">Amount: {receiptData.price}</p>
                     )}
                     <p className="mt-2 text-sm">Reference ID: {receiptData.registrationId}</p>
-                    {receiptData.transactionId && (
-                      <p className="text-sm">Transaction ID: {receiptData.transactionId}</p>
-                    )}
                   </div>
 
                   {/* Download Buttons */}
