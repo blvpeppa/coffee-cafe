@@ -16,6 +16,12 @@ import g11 from '../../assets/gallery-11.jpg';
 import g12 from '../../assets/gallery-12.jpg';
 import g13 from '../../assets/gallery-13.jpg';
 import g14 from '../../assets/gallery-14.jpg';
+import g15 from '../../assets/G1.jpg';
+import g16 from '../../assets/G2.jpg';
+import g17 from '../../assets/G3.jpg';
+import g18 from '../../assets/G4.jpg';
+import g19 from '../../assets/G5.jpg';
+import g20 from '../../assets/G6.jpg';
 
 const Gallery = ({ 
   columns = { sm: 2, md: 3, lg: 4, xl: 5 }, 
@@ -37,6 +43,12 @@ const Gallery = ({
     { img: g12, alt: "Gallery image 12" },
     { img: g13, alt: "Gallery image 13" },
     { img: g14, alt: "Gallery image 14" },
+    { img: g15, alt: "Gallery image 15" },
+    { img: g16, alt: "Gallery image 16" },
+    { img: g17, alt: "Gallery image 17" },
+    { img: g18, alt: "Gallery image 18" },
+    { img: g19, alt: "Gallery image 19" },
+    { img: g20, alt: "Gallery image 20" },
   ];
 
   const [currentIndex, setCurrentIndex] = useState(null);

@@ -5,7 +5,9 @@ import { FlutterWaveButton, closePaymentModal } from 'flutterwave-react-v3';
 import { jsPDF } from 'jspdf';
 import logo from "../../assets/logo2.png";
 import l from "../../assets/pure-julia-uLoWIMCeodM-unsplash.jpg";
-
+import g17 from '../../assets/G3.jpg';
+import g7 from '../../assets/gallery-7.jpg';
+import g20 from '../../assets/G6.jpg';
 const Training = () => {
   const navigate = useNavigate();
   const handleMoreTrainingClick = () => {
@@ -20,7 +22,7 @@ const Training = () => {
       description: "Learn the fundamentals of rabbit husbandry, housing, and basic care.",
       duration: "2 days",
       numericPrice: 100000,
-      image: l,
+      image: g20,
       requiresPayment: true
     },
     {
@@ -38,7 +40,7 @@ const Training = () => {
       description: "Comprehensive training on rabbit health, common diseases, and prevention.",
       duration: "2 days",
       numericPrice: 150000,
-      image: l,
+      image: g7,
       requiresPayment: true
     },
     {
@@ -47,7 +49,7 @@ const Training = () => {
       description: "Learn how to turn your rabbit farming into a profitable business.",
       duration: "3 days",
       numericPrice: 250000,
-      image: l,
+      image: g17,
       requiresPayment: true
     }
   ];

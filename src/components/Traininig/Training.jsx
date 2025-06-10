@@ -3,7 +3,6 @@ import { FaCalendarAlt, FaMapMarkerAlt, FaUser, FaPhone, FaEnvelope, FaSpinner, 
 import { jsPDF } from 'jspdf';
 import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
-
 const Training = () => {
   const [formData, setFormData] = useState({
     name: '',
@@ -27,7 +26,6 @@ const Training = () => {
   const [receiptData, setReceiptData] = useState(null);
   const [programs, setPrograms] = useState([]);
   const navigate = useNavigate();
-
   // API configuration
   const API_BASE_URL = 'https://umuhuza.store/api/training';
 

@@ -7,7 +7,8 @@ import pricing1 from "../../assets/pricing-1.jpg";
 import pricing5 from "../../assets/government.jpg";
 import pricing4 from "../../assets/academic.jpg";
 import logo from "../../assets/logo2.png";
-
+import g20 from '../../assets/G6.jpg';
+import g17 from '../../assets/G3.jpg';
 const Training_home = () => {
   const navigate = useNavigate();
   const handleMoreVisitsClick = () => {
@@ -21,7 +22,7 @@ const Training_home = () => {
       title: 'Professional Visit',
       numericPrice: 20000,
       description: 'For researchers and professionals in related fields',
-      image: pricing1,
+      image: g20,
       requiresPayment: true
     },
     {
@@ -29,7 +30,7 @@ const Training_home = () => {
       title: 'Academic Visit',
       numericPrice: 400000,
       description: 'Special rates for school and university groups',
-      image: pricing4,
+      image: g17,
       requiresPayment: true
     },
     {
