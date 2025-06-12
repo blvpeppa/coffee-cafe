@@ -60,7 +60,7 @@ const BlogArchive = () => {
       readTime: "7 min read",
       category: "Breeding",
       tags: ["Reproduction", "Genetics"],
-      image: Blog,
+      image: Bloggg,
       featured: true
     },
     {
