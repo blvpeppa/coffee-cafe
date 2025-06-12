@@ -16,6 +16,7 @@ const Menu = [
   { id: 3, name: "Services & Products", link: "/products" },
   { id: 5, name: "Visits", link: "/tour" },
   { id: 6, name: "Training", link: "/training" },
+  { id: 6, name: "Archive", link: "/archive" },
   { id: 4, name: "Contact", link: "/contact" },
 ];
 

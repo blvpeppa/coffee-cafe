@@ -1,5 +1,6 @@
 import React from "react";
 import Navbar from "./components/Navbar/Navbar";
+import Archive from "./components/Blogs/Blogs.jsx";
 import Footer from "./components/Footer/Footer.jsx";
 import Contact from "./components/Contact/Contact.jsx";
 import Training from "./components/Traininig/Training.jsx";
@@ -54,6 +55,7 @@ const App = () => {
               <Route path="/" element={<Home />} />
               <Route path="/about" element={<About />} />
               <Route path="/products" element={<SP />} />
+              <Route path="/archive" element={<Archive />} />
               <Route path="/contact" element={<Contact />} />
               <Route path="/gallery" element={<Gallery />} />
               <Route path="/tour" element={<Tour />} />
