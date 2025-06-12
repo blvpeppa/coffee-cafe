@@ -2,7 +2,6 @@ import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import Bgcontact from "../../assets/image_2.jpg";
 import axios from "axios";
-
 // Notification component
 const Notification = ({ type = "info", message, onClose }) => {
   const colors = {
@@ -42,7 +41,7 @@ const Contact = () => {
       icon: "fa-paper-plane",
       label: "Email",
       value: "info@kigalirabbits.org",
-      link: "info@kigalirabbits.org",
+      link: "https://mail.google.com/mail/?view=cm&to=info@kigalirabbits.org",
     },
     {
       icon: "fa-globe",

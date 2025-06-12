@@ -47,7 +47,7 @@ const Navbar = () => {
               <FaPhone /> +250 795880784
             </a>
             <a 
-              href="mailto:info@kigalirabbits.org" 
+              href="https://mail.google.com/mail/?view=cm&to=info@kigalirabbits.org" 
               className="flex items-center gap-2 hover:text-green-300 transition-colors"
               aria-label="Email us"
             >

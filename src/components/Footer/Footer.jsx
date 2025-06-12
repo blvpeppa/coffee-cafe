@@ -83,7 +83,15 @@ const Footer = () => {
           <ul className="space-y-3 text-sm">
             <li>nyamirambo, Nyarugenge Kigali, Rwanda</li>
             <li><a href="tel:+250795880784">+250 795880784</a></li>
-            <li><a href="mailto:info@kigalirabbits.org">info@kigalirabbits.org</a></li>
+            <li class="flex items-center gap-2">
+  <a href="https://mail.google.com/mail/?view=cm&to=info@kigalirabbits.org" target="_blank" rel="noopener noreferrer" class="text-white hover:underline">
+    Email us via Gmail
+  </a>
+  <svg xmlns="http://www.w3.org/2000/svg" fill="currentColor" class="w-4 h-4 text-red-500" viewBox="0 0 24 24">
+    <path d="M12 13.065L1.5 6.375V17.25c0 .966.784 1.75 1.75 1.75h17.5c.966 0 1.75-.784 1.75-1.75V6.375l-10.5 6.69zM12 10.935L22.5 4.25H1.5L12 10.935z"/>
+  </svg>
+</li>
+
           </ul>
         </div>
       </div>

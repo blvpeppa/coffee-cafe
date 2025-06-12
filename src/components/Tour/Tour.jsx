@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { FaCreditCard, FaMobileAlt, FaPrint, FaTimes, FaSpinner, FaUsers, FaCheck } from 'react-icons/fa';
+import { FaPrint, FaTimes, FaSpinner, FaUsers, FaCheck } from 'react-icons/fa';
 import { jsPDF } from 'jspdf';
 import axios from 'axios';
 import pricing1 from "../../assets/pricing-1.jpg";
@@ -12,6 +12,7 @@ import s5 from '../../assets/kit.jpg';
 import s6 from '../../assets/Rabbit.jpeg';
 import s7 from '../../assets/rabbits.jpg';
 import Imite from '../../assets/Imite.jpg';
+
 const PricingCards = () => {
   // State management
   const [pricingOptions, setPricingOptions] = useState([]);
@@ -24,11 +25,6 @@ const PricingCards = () => {
     visitDate: '',
     specialRequests: '',
     visitorsCount: 1
-  });
-  
-  const [paymentData, setPaymentData] = useState({
-    method: 'irembo',
-    transactionId: ''
   });
   
   const [step, setStep] = useState(1);
@@ -90,103 +86,6 @@ const PricingCards = () => {
     }
   };
 
-  // Initialize IremboPay payment
-  const initiateIremboPayment = async () => {
-    if (!window.IremboPay) {
-      setMessage({
-        text: 'Payment system is not available. Please try again later.',
-        isError: true
-      });
-      return;
-    }
-
-    try {
-      setIsProcessing(true);
-      setMessage({ text: 'Initializing payment...', isError: false });
-
-      const totalAmount = selectedOption.numericPrice * formData.visitorsCount;
-      
-      // For testing purposes - use sandbox environment
-      IremboPay.initiate({
-        publicKey: "pk_live_ae75302d3d84495e9c6282287f2a4643", // Replace with your test public key
-        invoiceNumber: `KRC-${Date.now()}`, // Generate a unique invoice number
-        amount: totalAmount, // Amount from the selected program
-        currency: "RWF",
-        locale: IremboPay.locale.EN,
-        callback: (err, resp) => {
-          if (!err) {
-            // Payment was successful
-            setPaymentData(prev => ({
-              ...prev,
-              transactionId: resp.transactionId
-            }));
-            setMessage({
-              text: 'Payment successful! Please confirm to complete booking.',
-              isError: false
-            });
-            // Automatically proceed to verify payment
-            verifyPayment(resp.transactionId);
-          } else {
-            // Handle error
-            setMessage({
-              text: err.message || 'Payment failed. Please try again.',
-              isError: true
-            });
-          }
-          setIsProcessing(false);
-        }
-      });
-    } catch (error) {
-      console.error('Payment initialization error:', error);
-      setMessage({
-        text: 'An error occurred while initializing payment',
-        isError: true
-      });
-      setIsProcessing(false);
-    }
-  };
-
-  // Verify payment status
-  const verifyPayment = async (transactionId) => {
-    try {
-      setIsProcessing(true);
-      setMessage({ text: 'Verifying payment...', isError: false });
-
-      const totalAmount = selectedOption.numericPrice * formData.visitorsCount;
-      
-      const response = await axios.post(`${API_BASE_URL}/book-visit`, {
-        ...formData,
-        visitType: selectedOption.id,
-        amount: totalAmount,
-        requiresPayment: true,
-        visitorsCount: formData.visitorsCount,
-        transactionId
-      });
-
-      generateReceipt({
-        bookingId: response.data.data.bookingId,
-        status: 'completed',
-        paymentMethod: 'irembo',
-        transactionId,
-        totalAmount
-      });
-      
-      setStep(3);
-      setMessage({
-        text: 'Payment and booking confirmed!',
-        isError: false
-      });
-    } catch (error) {
-      console.error('Payment verification error:', error);
-      setMessage({
-        text: error.response?.data?.message || 'An error occurred while verifying payment',
-        isError: true
-      });
-    } finally {
-      setIsProcessing(false);
-    }
-  };
-
   // Handlers
   const handleSelectOption = (option) => {
     setSelectedOption(option);
@@ -214,15 +113,10 @@ const PricingCards = () => {
       return;
     }
 
-    if (selectedOption.requiresPayment) {
-      // Use IremboPay for payments
-      await initiateIremboPayment();
-    } else {
-      await handleFreeBooking();
-    }
+    await handleBooking();
   };
 
-  const handleFreeBooking = async () => {
+  const handleBooking = async () => {
     try {
       setIsProcessing(true);
       setMessage({ text: 'Processing booking...', isError: false });
@@ -233,17 +127,17 @@ const PricingCards = () => {
         ...formData,
         visitType: selectedOption.id,
         amount: totalAmount,
-        requiresPayment: false,
+        requiresPayment: selectedOption.requiresPayment,
         visitorsCount: formData.visitorsCount
       });
 
       generateReceipt({
-        bookingId: response.data.data.bookingId,
-        status: 'completed',
-        paymentMethod: 'free',
+        bookingId: response.data.data?.bookingId || `KRC-${Date.now()}`,
+        status: 'pending',
+        paymentMethod: selectedOption.requiresPayment ? 'pending' : 'free',
         totalAmount
       });
-      setStep(3);
+      setStep(2);
     } catch (error) {
       console.error('Booking error:', error);
       setMessage({ 
@@ -256,7 +150,7 @@ const PricingCards = () => {
   };
 
   const generateReceipt = (apiData) => {
-    const paymentMethod = apiData.paymentMethod === 'irembo' ? 'IremboPay' : 'Free';
+    const paymentMethod = selectedOption.requiresPayment ? 'Pending Payment' : 'Free';
 
     const totalAmount = apiData.totalAmount || selectedOption.numericPrice * formData.visitorsCount;
 
@@ -271,8 +165,7 @@ const PricingCards = () => {
       description: selectedOption.description,
       image: selectedOption.image,
       paymentMethod,
-      status: apiData.status || 'Completed',
-      transactionId: apiData.transactionId || null,
+      status: apiData.status || 'Pending',
       visitDate: formData.visitDate || 'To be scheduled',
       specialRequests: formData.specialRequests || 'None',
       visitorsCount: formData.visitorsCount,
@@ -292,11 +185,11 @@ const PricingCards = () => {
     
     doc.setFontSize(16);
     doc.setTextColor(0, 0, 0);
-    doc.text('Visit Confirmation Receipt', 105, 30, null, null, 'center');
+    doc.text('Visit Request Receipt', 105, 30, null, null, 'center');
     
     // Add receipt details
     doc.setFontSize(12);
-    doc.text(`Receipt ID: ${receiptData.id}`, 20, 50);
+    doc.text(`Request ID: ${receiptData.id}`, 20, 50);
     doc.text(`Date: ${receiptData.date} at ${receiptData.time}`, 20, 60);
     doc.text(`Customer: ${receiptData.customer}`, 20, 70);
     doc.text(`Email: ${receiptData.email}`, 20, 80);
@@ -305,16 +198,13 @@ const PricingCards = () => {
     doc.text(`Visit Date: ${receiptData.visitDate}`, 20, 110);
     doc.text(`Number of Visitors: ${receiptData.visitorsCount}`, 20, 120);
     doc.text(`Amount: ${receiptData.amount}`, 20, 130);
-    doc.text(`Payment Method: ${receiptData.paymentMethod}`, 20, 140);
-    if (receiptData.transactionId) {
-      doc.text(`Transaction ID: ${receiptData.transactionId}`, 20, 150);
-    }
-    doc.text(`Special Requests: ${receiptData.specialRequests}`, 20, 160);
+    doc.text(`Payment Status: ${receiptData.paymentMethod}`, 20, 140);
+    doc.text(`Special Requests: ${receiptData.specialRequests}`, 20, 150);
     
     // Add included features
     doc.setFontSize(12);
-    doc.text('Included in this package:', 20, 180);
-    let yPosition = 190;
+    doc.text('Included in this package:', 20, 170);
+    let yPosition = 180;
     receiptData.includes.forEach((item, index) => {
       doc.text(`✓ ${item}`, 25, yPosition);
       yPosition += 10;
@@ -323,10 +213,10 @@ const PricingCards = () => {
     // Add note
     doc.setFontSize(10);
     doc.setTextColor(100, 100, 100);
-    doc.text('Thank you for your visit request. Present this receipt at the KRC entrance.', 20, yPosition + 10);
+    doc.text('Thank you for your visit request. Our team will contact you within 24 hours to confirm your booking.', 20, yPosition + 10);
     
     // Save the PDF
-    doc.save(`KRC_receipt_${receiptData.id}.pdf`);
+    doc.save(`KRC_request_${receiptData.id}.pdf`);
   };
 
   const resetForm = () => {
@@ -339,10 +229,6 @@ const PricingCards = () => {
       visitDate: '',
       specialRequests: '',
       visitorsCount: 1
-    });
-    setPaymentData({
-      method: 'irembo',
-      transactionId: ''
     });
     setStep(1);
     setMessage({ text: '', isError: false });
@@ -554,79 +440,29 @@ const PricingCards = () => {
                           Processing...
                         </>
                       ) : (
-                        selectedOption.requiresPayment ? 'Continue to Payment' : 'Submit Request'
+                        'Submit Request'
                       )}
                     </button>
                   </form>
                 )}
 
-                {/* Step 2: Payment Verification */}
-                {step === 2 && (
-                  <div className="space-y-4">
-                    <h3 className="text-2xl font-bold text-gray-800 mb-4">
-                      Complete Your Payment
-                    </h3>
-                    
-                    <div className="bg-blue-50 p-4 rounded mb-4">
-                      <p className="text-blue-800">
-                        Please complete your payment using IremboPay.
-                      </p>
-                    </div>
-                    
-                    <p className="text-gray-700">
-                      After completing payment, your booking will be automatically confirmed.
+                {/* Step 2: Confirmation */}
+                {step === 2 && receiptData && (
+                  <div className="text-center">
+                    <h3 className="text-2xl font-bold text-gray-800 mb-2">Request Received!</h3>
+                    <p className="text-green-600 mb-6">
+                      Thank you for your booking request. Our team will contact you within 24 hours 
+                      to confirm your visit and provide payment details if required.
                     </p>
                     
-                    {message.text && (
-                      <p className={`mt-2 ${message.isError ? 'text-red-600' : 'text-green-600'}`}>
-                        {message.text}
-                      </p>
-                    )}
-                    
-                    <div className="flex space-x-3">
-                      <button
-                        type="button"
-                        onClick={() => setStep(1)}
-                        className="flex-1 bg-gray-200 hover:bg-gray-300 text-gray-800 py-2 px-4 rounded"
-                      >
-                        Back
-                      </button>
-                      <button
-                        type="button"
-                        onClick={() => verifyPayment(paymentData.transactionId)}
-                        className="flex-1 bg-green-700 hover:bg-green-800 text-white py-2 px-4 rounded flex items-center justify-center"
-                        disabled={isProcessing || !paymentData.transactionId}
-                      >
-                        {isProcessing ? (
-                          <>
-                            <FaSpinner className="animate-spin mr-2" />
-                            Verifying...
-                          </>
-                        ) : (
-                          'Verify Payment'
-                        )}
-                      </button>
-                    </div>
-                  </div>
-                )}
-
-                {/* Step 3: Confirmation */}
-                {step === 3 && receiptData && (
-                  <div className="text-center">
-                    <h3 className="text-2xl font-bold text-gray-800 mb-2">Booking Confirmed!</h3>
-                    <p className="text-green-600 mb-6">{message.text}</p>
-                    
                     <div className="bg-gray-100 p-4 rounded-lg mb-6 text-left">
-                      <h4 className="font-bold mb-3">Booking Summary</h4>
+                      <h4 className="font-bold mb-3">Request Summary</h4>
                       <p><span className="font-semibold">Reference:</span> {receiptData.id}</p>
                       <p><span className="font-semibold">Visit Type:</span> {receiptData.service}</p>
                       <p><span className="font-semibold">Date:</span> {receiptData.date}</p>
                       <p><span className="font-semibold">Number of Visitors:</span> {receiptData.visitorsCount}</p>
                       <p><span className="font-semibold">Amount:</span> {receiptData.amount}</p>
-                      <p><span className="font-semibold">Payment Method:</span> {receiptData.paymentMethod}</p>
-                      {receiptData.transactionId && (
-                        <p><span className="font-semibold">Transaction ID:</span> {receiptData.transactionId}</p>
-                      )}
+                      <p><span className="font-semibold">Payment Status:</span> {receiptData.paymentMethod}</p>
                     </div>
 
                     {/* Included features */}

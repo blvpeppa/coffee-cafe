@@ -7,25 +7,25 @@ const TestimonialData = [
   {
     id: 1,
     name: "Razzaq Mouhamed",
-    text: "Lorem ipsum dolor sit amet consectetur adipisicing elit. Eaque reiciendis inventore iste ratione ex alias quis magni at optio",
+    text: "I never imagined rabbit farming could be this rewarding until I partnered with Kigali Rabbit Center. Their expertise, high-quality breeds, and ongoing support have transformed my small farm into a thriving business. I'm forever grateful!",
     img: tt,
   },
   {
     id: 2,
     name: "Pauline",
-    text: "Lorem ipsum dolor sit amet consectetur adipisicing elit. Eaque reiciendis inventore iste ratione ex alias quis magni at optio",
+    text: "Kigali Rabbit Center changed the way I farm. I received healthy rabbits and expert advice that helped me scale from a small backyard project to a full rabbitry. Their team genuinely cares about farmers.",
     img: t,
   },
   {
     id: 3,
     name: "Claudine",
-    text: "Lorem ipsum dolor sit amet consectetur adipisicing elit. Eaque reiciendis inventore iste ratione ex alias quis magni at optio",
+    text: "The educational tour at Kigali Rabbit Center was amazing! My children learned so much about animal care and sustainable farming. It’s a must-visit spot for schools and families.",
     img: "https://picsum.photos/104/104",
   },
   {
     id: 5,
     name: "Samuel",
-    text: "Lorem ipsum dolor sit amet consectetur adipisicing elit. Eaque reiciendis inventore iste ratione ex alias quis magni at optio",
+    text: "Their training program gave me the confidence to start my own rabbit farm. It was practical, hands-on, and perfectly suited for beginners like me. Thank you, KRC!",
     img: ttt,
   },
 ];
