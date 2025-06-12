@@ -83,7 +83,7 @@ const Footer = () => {
           <ul className="space-y-3 text-sm">
             <li>nyamirambo, Nyarugenge Kigali, Rwanda</li>
             <li><a href="tel:+250795880784">+250 795880784</a></li>
-            <li><a href="mailto:kigalirabbit@gmail.com">info@kigalirabbit.org</a></li>
+            <li><a href="mailto:info@kigalirabbits.org">info@kigalirabbits.org</a></li>
           </ul>
         </div>
       </div>

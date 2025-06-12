@@ -47,11 +47,11 @@ const Navbar = () => {
               <FaPhone /> +250 795880784
             </a>
             <a 
-              href="mailto:kigalirabbit@gmail.com" 
+              href="mailto:info@kigalirabbits.org" 
               className="flex items-center gap-2 hover:text-green-300 transition-colors"
               aria-label="Email us"
             >
-              <FaPaperPlane /> info@kigalirabbit.org
+              <FaPaperPlane /> info@kigalirabbits.org
             </a>
           </div>
           <div className="flex space-x-4 mt-2 md:mt-0">

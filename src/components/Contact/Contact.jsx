@@ -41,8 +41,8 @@ const Contact = () => {
     {
       icon: "fa-paper-plane",
       label: "Email",
-      value: "info@kigalirabbit.org",
-      link: "kigalirabbit@gmail.com",
+      value: "info@kigalirabbits.org",
+      link: "info@kigalirabbits.org",
     },
     {
       icon: "fa-globe",
