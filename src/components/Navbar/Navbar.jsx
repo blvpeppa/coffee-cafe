@@ -48,6 +48,7 @@ const Navbar = () => {
             </a>
             <a 
               href="https://mail.google.com/mail/?view=cm&to=info@kigalirabbits.org" 
+              target="_blank" rel="noopener noreferrer"
               className="flex items-center gap-2 hover:text-green-300 transition-colors"
               aria-label="Email us"
             >
