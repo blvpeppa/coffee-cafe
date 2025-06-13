@@ -11,7 +11,7 @@ const BlogArchive = () => {
     {
       id: 1,
       title: "Gutera intanga inkwavu, rumwe rupima 10 Kgs 🐰🐇",
-      excerpt: "It may sound surprising, but it’s real, and it’s happening right here in Rwanda! Meet Dieudonné Musoni, a visionary Rwandan entrepreneur and CEO of Kigali Rabbit Center, famously known as “Bakame the Rabbit Expert.”- Some of their rabbits breeds can weigh up to 10kg and beyond m, a testament to advanced breeding techniques and expert care.",
+      excerpt: "It may sound surprising, but it’s real, and it’s happening right here in Rwanda! Meet Dieudonné Musoni, a visionary Rwandan entrepreneur and CEO of Kigali Rabbit Center, famously known as “Bakame the Rabbit Expert.”- Some of their rabbits breeds can weight up to 10kg and beyond m, a testament to advanced breeding techniques and expert care.",
       date: "2023-05-15",
       readTime: "5 min read",
       category: "Farming",

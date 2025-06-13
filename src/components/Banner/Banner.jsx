@@ -1,14 +1,13 @@
-import React from "react";
+import React, { useContext } from "react";
+import { TranslationContext } from "../../contexts/TranslationContext";
 import BannerImg from "../../assets/about-1.jpg"; 
 import { MdHealthAndSafety } from "react-icons/md";
 import { MdSupportAgent } from "react-icons/md";
 import { MdEmergency } from "react-icons/md";
 import { GiRabbit } from "react-icons/gi";
-import {Link } from "react-router-dom";
-//import BgImg from "../../assets/website/coffee-texture.jpg";
+import { Link } from "react-router-dom";
 
 const bgImage = {
-  //backgroundImage: `url(${BgImg})`,
   backgroundColor: "white",
   backgroundPosition: "center",
   backgroundRepeat: "no-repeat",
@@ -18,12 +17,15 @@ const bgImage = {
 };
 
 const Banner = () => {
+  const { t } = useContext(TranslationContext);
+
   const scrollToTop = () => {
     window.scrollTo({
       top: 0,
-      behavior: "smooth" // Smooth scrolling animation
+      behavior: "smooth"
     });
   };
+
   return (
     <>
       <span id="about"></span>
@@ -36,7 +38,7 @@ const Banner = () => {
                 <img
                   src={BannerImg}
                   alt="kigali rabbit center"
-                  className="max-w-[430px] w-full mx-auto  rounded-lg"
+                  className="max-w-[430px] w-full mx-auto rounded-lg"
                 />
               </div>
 
@@ -46,16 +48,13 @@ const Banner = () => {
                   data-aos="fade-up"
                   className="text-3xl sm:text-4xl font-bold font-sans text"
                 >
-                  Why Choose Kigali Rabbit Center?
+                  {t.banner.title}
                 </h1>
                 <p
                   data-aos="fade-up"
                   className="text-sm text-gray-700 tracking-wide leading-5"
                 >
-                  We are the first company to introduce Rabbit Artificial
-                  Insemination system in East African Community. Since 2018, we
-                  have been a leading force in sustainable rabbit farming,
-                  genetics, training, and innovation.
+                  {t.banner.description}
                 </p>
 
                 <div className="grid grid-cols-2 gap-6">
@@ -65,7 +64,7 @@ const Banner = () => {
                       className="flex items-center gap-3 text-gray-700"
                     >
                       <MdHealthAndSafety className="text-3xl h-12 w-12 shadow-sm p-3 rounded-full bg-green-100 text-green-700" />
-                      <span>Care Advices</span>
+                      <span>{t.banner.careAdvice}</span>
                     </div>
                     <div
                       data-aos="fade-up"
@@ -73,7 +72,7 @@ const Banner = () => {
                       className="flex items-center gap-3 text-gray-700"
                     >
                       <MdSupportAgent className="text-3xl h-12 w-12 shadow-sm p-3 rounded-full bg-blue-100 text-blue-700" />
-                      <span>Customer Supports</span>
+                      <span>{t.banner.customerSupport}</span>
                     </div>
                     <div
                       data-aos="fade-up"
@@ -81,7 +80,7 @@ const Banner = () => {
                       className="flex items-center gap-3 text-gray-700"
                     >
                       <MdEmergency className="text-3xl h-12 w-12 shadow-sm p-3 rounded-full bg-red-100 text-red-700" />
-                      <span>Emergency Services</span>
+                      <span>{t.banner.emergencyServices}</span>
                     </div>
                   </div>
 
@@ -89,35 +88,38 @@ const Banner = () => {
                     data-aos="slide-left"
                     className="border-l-4 border-primary/50 pl-6 space-y-2 text-white"
                   >
-                    <h1 className="text-2xl font-semibold font-cursive2 text-black " >
-                      Veterinary <GiRabbit className="text-4xl text-green-600 inline" /> Help
+                    <h1 className="text-2xl font-semibold font-cursive2 text-black">
+                      {t.banner.vetHelp.title} <GiRabbit className="text-4xl text-green-600 inline" /> {t.banner.vetHelp.subtitle}
                     </h1>
                     <p className="text-sm text-gray-700">
-                      Our experienced team provides expert veterinary assistance
-                      to ensure optimal health and breeding of rabbits using the
-                      latest technologies.
+                      {t.banner.vetHelp.description}
                     </p>
                     <div className="mt-6 flex justify-center sm:justify-start">
-                <Link to="/about" onClick={scrollToTop} className="inline-flex items-center gap-2 border border-green-700 px-6 py-2 sm:px-8 sm:py-3 rounded-sm text-sm sm:text-base text-green-700 hover:bg-green-700 hover:text-white transition duration-300"> More About
-                <svg
-                  className="w-5 h-5"
-                  fill="none"
-                  stroke="currentColor"
-                  viewBox="0 0 24 24"
-                >
-                  <path
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                    strokeWidth={2}
-                    d="M17 8l4 4m0 0l-4 4m4-4H3"
-                  />
-                </svg></Link>
-            </div>
+                      <Link 
+                        to="/about" 
+                        onClick={scrollToTop} 
+                        className="inline-flex items-center gap-2 border border-green-700 px-6 py-2 sm:px-8 sm:py-3 rounded-sm text-sm sm:text-base text-green-700 hover:bg-green-700 hover:text-white transition duration-300"
+                      >
+                        {t.banner.moreAbout}
+                        <svg
+                          className="w-5 h-5"
+                          fill="none"
+                          stroke="currentColor"
+                          viewBox="0 0 24 24"
+                        >
+                          <path
+                            strokeLinecap="round"
+                            strokeLinejoin="round"
+                            strokeWidth={2}
+                            d="M17 8l4 4m0 0l-4 4m4-4H3"
+                          />
+                        </svg>
+                      </Link>
                     </div>
+                  </div>
                 </div>
-                 </div>
+              </div>
               {/* End text content */}
-              
             </div>
           </div>
         </div>

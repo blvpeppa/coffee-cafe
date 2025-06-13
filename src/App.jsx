@@ -15,7 +15,7 @@ import "@fortawesome/fontawesome-free/css/all.min.css";
 import "aos/dist/aos.css";
 import { BrowserRouter, Route, Routes } from "react-router-dom";
 import { Helmet } from "react-helmet-async";
-
+import { TranslationProvider } from './contexts/TranslationContext';
 const App = () => {
   React.useEffect(() => {
     AOS.init({
@@ -49,6 +49,7 @@ const App = () => {
 
       <div className="bg-white dark:bg-gray-900 dark:text-white duration-200 overflow-x-hidden">
         <BrowserRouter>
+         <TranslationProvider>
           <div className="bg-white dark:bg-gray-900 dark:text-white duration-200">
             <Navbar />
             <Routes>
@@ -64,7 +65,7 @@ const App = () => {
             </Routes>
             <Footer />
           </div>
-        </BrowserRouter>
+        </TranslationProvider></BrowserRouter>
       </div>
     </>
   );

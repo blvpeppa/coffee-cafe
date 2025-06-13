@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useContext } from "react";
 import {
   FaFacebook,
   FaTwitter,
@@ -7,22 +7,28 @@ import {
   FaPaperPlane,
   FaBars,
   FaTimes,
-  FaWhatsapp
+  FaWhatsapp,
+  FaGlobe
 } from "react-icons/fa";
 import { Link, useLocation } from "react-router-dom";
-const Menu = [
-  { id: 1, name: "Home", link: "/" },
-  { id: 2, name: "About", link: "/about" },
-  { id: 3, name: "Services & Products", link: "/products" },
-  { id: 5, name: "Visits", link: "/tour" },
-  { id: 6, name: "Training", link: "/training" },
-  { id: 6, name: "Archive", link: "/archive" },
-  { id: 4, name: "Contact", link: "/contact" },
-];
+import { TranslationContext } from "../../contexts/TranslationContext";
 
 const Navbar = () => {
   const [isOpen, setIsOpen] = useState(false);
+  const [isLanguageMenuOpen, setIsLanguageMenuOpen] = useState(false);
   const location = useLocation();
+  const { t, changeLanguage, language } = useContext(TranslationContext);
+
+  // Menu items with translations
+  const Menu = [
+    { id: 1, name: t.navbar.home, link: "/" },
+    { id: 2, name: t.navbar.about, link: "/about" },
+    { id: 3, name: t.navbar.products, link: "/products" },
+    { id: 4, name: t.navbar.visits, link: "/tour" },
+    { id: 5, name: t.navbar.training, link: "/training" },
+    { id: 6, name: t.navbar.archive, link: "/archive" },
+    { id: 7, name: t.navbar.contact, link: "/contact" },
+  ];
 
   // Close mobile menu when route changes
   useEffect(() => {
@@ -34,6 +40,11 @@ const Navbar = () => {
     return location.pathname === path ? "text-green-700 font-semibold" : "text-gray-800";
   };
 
+  // Toggle language menu
+  const toggleLanguageMenu = () => {
+    setIsLanguageMenuOpen(!isLanguageMenuOpen);
+  };
+
   return (
     <>
       {/* Top Bar */}
@@ -43,7 +54,7 @@ const Navbar = () => {
             <a 
               href="tel:+250795880784" 
               className="flex items-center gap-2 hover:text-green-300 transition-colors"
-              aria-label="Call us"
+              aria-label={t.navbar.callUs}
             >
               <FaPhone /> +250 795880784
             </a>
@@ -51,48 +62,89 @@ const Navbar = () => {
               href="https://mail.google.com/mail/?view=cm&to=info@kigalirabbits.org" 
               target="_blank" rel="noopener noreferrer"
               className="flex items-center gap-2 hover:text-green-300 transition-colors"
-              aria-label="Email us"
+              aria-label={t.navbar.emailUs}
             >
               <FaPaperPlane /> info@kigalirabbits.org
             </a>
           </div>
-          <div className="flex space-x-4 mt-2 md:mt-0">
-            <a 
-              href="https://www.facebook.com/share/1CcbvjuHKw/" 
-              target="_blank" 
-              rel="noopener noreferrer" 
-              className="hover:text-green-300 transition-colors"
-              aria-label="Facebook"
-            >
-              <FaFacebook />
-            </a>
-            <a 
-              href="https://x.com/kigalirabbit?s=11" 
-              target="_blank" 
-              rel="noopener noreferrer" 
-              className="hover:text-green-300 transition-colors"
-              aria-label="Twitter"
-            >
-              <FaTwitter />
-            </a>
-            <a 
-              href="https://instagram.com" 
-              target="_blank" 
-              rel="noopener noreferrer" 
-              className="hover:text-green-300 transition-colors"
-              aria-label="Instagram"
-            >
-              <FaInstagram />
-            </a>
-            <a 
-              href="https://wa.me/250795880784" 
-              target="_blank" 
-              rel="noopener noreferrer" 
-              className="hover:text-green-300 transition-colors"
-              aria-label="WhatsApp"
-            >
-              <FaWhatsapp />
-            </a>
+          <div className="flex items-center space-x-4 mt-2 md:mt-0">
+            {/* Improved Language Switcher */}
+            <div className="relative">
+              <button
+                onClick={toggleLanguageMenu}
+                className="flex items-center gap-1 hover:text-green-300 transition-colors bg-white bg-opacity-20 px-2 py-1 rounded"
+                aria-label="Change language"
+              >
+                <FaGlobe className="text-white" />
+                <span className="uppercase text-xs text-white">{language}</span>
+              </button>
+              
+              {isLanguageMenuOpen && (
+                <div className="absolute right-0 mt-2 w-32 bg-white rounded-md shadow-lg z-50 border border-gray-200">
+                  <div className="py-1">
+                    {Object.entries({
+                      en: "English",
+                      fr: "Français",
+                      rw: "Kinyarwanda"
+                    }).map(([langCode, langName]) => (
+                      <button
+                        key={langCode}
+                        onClick={() => {
+                          changeLanguage(langCode);
+                          setIsLanguageMenuOpen(false);
+                        }}
+                        className={`block w-full text-left px-4 py-2 text-sm ${
+                          language === langCode 
+                            ? 'bg-green-600 text-white' 
+                            : 'text-gray-800 hover:bg-gray-100'
+                        }`}
+                      >
+                        {langName}
+                      </button>
+                    ))}
+                  </div>
+                </div>
+              )}
+            </div>
+            
+            <div className="flex space-x-4">
+              <a 
+                href="https://www.facebook.com/share/1CcbvjuHKw/" 
+                target="_blank" 
+                rel="noopener noreferrer" 
+                className="hover:text-green-300 transition-colors"
+                aria-label="Facebook"
+              >
+                <FaFacebook />
+              </a>
+              <a 
+                href="https://x.com/kigalirabbit?s=11" 
+                target="_blank" 
+                rel="noopener noreferrer" 
+                className="hover:text-green-300 transition-colors"
+                aria-label="Twitter"
+              >
+                <FaTwitter />
+              </a>
+              <a 
+                href="https://instagram.com" 
+                target="_blank" 
+                rel="noopener noreferrer" 
+                className="hover:text-green-300 transition-colors"
+                aria-label="Instagram"
+              >
+                <FaInstagram />
+              </a>
+              <a 
+                href="https://wa.me/250795880784" 
+                target="_blank" 
+                rel="noopener noreferrer" 
+                className="hover:text-green-300 transition-colors"
+                aria-label="WhatsApp"
+              >
+                <FaWhatsapp />
+              </a>
+            </div>
           </div>
         </div>
       </div>
@@ -105,7 +157,7 @@ const Navbar = () => {
             to="/" 
             className="text-3xl font-bold text-green-900 tracking-wider hover:text-green-700 transition-colors"
             onClick={() => setIsOpen(false)}
-            aria-label="Home"
+            aria-label={t.navbar.home}
           >
             KRC
           </Link>
@@ -125,14 +177,16 @@ const Navbar = () => {
           </ul>
 
           {/* Mobile Menu Button */}
-          <button
-            onClick={() => setIsOpen(!isOpen)}
-            className="md:hidden text-2xl text-green-900 focus:outline-none"
-            aria-label="Toggle menu"
-            aria-expanded={isOpen}
-          >
-            {isOpen ? <FaTimes /> : <FaBars />}
-          </button>
+          <div className="flex items-center gap-4 md:hidden">
+            <button
+              onClick={() => setIsOpen(!isOpen)}
+              className="text-2xl text-green-900 focus:outline-none"
+              aria-label="Toggle menu"
+              aria-expanded={isOpen}
+            >
+              {isOpen ? <FaTimes /> : <FaBars />}
+            </button>
+          </div>
         </div>
 
         {/* Mobile Dropdown */}
