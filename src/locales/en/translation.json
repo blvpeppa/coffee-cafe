@@ -1,0 +1,463 @@
+{
+  "home": "Home",
+  "aboutus": "About",
+  "service": "Services & Products",
+  "visits": "Visits",
+  "trainings": "Training",
+  "archive": "Archive",
+  "contact": "Contact",
+  "translate": "Translate",
+
+  "kigali_rabbit_center": "Kigali Rabbit Center",
+  "why_choose": "Why Choose Kigali Rabbit Center?",
+  "banner_paragraph": "We are the first company to introduce Rabbit Artificial Insemination system in East African Community. Since 2018, we have been a leading force in sustainable rabbit farming, genetics, training, and innovation.",
+  "care_advices": "Care Advices",
+  "customer_supports": "Customer Supports",
+  "emergency_services": "Emergency Services",
+  "veterinary_help": "Veterinary Help",
+  "veterinary_paragraph": "Our experienced team provides expert veterinary assistance to ensure optimal health and breeding of rabbits using the latest technologies.",
+  "more_about": "More About",
+
+  "hero_title_part1": "RABBIT",
+  "hero_title_part2": "GENETIC",
+  "hero_title_part3": "CENTER",
+  "hero_paragraph": "Leading innovation in sustainable rabbit farming & genetics.",
+  "learn_more": "Learn More",
+
+  "services_title": "Our Introduction",
+  "services_paragraph": "Discover more about who we are and what we do",
+  
+  "service1_title": "KIGALI RABBIT FARM",
+  "service1_description": "Is a limited liability company incorporated in Rwanda under the Companies Act (NO 17/2018 of 13/04/2018) Laws of Rwanda.",
+  
+  "service2_title": "GENETIC CENTER",
+  "service2_description": "It was set up in 2018 primarily as sustainable farming breeding, trainer and consultancy firm. And now it became a RABBIT GENETIC CENTER.",
+  
+  "service3_title": "Our introduction in East African Community",
+  "service3_description": "We are the first company to introduce Rabbit Artificial Insemination system in EAC.",
+
+    "training_title": "Rabbit Farming Training Programs",
+  "training_paragraph": "Gain practical skills and knowledge from experienced rabbit farming professionals",
+  "training_apply_button": "Apply here",
+
+  "training_program_1_title": "Beginner Rabbit Farming",
+  "training_program_1_description": "Learn the fundamentals of rabbit husbandry, housing, and basic care.",
+  
+  "training_program_2_title": "Advanced Breeding Techniques",
+  "training_program_2_description": "Master rabbit breeding, genetics, and reproduction management.",
+  
+  "training_program_3_title": "Rabbit Health & Disease Management",
+  "training_program_3_description": "Comprehensive training on rabbit health, common diseases, and prevention.",
+  
+  "training_program_4_title": "Rabbit Business Fundamentals",
+  "training_program_4_description": "Learn how to turn your rabbit farming into a profitable business.",
+
+  "visit_title": "Visit Options",
+  "visit_paragraph": "Choose the visit type that fits your needs",
+  "visit_apply_button": "Apply here",
+
+  "visit_professional_title": "Professional Visit",
+  "visit_professional_description": "For researchers and professionals in related fields",
+
+  "visit_academic_title": "Academic Visit",
+  "visit_academic_description": "Special rates for school and university groups",
+
+  "visit_institutional_title": "Institutional Visit",
+  "visit_institutional_description": "For government and partner organizations",
+
+
+  "notfound_title": "Page not found",
+  "notfound_description": "Sorry, we couldn’t find the page you’re looking for.",
+  "notfound_home_button": "Go back home",
+  "notfound_contact_support": "Contact support",
+  "notfound_image_alt": "Lost man in desert",
+
+  "gallery_title": "Image Gallery",
+  "gallery_image_alt_1": "Gallery image 1",
+  "gallery_image_alt_2": "Gallery image 2",
+  "gallery_image_alt_3": "Gallery image 3",
+  "gallery_image_alt_4": "Gallery image 4",
+  "gallery_explore_button": "Explore More Images",
+
+  "testimonials": {
+    "title": "Testimonials",
+    "1": {
+      "name": "Razzaq Mouhamed",
+      "text": "I never imagined rabbit farming could be this rewarding until I partnered with Kigali Rabbit Center. Their expertise, high-quality breeds, and ongoing support have transformed my small farm into a thriving business. I'm forever grateful!"
+    },
+    "2": {
+      "name": "Pauline",
+      "text": "Kigali Rabbit Center changed the way I farm. I received healthy rabbits and expert advice that helped me scale from a small backyard project to a full rabbitry. Their team genuinely cares about farmers."
+    },
+    "3": {
+      "name": "Claudine",
+      "text": "The educational tour at Kigali Rabbit Center was amazing! My children learned so much about animal care and sustainable farming. It’s a must-visit spot for schools and families."
+    },
+    "4": {
+      "name": "Samuel",
+      "text": "Their training program gave me the confidence to start my own rabbit farm. It was practical, hands-on, and perfectly suited for beginners like me. Thank you, KRC!"
+    }
+  },
+
+   "footer": {
+    "companyName": "KIGALIRABBITCENTER",
+    "description": "is a limited liability company incorporated in Rwanda under the Companies Act (NO 17/2018 of 13/04/2018) Laws of Rwanda.",
+    "joinUs": "Join us :",
+    "quickLinks": "Quick Links",
+    "home": "Home",
+    "about": "About",
+    "contact": "Contact",
+    "moreLinks": "More Links",
+    "products": "Services & Products",
+    "gallery": "Gallery",
+    "visits": "Visits",
+    "training": "Training",
+    "haveQuestion": "Have a Question?",
+    "address": "Nyamirambo, Nyarugenge Kigali, Rwanda",
+    "emailUs": "Email us via Gmail",
+    "madeWith": "made with",
+    "by": "by",
+    "scrollTop": "Back to top"
+  },
+
+  "services": {
+    "sectionLabel": "Our Services",
+    "sectionTitle": "Premium Rabbit Farming Solutions",
+    "sectionDescription": "Comprehensive services from breeding to market-ready rabbits, delivered by industry experts.",
+    "breeding": {
+      "title": "Breeding Consultation",
+      "description": "Expert advice on rabbit breeding techniques, genetic selection, and breeding schedules."
+    },
+    "hutch": {
+      "title": "Hutch Design",
+      "description": "Custom rabbit hutch designs for optimal space, ventilation, and easy maintenance."
+    },
+    "nutrition": {
+      "title": "Nutrition Planning",
+      "description": "Tailored feeding programs for different rabbit breeds and growth stages."
+    },
+    "health": {
+      "title": "Health Management",
+      "description": "Preventive care and treatment plans to keep your rabbits healthy and productive."
+    },
+    "learnMore": "Learn More"
+  },
+
+  "about": {
+    "meta": {
+      "title": "About Kigali Rabbit Center | Sustainable Rabbit Farming in Rwanda",
+      "description": "Learn about Kigali Rabbit Center, Rwanda's pioneer in rabbit artificial insemination, sustainable farming, and rabbit breeding training."
+    },
+    "hero": {
+      "title": "Discover the Vision Behind",
+      "subtitle": "Learn more about our mission, our team, and how we're transforming rabbit farming across Africa.",
+      "button": "Explore Services"
+    },
+    "ceo": {
+      "name": "Dieudonne Musoni",
+      "title": "CEO of Kigali Rabbit Center",
+      "subtitle": "Rabbit Expert",
+      "intro": "is a limited liability company incorporated in Rwanda under the Companies Act (NO 17/2018 of 13/04/2018) Laws of Rwanda.",
+      "mission": "It was set up in 2018 primarily as a sustainable farming breeding, trainer, and consultancy firm. And now it became a",
+      "highlight": "RABBIT GENETIC CENTER",
+      "ai": "We are the first company to",
+      "ai_highlight": "introduce Rabbit Artificial Insemination",
+      "rest": "system in EAC. It was geared towards encouraging farmers to set up and put in place sustainable projects in various corners in Rwanda and in Africa.",
+      "contact": "Want to learn more? Contact us at"
+    },
+    "farming": {
+      "title": "RABBIT FARMING",
+      "subtitle": "A Sustainable and Profitable Venture",
+      "content1": "Rabbit farming is a lucrative and sustainable agricultural practice that has gained popularity in recent years. At KIGALI RABBIT CENTER, we are dedicated to promoting and supporting rabbit farming as a viable business opportunity for farmers in Rwanda and across Africa.",
+      "content2": "Rabbits are known for their high reproductive rate, efficient feed conversion, and ability to thrive in various environments. This makes them ideal livestock for small-scale farmers looking to increase income. Additionally, rabbit meat is lean, high in protein, and in demand in the market.",
+      "content3": "Our team at KIGALI RABBIT CENTER offers training and consultancy to help farmers with breeding, feeding, disease management, and marketing.",
+      "highlight": "Join us at KIGALI RABBIT CENTER and embark on a journey toward a more sustainable and profitable future in agriculture through rabbit farming."
+    },
+    "stats": {
+      "outgrowers": "Outgrowers",
+      "vets": "Veterinarians",
+      "workers": "Farm Workers",
+      "tours": "Limited Tours/Day"
+    },
+    "why": {
+      "title": "Why Choose Kigali Rabbit Center?",
+      "content": "We are the first company to introduce Rabbit Artificial Insemination system in East African Community. Since 2018, we have been a leading force in sustainable rabbit farming, genetics, training, and innovation.",
+      "services": {
+        "care": "Care Advices",
+        "support": "Customer Supports",
+        "emergency": "Emergency Services",
+        "vet": {
+          "title": "Veterinary Help",
+          "content": "Our experienced team provides expert veterinary assistance to ensure optimal health and breeding of rabbits using the latest technologies."
+        }
+      },
+      "news_button": "Latest News"
+    },
+    "faq": {
+      "title": "Frequently Asked",
+      "subtitle": "Read the following to understand more about rabbit farming.",
+      "items": [
+        {
+          "question": "Why Rabbit farming?",
+          "answer": "The domestic rabbit, Oryctolagus cuniculus, is a descendant of wild rabbits of southern Europe and North Africa. Rabbits are ideal small livestock for peri-urban or rural areas, especially in developing countries. Rabbits produce lean white meat high in protein, low in fat and cholesterol. Their skins are also used in garments and crafts. In 2020, world production of rabbit meat was estimated at 1.8 million tons annually. Top producers include Italy, France, China."
+        },
+        {
+          "question": "Advantages of keeping rabbits:",
+          "answer": [
+            "Small body size",
+            "Low cost for animals and housing",
+            "Efficient reproduction and feed conversion",
+            "Can give birth to 25+ offspring per year",
+            "Short fattening period, market-ready in 8 weeks",
+            "Highly nutritious meat, over 300 recipe variations",
+            "Low land requirements and low upkeep costs"
+          ]
+        }
+      ]
+    },
+    "modals": {
+      "news": {
+        "title": "Latest News & Updates",
+        "items": [
+          {
+            "title": "New Rabbit Breeding Techniques",
+            "date": "June 15, 2023",
+            "content": "We've introduced innovative breeding techniques that increase success rates by 40%. Join our upcoming workshop to learn more."
+          },
+          {
+            "title": "Farm Expansion Complete",
+            "date": "May 28, 2023",
+            "content": "Our new state-of-the-art facility is now open, doubling our capacity for rabbit production and research."
+          },
+          {
+            "title": "AI Training Program",
+            "date": "April 10, 2023",
+            "content": "Registration is now open for our Artificial Insemination certification program starting next month."
+          }
+        ]
+      },
+      "video": {
+        "not_supported": "Your browser does not support the video tag."
+      },
+      "close": "Close"
+    }
+  },
+
+  "products": {
+    "title": "Rabbit Farming Products",
+    "subtitle": "Everything you need to start or expand your rabbit farming business.",
+    "contact": "Contact Us",
+    "quantity": "Quantity",
+    "submit": "Submit Request",
+    "submitting": "Submitting...",
+    "submitted": "Request Submitted!",
+    "reference": "Reference",
+    "close": "Close"
+  },
+
+  "pricing": {
+    "title": "Visit Options",
+    "subtitle": "Choose the visit type that fits your needs",
+    "includes": "Includes",
+    "max_visitors": "Max {max} visitors",
+    "academic": "Academic",
+    "institutional": "Institutional",
+    "options": {
+      "1": {
+        "title": "Standard Visit",
+        "description": "General tour of our rabbit farm facilities"
+      },
+      "2": {
+        "title": "Academic Visit",
+        "description": "Educational tour for students and researchers"
+      },
+      "3": {
+        "title": "Government Visit",
+        "description": "Official tours for government officials"
+      },
+      "4": {
+        "title": "VIP Tour",
+        "description": "Exclusive tour with premium access"
+      },
+      "5": {
+        "title": "Kids Visit",
+        "description": "Special access for photography sessions"
+      }
+    },
+    "include": {
+      "tour": "Guided farm tour",
+      "education": "Educational materials",
+      "photos": "Photo opportunities",
+      "refreshments": "Light refreshments",
+      "exclusive": "Exclusive access"
+    }
+  },
+  "form": {
+    "name": "Full Name",
+    "email": "Email",
+    "phone": "Phone Number",
+    "institution": "Institution Name",
+    "visit_date": "Preferred Visit Date",
+    "visitors_count": "Number of Visitors",
+    "special_requests": "Special Requests",
+    "submit_request": "Submit Request"
+  },
+  "booking": {
+    "title": "Book Your Visit"
+  },
+  "receipt": {
+    "farm_name": "Kigali Rabbit Farm",
+    "title": "Visit Request Receipt",
+    "request_id": "Request ID",
+    "date": "Date",
+    "at": "at",
+    "visit_type": "Visit Type",
+    "amount": "Amount",
+    "payment_status": "Payment Status",
+    "payment_pending": "Pending Payment",
+    "free": "Free",
+    "pending": "Pending",
+    "to_be_scheduled": "To be scheduled",
+    "included_features": "Included in this package:",
+    "thank_you_note": "Thank you for your visit request. Our team will contact you within 24 hours to confirm your booking.",
+    "filename_prefix": "KRC_request",
+    "summary": "Request Summary",
+    "reference": "Reference",
+    "your_package_includes": "Your package includes:",
+    "download_receipt": "Download Receipt"
+  },
+  "confirmation": {
+    "title": "Request Received!",
+    "message": "Thank you for your booking request. Our team will contact you within 24 hours to confirm your visit and provide payment details if required."
+  },
+  "common": {
+    "book_now": "Book Now",
+    "processing": "Processing...",
+    "close": "Close",
+    "none": "None",
+    "not_provided": "Not provided",
+    "max": "Max",
+    "rwf": "RWF",
+    "register_now":"Contact registration",
+    "alternate_view": "alternate view"
+  },
+  "errors": {
+    "fetch_options": "Failed to load visit options. Please try again later.",
+    "required_fields": "Please fill all required fields",
+    "max_visitors": "Maximum visitors for this option is {max}",
+    "booking_error": "An error occurred during booking"
+  },
+  "messages": {
+    "processing": "Processing booking..."
+  },
+
+  "blog": {
+    "title": "Articles and Knowledge Center",
+    "subtitle": "Explore our collection of articles, guides, and resources to enhance your rabbit farming journey",
+    "featured_articles": "Featured Articles",
+    "latest_articles": "Latest Articles",
+    "search_placeholder": "Search articles...",
+    "all_categories": "All Categories",
+    "all_tags": "All Tags",
+    "no_articles_found": "No articles found matching your criteria",
+    "read_more": "Read more",
+    "continue_reading": "Continue reading",
+    "min_read": "min read",
+    "close": "Close"
+  },
+  "categories": {
+    "farming": "Farming",
+    "sustainability": "Sustainability",
+    "nutrition": "Nutrition",
+    "housing": "Housing",
+    "breeding": "Breeding",
+    "business": "Business"
+  },
+  "articles": {
+    "1": {
+      "title": "Raising giant rabbits, some weighing 10 Kgs 🐰🐇",
+      "excerpt": "It may sound surprising, but it's real, and it's happening right here in Rwanda! Meet Dieudonné Musoni, a visionary Rwandan entrepreneur and CEO of Kigali Rabbit Center.",
+      "content": [
+        "Rabbit farming has become an increasingly popular agricultural activity in Rwanda, offering both nutritional and economic benefits to farmers.",
+        "Traditional rabbit farming methods are being replaced with more efficient, sustainable practices that increase productivity while ensuring animal welfare.",
+        "These methods include improved housing designs, better breeding techniques, and optimized feeding programs."
+      ]
+    },
+    "2": {
+      "title": "Sustainable Practices for Small Farms",
+      "excerpt": "Learn how to implement eco-friendly methods in your farming operations",
+      "content": [
+        "Sustainable rabbit farming focuses on environmentally friendly practices that maintain ecosystem balance.",
+        "Key practices include proper waste management, renewable resource use, and natural feeding methods.",
+        "These approaches not only benefit the environment but also improve the quality of your rabbit products."
+      ]
+    }
+  },
+
+"contactus": {
+    "title": "Get in Touch",
+    "contactUs": "Contact Us",
+    "name": "Full Name",
+    "email": "Email Address",
+    "subject": "Subject",
+    "message": "Message",
+    "send": "Send Message",
+    "sending": "Sending...",
+    "address": "Address",
+    "phone": "Phone",
+    "emailLabel": "Email",
+    "website": "Website",
+    "success": "Your message was sent successfully.",
+    "error": "Failed to send message. Please try again later.",
+    "fillAll": "Please fill in all fields.",
+    "invalidEmail": "Please enter a valid email address."
+  },
+
+
+  "training": {
+  "title": "Rabbit Farming Training Programs",
+  "subtitle": "Gain practical skills and knowledge from experienced rabbit farming professionals",
+  "apply_button": "Apply here",
+  "includes":"includes",
+  "programs": {
+    "1": {
+      "title": "Beginner Rabbit Farming",
+      "description": "Learn the fundamentals of rabbit husbandry, housing, and basic care."
+    },
+    "2": {
+      "title": "Advanced Breeding Techniques",
+      "description": "Master rabbit breeding, genetics, and reproduction management."
+    },
+    "3": {
+      "title": "Rabbit Health & Disease Management",
+      "description": "Comprehensive training on rabbit health, common diseases, and prevention."
+    },
+    "4": {
+      "title": "Rabbit Business Fundamentals",
+      "description": "Learn how to turn your rabbit farming into a profitable business."
+    }
+  },
+  "form": {
+    "name": "Full Name",
+    "email": "Email",
+    "phone": "Phone Number",
+    "location": "Location",
+    "experience": "Previous Rabbit Farming Experience",
+    "experience_options": {
+      "none": "No experience",
+      "beginner": "Beginner (less than 1 year)",
+      "intermediate": "Intermediate (1-3 years)",
+      "advanced": "Advanced (3+ years)"
+    },
+    "preferred_date": "Preferred Training Date",
+    "questions": "Questions or Special Requests",
+    "submit": "Submit Registration",
+    "agree_terms": "I agree to the terms and conditions"
+  },
+  "confirmation": {
+    "title": "Registration Received!",
+    "message": "Thank you for registering for {program}. Our team will contact you within 24 hours via phone or email to confirm your registration and provide payment details if required."
+  }
+}
+}
+

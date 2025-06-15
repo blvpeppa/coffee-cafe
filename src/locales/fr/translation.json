@@ -1,0 +1,464 @@
+{
+  "home": "Accueil",
+  "aboutus": "À propos",
+  "service": "Services et Produits",
+  "visits": "Visites",
+  "trainings": "Formation",
+  "archive": "Archives",
+  "contact": "Contact",
+  "translate": "Traduire",
+  
+  "kigali_rabbit_center": "Kigali Rabbit Center",
+  "why_choose": "Pourquoi choisir Kigali Rabbit Center ?",
+  "banner_paragraph": "Nous sommes la première entreprise à introduire le système d'insémination artificielle de lapins dans la Communauté de l'Afrique de l'Est. Depuis 2018, nous sommes un acteur majeur dans l’élevage durable de lapins, la génétique, la formation et l’innovation.",
+  "care_advices": "Conseils de soins",
+  "customer_supports": "Service client",
+  "emergency_services": "Services d'urgence",
+  "veterinary_help": "Assistance vétérinaire",
+  "veterinary_paragraph": "Notre équipe expérimentée fournit une assistance vétérinaire experte pour garantir la santé optimale et la reproduction des lapins en utilisant les technologies les plus récentes.",
+  "more_about": "En savoir plus",
+
+  "hero_title_part1": "CENTRE",
+  "hero_title_part2": "GÉNÉTIQUE",
+  "hero_title_part3": "DES LAPINS",
+  "hero_paragraph": "Leader de l'innovation dans l'élevage durable et la génétique des lapins.",
+  "learn_more": "En savoir plus",
+
+   "services_title": "Notre Présentation",
+  "services_paragraph": "Découvrez qui nous sommes et ce que nous faisons",
+
+  "service1_title": "FERME DE LAPINS DE KIGALI",
+  "service1_description": "Est une société à responsabilité limitée enregistrée au Rwanda sous la loi sur les sociétés (NO 17/2018 du 13/04/2018).",
+
+  "service2_title": "CENTRE GÉNÉTIQUE",
+  "service2_description": "Créé en 2018 en tant qu'entreprise de reproduction durable, de formation et de conseil. Aujourd'hui, c'est devenu un CENTRE GÉNÉTIQUE DE LAPINS.",
+
+  "service3_title": "Notre introduction dans la Communauté d'Afrique de l'Est",
+  "service3_description": "Nous sommes la première entreprise à introduire le système d'insémination artificielle des lapins dans la CAE.",
+
+  "training_title": "Programmes de formation en élevage de lapins",
+  "training_paragraph": "Acquérez des compétences pratiques avec des professionnels expérimentés en élevage de lapins",
+  "training_apply_button": "Postuler ici",
+
+  "training_program_1_title": "Élevage de lapins pour débutants",
+  "training_program_1_description": "Apprenez les bases de l'élevage de lapins, le logement et les soins de base.",
+  
+  "training_program_2_title": "Techniques avancées de reproduction",
+  "training_program_2_description": "Maîtrisez la reproduction, la génétique et la gestion de la reproduction des lapins.",
+  
+  "training_program_3_title": "Santé et gestion des maladies des lapins",
+  "training_program_3_description": "Formation complète sur la santé des lapins, les maladies courantes et la prévention.",
+  
+  "training_program_4_title": "Fondamentaux de l'entreprise de lapins",
+  "training_program_4_description": "Apprenez à transformer votre élevage de lapins en une entreprise rentable.",
+
+
+   "visit_title": "Options de visite",
+  "visit_paragraph": "Choisissez le type de visite qui vous convient",
+  "visit_apply_button": "Postuler ici",
+
+  "visit_professional_title": "Visite professionnelle",
+  "visit_professional_description": "Pour les chercheurs et professionnels des domaines connexes",
+
+  "visit_academic_title": "Visite académique",
+  "visit_academic_description": "Tarifs spéciaux pour les groupes scolaires et universitaires",
+
+  "visit_institutional_title": "Visite institutionnelle",
+  "visit_institutional_description": "Pour les gouvernements et les partenaires",
+
+   "notfound_title": "Page non trouvée",
+  "notfound_description": "Désolé, nous n’avons pas trouvé la page que vous cherchez.",
+  "notfound_home_button": "Retour à l’accueil",
+  "notfound_contact_support": "Contacter le support",
+  "notfound_image_alt": "Homme perdu dans le désert",
+
+
+  "gallery_title": "Galerie d'images",
+  "gallery_image_alt_1": "Image de galerie 1",
+  "gallery_image_alt_2": "Image de galerie 2",
+  "gallery_image_alt_3": "Image de galerie 3",
+  "gallery_image_alt_4": "Image de galerie 4",
+  "gallery_explore_button": "Voir plus d'images",
+
+  "testimonials": {
+    "title": "Témoignages",
+    "1": {
+      "name": "Razzaq Mouhamed",
+      "text": "Je n'aurais jamais imaginé que l'élevage de lapins puisse être aussi rentable jusqu'à ce que je travaille avec Kigali Rabbit Center. Leur expertise et leur accompagnement ont transformé ma petite ferme en une entreprise florissante."
+    },
+    "2": {
+      "name": "Pauline",
+      "text": "Kigali Rabbit Center a changé ma façon de cultiver. J'ai reçu des lapins en bonne santé et des conseils d'experts qui m'ont permis de passer d'un petit projet à une ferme complète."
+    },
+    "3": {
+      "name": "Claudine",
+      "text": "La visite éducative au Kigali Rabbit Center était incroyable ! Mes enfants ont beaucoup appris sur le soin des animaux et l'agriculture durable."
+    },
+    "4": {
+      "name": "Samuel",
+      "text": "Leur programme de formation m’a donné la confiance pour démarrer ma propre ferme de lapins. C’était pratique, concret et parfaitement adapté aux débutants comme moi."
+    }
+  },
+
+  "footer": {
+    "companyName": "KIGALIRABBITCENTER",
+    "description": "est une société à responsabilité limitée enregistrée au Rwanda sous le Companies Act (NO 17/2018 du 13/04/2018) Lois du Rwanda.",
+    "joinUs": "Rejoignez-nous :",
+    "quickLinks": "Liens rapides",
+    "home": "Accueil",
+    "about": "À propos",
+    "contact": "Contact",
+    "moreLinks": "Autres liens",
+    "products": "Services & Produits",
+    "gallery": "Galerie",
+    "visits": "Visites",
+    "training": "Formation",
+    "haveQuestion": "Une question?",
+    "address": "Nyamirambo, Nyarugenge Kigali, Rwanda",
+    "emailUs": "Envoyez-nous un email via Gmail",
+    "madeWith": "réalisé avec",
+    "by": "par",
+    "scrollTop": "Retour en haut"
+  },
+
+  "services": {
+    "sectionLabel": "Nos Services",
+    "sectionTitle": "Solutions Premium d'Élevage de Lapins",
+    "sectionDescription": "Des services complets de l’élevage à la commercialisation, assurés par des experts du secteur.",
+    "breeding": {
+      "title": "Consultation d'Élevage",
+      "description": "Conseils d'experts sur les techniques d'élevage, la sélection génétique et les plannings de reproduction."
+    },
+    "hutch": {
+      "title": "Conception de Clapiers",
+      "description": "Conceptions personnalisées de clapiers pour un espace optimal, une bonne ventilation et un entretien facile."
+    },
+    "nutrition": {
+      "title": "Planification Nutritionnelle",
+      "description": "Programmes alimentaires adaptés aux différentes races et stades de croissance."
+    },
+    "health": {
+      "title": "Gestion de la Santé",
+      "description": "Soins préventifs et plans de traitement pour maintenir vos lapins en bonne santé et productifs."
+    },
+    "learnMore": "En savoir plus"
+  },
+
+   "about": {
+    "meta": {
+      "title": "À propos de Kigali Rabbit Center | Élevage Durable de Lapins au Rwanda",
+      "description": "Découvrez Kigali Rabbit Center, pionnier du Rwanda en insémination artificielle de lapins, élevage durable et formation."
+    },
+    "hero": {
+      "title": "Découvrez Notre Vision",
+      "subtitle": "En savoir plus sur notre mission, notre équipe et notre transformation de l’élevage de lapins en Afrique.",
+      "button": "Explorer les Services"
+    },
+    "ceo": {
+      "name": "Dieudonne Musoni",
+      "title": "PDG de Kigali Rabbit Center",
+      "subtitle": "Expert en Lapins",
+      "intro": "est une société à responsabilité limitée enregistrée au Rwanda sous la loi des sociétés (NO 17/2018 du 13/04/2018).",
+      "mission": "Créée en 2018 comme centre de formation, de conseil et d’élevage durable. Aujourd’hui, devenue un",
+      "highlight": "CENTRE GÉNÉTIQUE DE LAPINS",
+      "ai": "Nous sommes la première entreprise à introduire",
+      "ai_highlight": "l’insémination artificielle de lapins",
+      "rest": "dans la Communauté de l’Afrique de l’Est (EAC). Notre but est d’encourager les projets agricoles durables au Rwanda et en Afrique.",
+      "contact": "Vous souhaitez en savoir plus ? Contactez-nous à"
+    },
+    "farming": {
+      "title": "ÉLEVAGE DE LAPINS",
+      "subtitle": "Un Investissement Durable et Rentable",
+      "content1": "L’élevage de lapins est une activité agricole lucrative et durable qui a gagné en popularité ces dernières années. Kigali Rabbit Center s'engage à promouvoir et soutenir cet élevage au Rwanda et en Afrique.",
+      "content2": "Les lapins ont un fort taux de reproduction, une bonne conversion alimentaire et s’adaptent à différents environnements. Ils conviennent parfaitement aux petits exploitants souhaitant augmenter leurs revenus. Leur viande est maigre, riche en protéines et très demandée.",
+      "content3": "Notre équipe propose des formations et du conseil en reproduction, alimentation, gestion sanitaire et marketing.",
+      "highlight": "Rejoignez Kigali Rabbit Center pour un avenir agricole durable et prospère grâce à l’élevage de lapins."
+    },
+    "stats": {
+      "outgrowers": "Éleveurs sous contrat",
+      "vets": "Vétérinaires",
+      "workers": "Travailleurs agricoles",
+      "tours": "Visites Limitées/Jour"
+    },
+    "why": {
+      "title": "Pourquoi Choisir Kigali Rabbit Center ?",
+      "content": "Nous sommes les premiers à introduire l’insémination artificielle de lapins dans la Communauté de l’Afrique de l’Est depuis 2018, leaders en élevage durable, génétique, formation et innovation.",
+      "services": {
+        "care": "Conseils de Soins",
+        "support": "Assistance Client",
+        "emergency": "Services d'Urgence",
+        "vet": {
+          "title": "Aide Vétérinaire",
+          "content": "Notre équipe expérimentée fournit des soins vétérinaires spécialisés pour la santé et la reproduction des lapins avec des technologies avancées."
+        }
+      },
+      "news_button": "Actualités"
+    },
+    "faq": {
+      "title": "Questions Fréquentes",
+      "subtitle": "Lisez ci-dessous pour en savoir plus sur l’élevage de lapins.",
+      "items": [
+        {
+          "question": "Pourquoi l’élevage de lapins ?",
+          "answer": "Le lapin domestique, Oryctolagus cuniculus, descend des lapins sauvages d'Europe du Sud et d'Afrique du Nord. Adapté aux zones rurales et périurbaines, surtout dans les pays en développement. La viande est maigre, riche en protéines et pauvre en cholestérol. La peau est utilisée en habillement et artisanat. En 2020, la production mondiale était d’environ 1,8 million de tonnes. Principaux producteurs : Italie, France, Chine."
+        },
+        {
+          "question": "Avantages de l’élevage de lapins :",
+          "answer": [
+            "Petite taille corporelle",
+            "Faible coût pour les animaux et l’habitat",
+            "Excellente reproduction et conversion alimentaire",
+            "Plus de 25 petits par an",
+            "Période d’engraissement courte (8 semaines)",
+            "Viande très nutritive avec plus de 300 recettes",
+            "Peu d’espace requis et peu de coûts d’entretien"
+          ]
+        }
+      ]
+    },
+    "modals": {
+      "news": {
+        "title": "Dernières Nouvelles & Mises à Jour",
+        "items": [
+          {
+            "title": "Nouvelles Techniques de Reproduction",
+            "date": "15 Juin 2023",
+            "content": "Nous avons introduit des techniques innovantes augmentant les taux de succès de 40%. Inscrivez-vous à notre prochain atelier."
+          },
+          {
+            "title": "Extension de la Ferme Terminée",
+            "date": "28 Mai 2023",
+            "content": "Notre nouvelle installation moderne est ouverte, doublant notre capacité de production et de recherche."
+          },
+          {
+            "title": "Programme de Formation en IA",
+            "date": "10 Avril 2023",
+            "content": "Les inscriptions sont ouvertes pour notre programme de certification en insémination artificielle démarrant le mois prochain."
+          }
+        ]
+      },
+      "video": {
+        "not_supported": "Votre navigateur ne supporte pas la vidéo."
+      },
+      "close": "Fermer"
+    }
+  },
+
+"products": {
+    "title": "Produits d'Élevage de Lapins",
+    "subtitle": "Tout ce dont vous avez besoin pour démarrer ou développer votre élevage de lapins.",
+    "contact": "Contactez-nous",
+    "quantity": "Quantité",
+    "submit": "Soumettre la demande",
+    "submitting": "Envoi en cours...",
+    "submitted": "Demande soumise !",
+    "reference": "Référence",
+    "close": "Fermer"
+  },
+
+  "pricing": {
+    "title": "Options de Visite",
+    "subtitle": "Choisissez le type de visite qui correspond à vos besoins",
+    "includes": "Comprend",
+    "max_visitors": "Max {max} visiteurs",
+    "academic": "Académique",
+    "institutional": "Institutionnel",
+    "options": {
+      "1": {
+        "title": "Visite Standard",
+        "description": "Visite générale de nos installations d'élevage de lapins"
+      },
+      "2": {
+        "title": "Visite Académique",
+        "description": "Visite éducative pour étudiants et chercheurs"
+      },
+      "3": {
+        "title": "Visite Gouvernementale",
+        "description": "Visites officielles pour les fonctionnaires"
+      },
+      "4": {
+        "title": "Visite VIP",
+        "description": "Visite exclusive avec accès premium"
+      },
+      "5": {
+        "title": "Visite Photographique",
+        "description": "Accès spécial pour séances photo"
+      }
+    },
+    "include": {
+      "tour": "Visite guidée de la ferme",
+      "education": "Matériel éducatif",
+      "photos": "Opportunités photo",
+      "refreshments": "Rafraîchissements légers",
+      "exclusive": "Accès exclusif"
+    }
+  },
+  "form": {
+    "name": "Nom Complet",
+    "email": "Email",
+    "phone": "Numéro de Téléphone",
+    "institution": "Nom de l'Institution",
+    "visit_date": "Date de Visite Préférée",
+    "visitors_count": "Nombre de Visiteurs",
+    "special_requests": "Demandes Spéciales",
+    "submit_request": "Soumettre la Demande"
+  },
+  "booking": {
+    "title": "Réserver une Visite"
+  },
+  "receipt": {
+    "farm_name": "Ferme de Lapins de Kigali",
+    "title": "Reçu de Demande de Visite",
+    "request_id": "ID de Demande",
+    "date": "Date",
+    "at": "à",
+    "visit_type": "Type de Visite",
+    "amount": "Montant",
+    "payment_status": "Statut de Paiement",
+    "payment_pending": "Paiement en Attente",
+    "free": "Gratuit",
+    "pending": "En Attente",
+    "to_be_scheduled": "À programmer",
+    "included_features": "Inclus dans ce forfait:",
+    "thank_you_note": "Merci pour votre demande de visite. Notre équipe vous contactera dans les 24 heures pour confirmer votre réservation.",
+    "filename_prefix": "KRC_demande",
+    "summary": "Résumé de la Demande",
+    "reference": "Référence",
+    "your_package_includes": "Votre forfait comprend:",
+    "download_receipt": "Télécharger le Reçu"
+  },
+  "confirmation": {
+    "title": "Demande Reçue!",
+    "message": "Merci pour votre demande de réservation. Notre équipe vous contactera dans les 24 heures pour confirmer votre visite et fournir les détails de paiement si nécessaire."
+  },
+  "common": {
+    "book_now": "Réserver Maintenant",
+    "processing": "Traitement en cours...",
+    "close": "Fermer",
+    "none": "Aucune",
+    "not_provided": "Non fourni",
+    "max": "Max",
+    "rwf": "RWF",
+    "register_now":"Inscription des contacts",
+    "alternate_view": "vue alternative"
+  },
+  "errors": {
+    "fetch_options": "Échec du chargement des options de visite. Veuillez réessayer plus tard.",
+    "required_fields": "Veuillez remplir tous les champs obligatoires",
+    "max_visitors": "Le nombre maximum de visiteurs pour cette option est {max}",
+    "booking_error": "Une erreur s'est produite lors de la réservation"
+  },
+  "messages": {
+    "processing": "Traitement de la réservation..."
+  },
+
+
+"blog": {
+    "title": "Articles et Centre de Connaissances",
+    "subtitle": "Explorez notre collection d'articles, guides et ressources pour améliorer votre élevage de lapins",
+    "featured_articles": "Articles Vedettes",
+    "latest_articles": "Derniers Articles",
+    "search_placeholder": "Rechercher des articles...",
+    "all_categories": "Toutes les Catégories",
+    "all_tags": "Tous les Tags",
+    "no_articles_found": "Aucun article trouvé correspondant à vos critères",
+    "read_more": "Lire plus",
+    "continue_reading": "Continuer à lire",
+    "min_read": "min de lecture",
+    "close": "Fermer"
+  },
+  "categories": {
+    "farming": "Agriculture",
+    "sustainability": "Durabilité",
+    "nutrition": "Nutrition",
+    "housing": "Logement",
+    "breeding": "Élevage",
+    "business": "Commerce"
+  },
+  "articles": {
+    "1": {
+      "title": "Élever des lapins géants, certains pesant 10 kg 🐰🐇",
+      "excerpt": "Cela peut sembler surprenant, mais c'est réel, et cela se passe ici au Rwanda ! Rencontrez Dieudonné Musoni, un entrepreneur visionnaire rwandais et PDG du Kigali Rabbit Center.",
+      "content": [
+        "L'élevage de lapins est devenu une activité agricole de plus en plus populaire au Rwanda, offrant des avantages nutritionnels et économiques aux agriculteurs.",
+        "Les méthodes traditionnelles d'élevage de lapins sont remplacées par des pratiques plus efficaces et durables qui augmentent la productivité tout en assurant le bien-être des animaux.",
+        "Ces méthodes comprennent des conceptions de logement améliorées, de meilleures techniques d'élevage et des programmes d'alimentation optimisés."
+      ]
+    },
+    "2": {
+      "title": "Pratiques Durables pour les Petites Fermes",
+      "excerpt": "Apprenez à mettre en œuvre des méthodes écologiques dans vos opérations agricoles",
+      "content": [
+        "L'élevage durable de lapins se concentre sur des pratiques respectueuses de l'environnement qui maintiennent l'équilibre de l'écosystème.",
+        "Les pratiques clés incluent une gestion appropriée des déchets, l'utilisation de ressources renouvelables et des méthodes d'alimentation naturelles.",
+        "Ces approches profitent non seulement à l'environnement mais améliorent également la qualité de vos produits à base de lapin."
+      ]
+    }
+  },
+
+
+  "contactus": {
+    "title": "Contactez-nous",
+    "contactUs": "Contactez-nous",
+    "name": "Nom complet",
+    "email": "Adresse e-mail",
+    "subject": "Sujet",
+    "message": "Message",
+    "send": "Envoyer le message",
+    "sending": "Envoi en cours...",
+    "address": "Adresse",
+    "phone": "Téléphone",
+    "emailLabel": "E-mail",
+    "website": "Site Web",
+    "success": "Votre message a été envoyé avec succès.",
+    "error": "Échec de l'envoi du message. Veuillez réessayer plus tard.",
+    "fillAll": "Veuillez remplir tous les champs.",
+    "invalidEmail": "Veuillez entrer une adresse e-mail valide."
+  },
+
+  "training": {
+  "title": "Programmes de Formation en Élevage de Lapins",
+  "subtitle": "Acquérez des compétences pratiques avec des professionnels expérimentés en élevage de lapins",
+  "apply_button": "Postuler ici",
+  "includes":"comprend",
+  "programs": {
+    "1": {
+      "title": "Élevage de lapins pour débutants",
+      "description": "Apprenez les bases de l'élevage de lapins, le logement et les soins de base."
+    },
+    "2": {
+      "title": "Techniques avancées de reproduction",
+      "description": "Maîtrisez la reproduction, la génétique et la gestion de la reproduction des lapins."
+    },
+    "3": {
+      "title": "Santé et gestion des maladies des lapins",
+      "description": "Formation complète sur la santé des lapins, les maladies courantes et la prévention."
+    },
+    "4": {
+      "title": "Fondamentaux de l'entreprise de lapins",
+      "description": "Apprenez à transformer votre élevage de lapins en une entreprise rentable."
+    }
+  },
+  "form": {
+    "name": "Nom Complet",
+    "email": "Email",
+    "phone": "Numéro de Téléphone",
+    "location": "Localisation",
+    "experience": "Expérience Préalable en Élevage de Lapins",
+    "experience_options": {
+      "none": "Aucune expérience",
+      "beginner": "Débutant (moins d'un an)",
+      "intermediate": "Intermédiaire (1-3 ans)",
+      "advanced": "Avancé (3+ ans)"
+    },
+    "preferred_date": "Date de Formation Préférée",
+    "questions": "Questions ou Demandes Spéciales",
+    "submit": "Soumettre l'Inscription",
+    "agree_terms": "J'accepte les termes et conditions"
+  },
+  "confirmation": {
+    "title": "Inscription Reçue!",
+    "message": "Merci de vous être inscrit à {program}. Notre équipe vous contactera dans les 24 heures par téléphone ou email pour confirmer votre inscription et fournir les détails de paiement si nécessaire."
+  }
+}
+}

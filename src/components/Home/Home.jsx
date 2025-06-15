@@ -6,11 +6,9 @@ import Testimonials from "../Testimonials/Testimonials";
 import Gallery from "../Gallery_home/Gallery_home"
 import Training_home from "../Training_home/Training_home";
 import Tour_home from "../Training_home/Tour_home";
-import { TranslationProvider } from '../../contexts/TranslationContext';
 const Home = () => { 
     return (
     <>
-    <TranslationProvider>
       <div className="bg-white dark:bg-gray-900 dark:text-white duration-200 overflow-x-hidden">
         <Hero />
         <Services />
@@ -19,7 +17,7 @@ const Home = () => {
         <Tour_home />
         <Gallery />
         <Testimonials />
-      </div></TranslationProvider>
+      </div>
       </>
     );
   };

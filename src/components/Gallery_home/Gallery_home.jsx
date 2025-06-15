@@ -1,7 +1,8 @@
 import React, { useState, useEffect, useCallback } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import {FaArrowRight } from 'react-icons/fa';
-import {useNavigate} from 'react-router-dom';
+import { FaArrowRight } from 'react-icons/fa';
+import { useNavigate } from 'react-router-dom';
+import { useTranslation } from 'react-i18next';
 // Import your images
 import g1 from '../../assets/gallery-1.jpg';
 import g2 from '../../assets/gallery-2.jpg';
@@ -13,18 +14,21 @@ const Gallery = ({
   gap = 6,
   showTitle = true
 }) => {
+  const { t } = useTranslation();
+  
   const allGalleryItems = [
-    { img: g1, alt: "Gallery image 1" },
-    { img: g2, alt: "Gallery image 2" },
-    { img: g3, alt: "Gallery image 3" },
-    { img: g5, alt: "Gallery image 4" },
+    { img: g1, alt: t("gallery_image_alt_1") },
+    { img: g2, alt: t("gallery_image_alt_2") },
+    { img: g3, alt: t("gallery_image_alt_3") },
+    { img: g5, alt: t("gallery_image_alt_4") },
   ];
+  
   const navigate = useNavigate();
-const handleMoreVisitsClick = () => {
+  const handleMoreVisitsClick = () => {
     navigate('/gallery');
-    // Scroll to top after navigation
     window.scrollTo(0, 0);
   };
+
   const [currentIndex, setCurrentIndex] = useState(null);
   const [direction, setDirection] = useState(0);
   const [isFullscreen, setIsFullscreen] = useState(false);
@@ -128,7 +132,7 @@ const handleMoreVisitsClick = () => {
             className="text-4xl font-bold tracking-tight text-gray-900 md:text-5xl"
           >
             <span className="bg-gradient-to-r from-blue-600 to-purple-600 bg-clip-text text-transparent">
-              Image Gallery
+              {t("gallery_title")}
             </span>
           </motion.h1>
         </div>
@@ -302,15 +306,16 @@ const handleMoreVisitsClick = () => {
           </motion.div>
         )}
       </AnimatePresence>
-       {/* More Tours Button */}
-              <div className="text-center mt-12">
-              <button 
-      onClick={handleMoreVisitsClick}
-      className="bg-green-600 hover:bg-green-700 text-white py-3 px-6 rounded inline-flex items-center"
-    >
-      Explore More Images <FaArrowRight className="ml-2" />
-    </button>
-              </div>
+      
+      {/* More Tours Button */}
+      <div className="text-center mt-12">
+        <button 
+          onClick={handleMoreVisitsClick}
+          className="bg-green-600 hover:bg-green-700 text-white py-3 px-6 rounded inline-flex items-center"
+        >
+          {t("gallery_explore_button")} <FaArrowRight className="ml-2" />
+        </button>
+      </div>
     </section>
   );
 };

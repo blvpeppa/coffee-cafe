@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import { useTranslation } from 'react-i18next';
 import { FaPrint, FaTimes, FaSpinner, FaUsers, FaCheck } from 'react-icons/fa';
 import { jsPDF } from 'jspdf';
 import axios from 'axios';
@@ -14,7 +15,7 @@ import s7 from '../../assets/rabbits.jpg';
 import Imite from '../../assets/Imite.jpg';
 
 const PricingCards = () => {
-  // State management
+  const { t } = useTranslation();
   const [pricingOptions, setPricingOptions] = useState([]);
   const [selectedOption, setSelectedOption] = useState(null);
   const [formData, setFormData] = useState({
@@ -32,38 +33,35 @@ const PricingCards = () => {
   const [receiptData, setReceiptData] = useState(null);
   const [isProcessing, setIsProcessing] = useState(false);
 
-  // API configuration
   const API_BASE_URL = 'https://umuhuza.store/api';
 
-  // Fetch pricing options from API
   useEffect(() => {
     const fetchPricingOptions = async () => {
       try {
         const response = await axios.get(`${API_BASE_URL}/visit-options`);
         setPricingOptions(response.data.data.map(option => ({
           id: option.id,
-          title: option.title,
+          title: t(`pricing.options.${option.id}.title`),
           numericPrice: option.price,
-          price: `${option.price.toLocaleString()} RWF`,
-          description: option.description,
+          price: `${option.price.toLocaleString()} ${t('common.rwf')}`,
+          description: t(`pricing.options.${option.id}.description`),
           image: getImageForOption(option.id),
           hoverImage: getHoverImageForOption(option.id),
           requiresPayment: option.price > 0,
           maxVisitors: option.max_visitors,
-          includes: option.includes || []
+          includes: option.includes.map(item => t(`${item}`))
         })));
       } catch (error) {
         console.error('Error fetching pricing options:', error);
         setMessage({
-          text: 'Failed to load visit options. Please try again later.',
+          text: t('errors.fetch_options'),
           isError: true
         });
       }
     };
     fetchPricingOptions();
-  }, []);
+  }, [t]);
 
-  // Helper functions to get images based on option ID
   const getImageForOption = (id) => {
     switch(id) {
       case 1: return pricing1;
@@ -86,12 +84,11 @@ const PricingCards = () => {
     }
   };
 
-  // Handlers
   const handleSelectOption = (option) => {
     setSelectedOption(option);
     setFormData(prev => ({
       ...prev,
-      visitorsCount: 1 // Reset to 1 when selecting new option
+      visitorsCount: 1
     }));
     setStep(1);
     setMessage({ text: '', isError: false });
@@ -101,15 +98,7 @@ const PricingCards = () => {
     e.preventDefault();
     
     if (!formData.name || !formData.email) {
-      setMessage({ text: 'Please fill all required fields', isError: true });
-      return;
-    }
-
-    if (selectedOption.maxVisitors && formData.visitorsCount > selectedOption.maxVisitors) {
-      setMessage({ 
-        text: `Maximum visitors for this option is ${selectedOption.maxVisitors}`, 
-        isError: true 
-      });
+      setMessage({ text: t('errors.required_fields'), isError: true });
       return;
     }
 
@@ -119,7 +108,7 @@ const PricingCards = () => {
   const handleBooking = async () => {
     try {
       setIsProcessing(true);
-      setMessage({ text: 'Processing booking...', isError: false });
+      setMessage({ text: t('messages.processing'), isError: false });
 
       const totalAmount = selectedOption.numericPrice * formData.visitorsCount;
 
@@ -141,7 +130,7 @@ const PricingCards = () => {
     } catch (error) {
       console.error('Booking error:', error);
       setMessage({ 
-        text: error.response?.data?.message || 'An error occurred during booking', 
+        text: error.response?.data?.message || t('errors.booking_error'), 
         isError: true 
       });
     } finally {
@@ -150,7 +139,8 @@ const PricingCards = () => {
   };
 
   const generateReceipt = (apiData) => {
-    const paymentMethod = selectedOption.requiresPayment ? 'Pending Payment' : 'Free';
+    const paymentMethod = selectedOption.requiresPayment ? 
+      t('receipt.payment_pending') : t('receipt.free');
 
     const totalAmount = apiData.totalAmount || selectedOption.numericPrice * formData.visitorsCount;
 
@@ -161,13 +151,13 @@ const PricingCards = () => {
       customer: formData.name,
       email: formData.email,
       service: selectedOption.title,
-      amount: `${totalAmount.toLocaleString()} RWF`,
+      amount: `${totalAmount.toLocaleString()} ${t('common.rwf')}`,
       description: selectedOption.description,
       image: selectedOption.image,
       paymentMethod,
-      status: apiData.status || 'Pending',
-      visitDate: formData.visitDate || 'To be scheduled',
-      specialRequests: formData.specialRequests || 'None',
+      status: apiData.status || t('receipt.pending'),
+      visitDate: formData.visitDate || t('receipt.to_be_scheduled'),
+      specialRequests: formData.specialRequests || t('common.none'),
       visitorsCount: formData.visitorsCount,
       includes: selectedOption.includes
     };
@@ -181,29 +171,29 @@ const PricingCards = () => {
     // Add header
     doc.setFontSize(20);
     doc.setTextColor(40, 103, 45);
-    doc.text('Kigali Rabbit Farm', 105, 20, null, null, 'center');
+    doc.text(t('receipt.farm_name'), 105, 20, null, null, 'center');
     
     doc.setFontSize(16);
     doc.setTextColor(0, 0, 0);
-    doc.text('Visit Request Receipt', 105, 30, null, null, 'center');
+    doc.text(t('receipt.title'), 105, 30, null, null, 'center');
     
     // Add receipt details
     doc.setFontSize(12);
-    doc.text(`Request ID: ${receiptData.id}`, 20, 50);
-    doc.text(`Date: ${receiptData.date} at ${receiptData.time}`, 20, 60);
-    doc.text(`Customer: ${receiptData.customer}`, 20, 70);
-    doc.text(`Email: ${receiptData.email}`, 20, 80);
-    doc.text(`Phone: ${formData.phone || 'Not provided'}`, 20, 90);
-    doc.text(`Visit Type: ${receiptData.service}`, 20, 100);
-    doc.text(`Visit Date: ${receiptData.visitDate}`, 20, 110);
-    doc.text(`Number of Visitors: ${receiptData.visitorsCount}`, 20, 120);
-    doc.text(`Amount: ${receiptData.amount}`, 20, 130);
-    doc.text(`Payment Status: ${receiptData.paymentMethod}`, 20, 140);
-    doc.text(`Special Requests: ${receiptData.specialRequests}`, 20, 150);
+    doc.text(`${t('receipt.request_id')}: ${receiptData.id}`, 20, 50);
+    doc.text(`${t('receipt.date')}: ${receiptData.date} ${t('receipt.at')} ${receiptData.time}`, 20, 60);
+    doc.text(`${t('form.name')}: ${receiptData.customer}`, 20, 70);
+    doc.text(`${t('form.email')}: ${receiptData.email}`, 20, 80);
+    doc.text(`${t('form.phone')}: ${formData.phone || t('common.not_provided')}`, 20, 90);
+    doc.text(`${t('receipt.visit_type')}: ${receiptData.service}`, 20, 100);
+    doc.text(`${t('form.visit_date')}: ${receiptData.visitDate}`, 20, 110);
+    doc.text(`${t('form.visitors_count')}: ${receiptData.visitorsCount}`, 20, 120);
+    doc.text(`${t('receipt.amount')}: ${receiptData.amount}`, 20, 130);
+    doc.text(`${t('receipt.payment_status')}: ${receiptData.paymentMethod}`, 20, 140);
+    doc.text(`${t('form.special_requests')}: ${receiptData.specialRequests}`, 20, 150);
     
     // Add included features
     doc.setFontSize(12);
-    doc.text('Included in this package:', 20, 170);
+    doc.text(t('receipt.included_features'), 20, 170);
     let yPosition = 180;
     receiptData.includes.forEach((item, index) => {
       doc.text(`✓ ${item}`, 25, yPosition);
@@ -213,10 +203,10 @@ const PricingCards = () => {
     // Add note
     doc.setFontSize(10);
     doc.setTextColor(100, 100, 100);
-    doc.text('Thank you for your visit request. Our team will contact you within 24 hours to confirm your booking.', 20, yPosition + 10);
+    doc.text(t('receipt.thank_you_note'), 20, yPosition + 10);
     
     // Save the PDF
-    doc.save(`KRC_request_${receiptData.id}.pdf`);
+    doc.save(`${t('receipt.filename_prefix')}_${receiptData.id}.pdf`);
   };
 
   const resetForm = () => {
@@ -240,29 +230,26 @@ const PricingCards = () => {
     <section className="py-16 bg-gray-50">
       <div className="container mx-auto px-4">
         <div className="text-center mb-12">
-          <h2 className="text-3xl font-bold text-gray-800">Visit Options</h2>
-          <p className="text-gray-600 mt-2">Choose the visit type that fits your needs</p>
+          <h2 className="text-3xl font-bold text-gray-800">{t('pricing.title')}</h2>
+          <p className="text-gray-600 mt-2">{t('pricing.subtitle')}</p>
         </div>
 
-        {/* Pricing Cards Grid with Hover Effect */}
+        {/* Pricing Cards Grid */}
         <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8 mb-12">
           {pricingOptions.map((option) => (
             <div 
               key={option.id} 
               className="bg-white rounded-lg shadow-md overflow-hidden hover:shadow-lg transition-shadow duration-300 group"
             >
-              {/* Enhanced Image Hover Container */}
               <div className="relative h-80 overflow-hidden">
-                {/* Main Image */}
                 <img
                   src={option.image}
                   alt={option.title}
                   className="absolute inset-0 w-full h-full object-cover opacity-100 group-hover:opacity-0 transition-opacity duration-500"
                 />
-                {/* Hover Image */}
                 <img
                   src={option.hoverImage}
-                  alt={`${option.title} alternate view`}
+                  alt={`${option.title} ${t('common.alternate_view')}`}
                   className="absolute inset-0 w-full h-full object-cover opacity-0 group-hover:opacity-100 transition-opacity duration-500"
                 />
               </div>
@@ -271,9 +258,8 @@ const PricingCards = () => {
                 <h3 className="text-xl font-bold text-gray-800 mb-2">{option.title}</h3>
                 <p className="text-gray-600 mb-4">{option.description}</p>
                 
-                {/* Included features */}
                 <div className="mb-4">
-                  <h4 className="font-semibold text-green-700 mb-2">Includes:</h4>
+                  <h4 className="font-semibold text-green-700 mb-2">{t('pricing.includes')}:</h4>
                   <ul className="space-y-1">
                     {option.includes.map((item, index) => (
                       <li key={index} className="flex items-start">
@@ -285,19 +271,11 @@ const PricingCards = () => {
                 </div>
                 
                 <div className="flex justify-between items-center">
-                  <div>
-                    {option.maxVisitors && (
-                      <div className="flex items-center text-sm text-gray-500 mt-1">
-                        <FaUsers className="mr-1" />
-                        <span>Max {option.maxVisitors} visitors</span>
-                      </div>
-                    )}
-                  </div>
                   <button
                     onClick={() => handleSelectOption(option)}
                     className="bg-green-700 hover:bg-green-800 text-white px-4 py-2 rounded transition-colors duration-300"
                   >
-                    Book Now
+                    {t('common.book_now')}
                   </button>
                 </div>
               </div>
@@ -310,7 +288,6 @@ const PricingCards = () => {
           <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-4">
             <div className="bg-white rounded-lg shadow-xl w-full max-w-md max-h-[90vh] overflow-y-auto">
               <div className="p-6 relative">
-                {/* Close button */}
                 <button
                   onClick={resetForm}
                   className="absolute top-4 right-4 text-gray-500 hover:text-gray-700"
@@ -318,15 +295,14 @@ const PricingCards = () => {
                   <FaTimes className="w-5 h-5" />
                 </button>
 
-                {/* Step 1: Application Form */}
                 {step === 1 && (
                   <form onSubmit={handleApplicationSubmit} className="space-y-4">
                     <h3 className="text-2xl font-bold text-gray-800 mb-4">
-                      Book {selectedOption.title}
+                      {t('booking.title', { option: selectedOption.title })}
                     </h3>
                     
                     <div>
-                      <label className="block text-gray-700 mb-1">Full Name *</label>
+                      <label className="block text-gray-700 mb-1">{t('form.name')} *</label>
                       <input
                         type="text"
                         value={formData.name}
@@ -337,7 +313,7 @@ const PricingCards = () => {
                     </div>
                     
                     <div>
-                      <label className="block text-gray-700 mb-1">Email *</label>
+                      <label className="block text-gray-700 mb-1">{t('form.email')} *</label>
                       <input
                         type="email"
                         value={formData.email}
@@ -348,7 +324,7 @@ const PricingCards = () => {
                     </div>
                     
                     <div>
-                      <label className="block text-gray-700 mb-1">Phone Number</label>
+                      <label className="block text-gray-700 mb-1">{t('form.phone')}</label>
                       <input
                         type="tel"
                         value={formData.phone}
@@ -357,13 +333,12 @@ const PricingCards = () => {
                       />
                     </div>
                     
-                    {/* Visitors Count */}
                     <div>
                       <label className="block text-gray-700 mb-1">
-                        Number of Visitors *
+                        {t('form.visitors_count')} *
                         {selectedOption.maxVisitors && (
                           <span className="text-sm text-gray-500 ml-2">
-                            (Max {selectedOption.maxVisitors})
+                            ({t('common.max')} {selectedOption.maxVisitors})
                           </span>
                         )}
                       </label>
@@ -378,9 +353,9 @@ const PricingCards = () => {
                       />
                     </div>
                     
-                    {selectedOption.title.includes('Academic') || selectedOption.title.includes('Institutional') ? (
+                    {(selectedOption.title.includes(t('pricing.academic')) || selectedOption.title.includes(t('pricing.institutional'))) && (
                       <div>
-                        <label className="block text-gray-700 mb-1">Institution Name</label>
+                        <label className="block text-gray-700 mb-1">{t('form.institution')}</label>
                         <input
                           type="text"
                           value={formData.institution}
@@ -388,10 +363,10 @@ const PricingCards = () => {
                           className="w-full p-2 border rounded"
                         />
                       </div>
-                    ) : null}
+                    )}
                     
                     <div>
-                      <label className="block text-gray-700 mb-1">Preferred Visit Date</label>
+                      <label className="block text-gray-700 mb-1">{t('form.visit_date')}</label>
                       <input
                         type="date"
                         value={formData.visitDate}
@@ -401,7 +376,7 @@ const PricingCards = () => {
                     </div>
                     
                     <div>
-                      <label className="block text-gray-700 mb-1">Special Requests</label>
+                      <label className="block text-gray-700 mb-1">{t('form.special_requests')}</label>
                       <textarea
                         value={formData.specialRequests}
                         onChange={(e) => setFormData({...formData, specialRequests: e.target.value})}
@@ -410,9 +385,8 @@ const PricingCards = () => {
                       />
                     </div>
                     
-                    {/* Included features reminder */}
                     <div className="bg-gray-50 p-3 rounded">
-                      <h4 className="font-semibold text-green-700 mb-2">This package includes:</h4>
+                      <h4 className="font-semibold text-green-700 mb-2">{t('pricing.includes')}:</h4>
                       <ul className="space-y-1">
                         {selectedOption.includes.map((item, index) => (
                           <li key={index} className="flex items-start">
@@ -437,37 +411,34 @@ const PricingCards = () => {
                       {isProcessing ? (
                         <>
                           <FaSpinner className="animate-spin mr-2" />
-                          Processing...
+                          {t('common.processing')}
                         </>
                       ) : (
-                        'Submit Request'
+                        t('form.submit_request')
                       )}
                     </button>
                   </form>
                 )}
 
-                {/* Step 2: Confirmation */}
                 {step === 2 && receiptData && (
                   <div className="text-center">
-                    <h3 className="text-2xl font-bold text-gray-800 mb-2">Request Received!</h3>
+                    <h3 className="text-2xl font-bold text-gray-800 mb-2">{t('confirmation.title')}</h3>
                     <p className="text-green-600 mb-6">
-                      Thank you for your booking request. Our team will contact you within 24 hours 
-                      to confirm your visit and provide payment details if required.
+                      {t('confirmation.message')}
                     </p>
                     
                     <div className="bg-gray-100 p-4 rounded-lg mb-6 text-left">
-                      <h4 className="font-bold mb-3">Request Summary</h4>
-                      <p><span className="font-semibold">Reference:</span> {receiptData.id}</p>
-                      <p><span className="font-semibold">Visit Type:</span> {receiptData.service}</p>
-                      <p><span className="font-semibold">Date:</span> {receiptData.date}</p>
-                      <p><span className="font-semibold">Number of Visitors:</span> {receiptData.visitorsCount}</p>
-                      <p><span className="font-semibold">Amount:</span> {receiptData.amount}</p>
-                      <p><span className="font-semibold">Payment Status:</span> {receiptData.paymentMethod}</p>
+                      <h4 className="font-bold mb-3">{t('receipt.summary')}</h4>
+                      <p><span className="font-semibold">{t('receipt.reference')}:</span> {receiptData.id}</p>
+                      <p><span className="font-semibold">{t('receipt.visit_type')}:</span> {receiptData.service}</p>
+                      <p><span className="font-semibold">{t('receipt.date')}:</span> {receiptData.date}</p>
+                      <p><span className="font-semibold">{t('form.visitors_count')}:</span> {receiptData.visitorsCount}</p>
+                      <p><span className="font-semibold">{t('receipt.amount')}:</span> {receiptData.amount}</p>
+                      <p><span className="font-semibold">{t('receipt.payment_status')}:</span> {receiptData.paymentMethod}</p>
                     </div>
 
-                    {/* Included features */}
                     <div className="bg-gray-50 p-4 rounded-lg mb-6 text-left">
-                      <h4 className="font-bold mb-3">Your package includes:</h4>
+                      <h4 className="font-bold mb-3">{t('receipt.your_package_includes')}:</h4>
                       <ul className="space-y-2">
                         {receiptData.includes.map((item, index) => (
                           <li key={index} className="flex items-start">
@@ -484,13 +455,13 @@ const PricingCards = () => {
                         className="bg-green-700 hover:bg-green-800 text-white py-2 px-4 rounded flex items-center justify-center space-x-2"
                       >
                         <FaPrint />
-                        <span>Download Receipt</span>
+                        <span>{t('receipt.download_receipt')}</span>
                       </button>
                       <button
                         onClick={resetForm}
                         className="bg-gray-200 hover:bg-gray-300 text-gray-800 py-2 px-4 rounded"
                       >
-                        Close
+                        {t('common.close')}
                       </button>
                     </div>
                   </div>

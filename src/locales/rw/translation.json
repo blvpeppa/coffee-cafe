@@ -1,0 +1,463 @@
+{
+  "home": "Ahabanza",
+  "aboutus": "Ibyerekeye",
+  "service": "Serivisi & Ibicuruzwa",
+  "visits": "Gusura",
+  "trainings": "Amahugurwa",
+  "archive": "Arikivu",
+  "contact": "Twandikire",
+  "translate": "Hindura Ururimi",
+
+  "kigali_rabbit_center": "Kigali Rabbit Center",
+  "why_choose": "Impamvu wahitamo Kigali Rabbit Center?",
+  "banner_paragraph": "Twebwe ni twe ba mbere twazanye uburyo bwo gusiramura intama (Rabbit Artificial Insemination) mu Muryango w’Ibihugu bya Afurika y’Iburasirazuba. Kuva mu 2018, twayoboye mu bworozi bw’inziza, guteza imbere ubwoko, amahugurwa n'udushya.",
+  "care_advices": "Inama zita ku buzima",
+  "customer_supports": "Serivisi ku bakiriya",
+  "emergency_services": "Serivisi z'ubutabazi",
+  "veterinary_help": "Ubuvuzi bw’amatungo",
+  "veterinary_paragraph": "Itsinda ryacu ry’inzobere ritanga ubufasha bw’ubuvuzi bw’amatungo kugira ngo inziza zibe mu buzima bwiza kandi zororoke neza hakoreshejwe ikoranabuhanga rigezweho.",
+  "more_about": "Menya byinshi",
+
+  "hero_title_part1": "IKIGO",
+  "hero_title_part2": "CY'UBWOKO",
+  "hero_title_part3": "BW'INZIZA",
+  "hero_paragraph": "Turatanga udushya mu bworozi burambye n’ubushakashatsi ku bwoko bw’inziza.",
+  "learn_more": "Menya byinshi",
+
+  "services_title": "Intangiriro yacu",
+  "services_paragraph": "Menya byinshi kuri twe no ku byo dukora",
+
+  "service1_title": "KIGALI RABBIT FARM",
+  "service1_description": "Ni sosiyete ifite inshingano nke yanditswe mu Rwanda mu mategeko agenga amasosiyete (NO 17/2018 yo kuwa 13/04/2018).",
+
+  "service2_title": "IKIGO CY’UBWOKO",
+  "service2_description": "Yashinzwe mu 2018 nk’ikigo giteza imbere ubworozi burambye, amahugurwa no gutanga inama. Ubu yabaye IKIGO CY’UBWOKO BW’INZIZA.",
+
+  "service3_title": "Intangiriro yacu mu Muryango wa Afurika y’Iburasirazuba",
+  "service3_description": "Twebwe turi sosiyete ya mbere yazanye uburyo bwa Rabbit Artificial Insemination mu Muryango w’Afurika y’Iburasirazuba.",
+
+  "training_title": "Amahugurwa yo korora inziza",
+  "training_paragraph": "Menya ubumenyi n'ubushobozi bwa kinyamwuga mu bworozi bw'inziza",
+  "training_apply_button": "Kwiyandikisha",
+
+  "training_program_1_title": "Ubworozi bw’inziza kubatangizi",
+  "training_program_1_description": "Menya ibanze ku bworozi bw’inziza, aho bazitira n'uburyo bwo kuzitaho.",
+  
+  "training_program_2_title": "Ubumenyi bwimbitse mu gutera no kororoka",
+  "training_program_2_description": "Menya neza uburyo bwo kororoka, ubwoko bw’inziza n'imicungire y’ikororoka.",
+  
+  "training_program_3_title": "Ubuzima bwiza n'indwara z'inziza",
+  "training_program_3_description": "Amahugurwa arambuye ku buzima bw’inziza, indwara zikunze kubageraho no kuzirinda.",
+  
+  "training_program_4_title": "Ubumenyi ku bucuruzi bw’inziza",
+  "training_program_4_description": "Menya uko wabyaza inyungu ubworozi bw’inziza.",
+
+ "visit_title": "Amahitamo yo Gusura",
+  "visit_paragraph": "Hitamo ubwoko bw'urugendo bukubereye",
+  "visit_apply_button": "Kwiyandikisha",
+
+  "visit_professional_title": "Gusura ku mpuguke",
+  "visit_professional_description": "Ku bashakashatsi n'abanyamwuga mu nzego zijyanye",
+
+  "visit_academic_title": "Gusura kw’amashuri",
+  "visit_academic_description": "Igiciro cyihariye ku mashuri n’amakaminuza",
+
+  "visit_institutional_title": "Gusura kw’inzego za Leta",
+  "visit_institutional_description": "Ku nzego za Leta n'abafatanyabikorwa",
+  
+   "notfound_title": "Ipaji ntiyabonetse",
+  "notfound_description": "Tubabarire, ntitwabashije kubona ipaji ushaka.",
+  "notfound_home_button": "Subira ahabanza",
+  "notfound_contact_support": "Vugana n’ubufasha",
+  "notfound_image_alt": "Umugabo wazimiye mu butayu",
+
+  "gallery_title": "Ishusho y'amashusho",
+  "gallery_image_alt_1": "Ishusho 1",
+  "gallery_image_alt_2": "Ishusho 2",
+  "gallery_image_alt_3": "Ishusho 3",
+  "gallery_image_alt_4": "Ishusho 4",
+  "gallery_explore_button": "Reba ibishusho byinshi",
+
+  "testimonials": {
+    "title": "Ubuhamya",
+    "1": {
+      "name": "Razzaq Mouhamed",
+      "text": "Sinigeze nibwira ko korora inkwavu byaba inyungu gutya kugeza igihe nakoranye na Kigali Rabbit Center. Ubumenyi bwabo n’ubufasha baduha byahinduye ubucuruzi bwanjye."
+    },
+    "2": {
+      "name": "Pauline",
+      "text": "Kigali Rabbit Center yahinduye uburyo bwajye bwo korora. Bampaye inkwavu nziza n’inama z’abahanga byatumye nzamura ubucuruzi bwanjye."
+    },
+    "3": {
+      "name": "Claudine",
+      "text": "Urugendo rw’uburezi muri Kigali Rabbit Center rwari rwiza cyane! Abana banjye bigishijwe byinshi ku kwita ku matungo n’ubuhinzi burambye."
+    },
+    "4": {
+      "name": "Samuel",
+      "text": "Amahugurwa yabo yampaye icyizere cyo gutangiza ubuhinzi bwanjye bw’inkwavu. Byari bifatika kandi byoroheye abatangiye."
+    }
+  },
+
+  "footer": {
+    "companyName": "KIGALIRABBITCENTER",
+    "description": "ni kompanyi ifite uburenganzira buke bwanditswe mu Rwanda hakurikijwe amategeko (NO 17/2018 yo kuwa 13/04/2018).",
+    "joinUs": "Twiyunge :",
+    "quickLinks": "Amahuriro",
+    "home": "Ahabanza",
+    "about": "Ibyerekeye",
+    "contact": "Tuvugishe",
+    "moreLinks": "Andi mahuriro",
+    "products": "Serivisi & Ibicuruzwa",
+    "gallery": "Amashusho",
+    "visits": "Gusura",
+    "training": "Amahugurwa",
+    "haveQuestion": "Ufite ikibazo?",
+    "address": "Nyamirambo, Nyarugenge Kigali, Rwanda",
+    "emailUs": "Twoherereze email kuri Gmail",
+    "madeWith": "byakozwe na",
+    "by": "na",
+    "scrollTop": "Subira hejuru"
+  },
+
+  "services": {
+    "sectionLabel": "Serivisi Zacu",
+    "sectionTitle": "Ibikorwa Byiza byo Korora Inzobe",
+    "sectionDescription": "Serivisi zose kuva ku korora kugeza ku isoko, zitangwa n'inzobere mu bworozi.",
+    "breeding": {
+      "title": "Inama ku Kororoka",
+      "description": "Inama z'abahanga ku buryo bwo kororoka, guhitamo inkomoko, no gutegura gahunda yo kororoka."
+    },
+    "hutch": {
+      "title": "Igishushanyo cy'Ibikono",
+      "description": "Igishushanyo cyihariye cy'ibikono kugira ngo bibone umwuka, bisukure, kandi byorohereze aborozi."
+    },
+    "nutrition": {
+      "title": "Gahunda y'Ibiribwa",
+      "description": "Gahunda y’ibiribwa yateguwe hakurikijwe ubwoko n’icyiciro cy’izamuka ryazo."
+    },
+    "health": {
+      "title": "Kubungabunga Ubuzima",
+      "description": "Kwirinda indwara no gutegura uburyo bwo kwita ku buzima bw’inzobe zawe."
+    },
+    "learnMore": "Menya byinshi"
+  },
+
+  "about": {
+    "meta": {
+      "title": "Ibyerekeye Kigali Rabbit Center | Ubworozi bw'Inzobe Burambye mu Rwanda",
+      "description": "Menya Kigali Rabbit Center, intangarugero mu Rwanda mu gukoresha insimburangingo z'inzobe, ubworozi burambye n'amahugurwa yo korora inzobe."
+    },
+    "hero": {
+      "title": "Menya Icyerekezo Cacu",
+      "subtitle": "Menya byinshi ku ntego zacu, ikipe yacu, n'uko duhindura ubworozi bw'inzobe muri Afurika.",
+      "button": "Reba Serivisi"
+    },
+    "ceo": {
+      "name": "Dieudonne Musoni",
+      "title": "Umuyobozi wa Kigali Rabbit Center",
+      "subtitle": "Inzobere mu Nzobe",
+      "intro": "ni kompanyi yanditswe mu Rwanda hakurikijwe amategeko ya Companies Act (NO 17/2018 yo ku wa 13/04/2018).",
+      "mission": "Yashinzwe mu 2018 nk’ikigo cy’ubworozi burambye, amahugurwa n’ubujyanama. Ubu yabaye",
+      "highlight": "IKIGO CYA GENETIQUE Y'INZOBE",
+      "ai": "Turi kompanyi ya mbere yatangije",
+      "ai_highlight": "insimburangingo mu kororoka kw’inzobe",
+      "rest": "muri EAC. Intego ni ugufasha aborozi gushyiraho imishinga irambye mu Rwanda no muri Afurika.",
+      "contact": "Wifuza kumenya byinshi? Twandikire kuri"
+    },
+    "farming": {
+      "title": "UBWOROZI BW'INZOBE",
+      "subtitle": "Ubworozi Burambye kandi Bubyara Inyungu",
+      "content1": "Ubworozi bw'inzobe ni umurimo wunguka kandi urambye umaze gukundwa cyane. Kigali Rabbit Center yiyemeje guteza imbere no gushyigikira ubworozi bw’inzobe nk’amahirwe y’ubucuruzi mu Rwanda no muri Afurika.",
+      "content2": "Inzobe zirororoka cyane, zifata neza ibyo zirya kandi zishobora kubaho ahantu hatandukanye. Zikwiye cyane aborozi bato bashaka kongera umusaruro. Inyama z’inzobe ni nziza, zifite poroteyine nyinshi, n’isoko rinini ryo kuzicuruza.",
+      "content3": "Ikipe yacu itanga amahugurwa n’ubujyanama ku kororoka, kugaburira, kurwanya indwara no kwamamaza.",
+      "highlight": "Jyana natwe muri Kigali Rabbit Center, utangire urugendo rwo kugira ejo heza binyuze mu bworozi bw’inzobe."
+    },
+    "stats": {
+      "outgrowers": "Aborora ku Masezerano",
+      "vets": "Abaganga b’amatungo",
+      "workers": "Abakozi b’Ubworozi",
+      "tours": "Urugendo Rugabanijwe/Umunsi"
+    },
+    "why": {
+      "title": "Impamvu wahitamo Kigali Rabbit Center",
+      "content": "Turi kompanyi ya mbere yatangije insimburangingo z’inzobe muri EAC. Guhera 2018, turi imbere mu bworozi burambye, genetics, amahugurwa n'ubushakashatsi.",
+      "services": {
+        "care": "Inama ku Kwita ku Nzobe",
+        "support": "Ubujyanama ku Bakiriya",
+        "emergency": "Serivisi z'Ibyihutirwa",
+        "vet": {
+          "title": "Ubuvuzi bw’Inzobe",
+          "content": "Itsinda ryacu ry’inzobere ritanga ubufasha bwa veteri n'ikoranabuhanga rigezweho mu kwita ku buzima no kororoka kw’inzobe."
+        }
+      },
+      "news_button": "Amakuru Mashya"
+    },
+    "faq": {
+      "title": "Ibibazo Bikunze Kubazwa",
+      "subtitle": "Soma hano umenye byinshi ku bworozi bw’inzobe.",
+      "items": [
+        {
+          "question": "Kuki ubworozi bw’inzobe?",
+          "answer": "Inzobe zituruka ku nyamaswa zo mu gasozi z’i Burayi n’Amajyaruguru y’Afurika. Zikwiriye cyane mu bice by’icyaro no hafi y’imijyi. Zitanga inyama z’umweru zifite poroteyine nyinshi, cholesterol nkeya, kandi uruhu rwazo rukoreshwa mu myambaro n’ubugeni. Mu 2020, umusaruro w’isi w’inzobe wageraga kuri toni miliyoni 1.8 buri mwaka. Ibihugu bikomeye harimo Ubutaliyani, Ubufaransa, Ubushinwa."
+        },
+        {
+          "question": "Ibyiza byo korora inzobe:",
+          "answer": [
+            "Ingano nto y’umubiri",
+            "Igiciro gito cy’amatungo n’amazu",
+            "Kororoka no guhindura ibyokurya neza",
+            "Ibibwana 25+ buri mwaka",
+            "Igihe gito cyo gukura, zimenyera isoko mu byumweru 8",
+            "Inyama zifite intungamubiri nyinshi, resipe zirenga 300",
+            "Akarima gato no gukoresha amafaranga make"
+          ]
+        }
+      ]
+    },
+    "modals": {
+      "news": {
+        "title": "Amakuru n’Ibigezweho",
+        "items": [
+          {
+            "title": "Ubuhanga bushya mu kororoka kw’inzobe",
+            "date": "Kamena 15, 2023",
+            "content": "Twashyizeho uburyo bushya bwo kororoka bwongera amahirwe yo gutsinda ku kigero cya 40%. Iyandikishe mu mahugurwa yacu azakurikiraho."
+          },
+          {
+            "title": "Kwagura ubworozi byarangiye",
+            "date": "Gicurasi 28, 2023",
+            "content": "Inyubako nshya igezweho imaze kuzura, yikuba kabiri ubushobozi bwo kororora no gukora ubushakashatsi."
+          },
+          {
+            "title": "Amahugurwa ku Nsimburangingo",
+            "date": "Mata 10, 2023",
+            "content": "Iyandikishe mu mahugurwa y’icyemezo ku nsimburangingo atangira ukwezi gutaha."
+          }
+        ]
+      },
+      "video": {
+        "not_supported": "Mudasobwa yawe ntishyigikira videwo."
+      },
+      "close": "Funga"
+    }
+  },
+
+ "products": {
+    "title": "Ibicuruzwa by’Ubuhinzi bw’Inkwavu",
+    "subtitle": "Ibintu byose ukeneye gutangiza cyangwa kwagura ubuhinzi bw’inkwavu.",
+    "contact": "Twandikire",
+    "quantity": "Umubare",
+    "submit": "Ohereza Ibisabwa",
+    "submitting": "Kohereza...",
+    "submitted": "Ibisabwa Byakiriwe!",
+    "reference": "Nomero y’icyemezo",
+    "close": "Funga"
+  },
+
+  "pricing": {
+    "title": "Amahitamo yo Gusura",
+    "subtitle": "Hitamo ubwoko bwo gusura buhuye n'ibyo ushaka",
+    "includes": "Bihari",
+    "max_visitors": "Abasura {max} barenze urugero",
+    "academic": "Amashuri",
+    "institutional": "Ishami",
+    "options": {
+      "1": {
+        "title": "Gusura Bisanzwe",
+        "description": "Gusura aho dukorera ubworozi bw'amatungo"
+      },
+      "2": {
+        "title": "Gusura y'Amashuri",
+        "description": "Gusura y'uburezi ku banyeshuri n'abashakashatsi"
+      },
+      "3": {
+        "title": "Gusura ya Leta",
+        "description": "Gusura y'abakozi ba Leta"
+      },
+      "4": {
+        "title": "Gusura ya VIP",
+        "description": "Gusura idasanzwe ifite uburenganzira bwo hejuru"
+      },
+      "5": {
+        "title": "Gusura yo gufotora",
+        "description": "Uburenganzira bw'idashyikirwa mu gufotora"
+      }
+    },
+    "include": {
+      "tour": "Gusura ifarmo itunganyijwe",
+      "education": "Ibikoresho by'uburezi",
+      "photos": "Amahirwe yo gufotora",
+      "refreshments": "Ibinyobwa byoroheje",
+      "exclusive": "Kwinjira idashyikirwa"
+    }
+  },
+  "form": {
+    "name": "Izina ryuzuye",
+    "email": "Imeri",
+    "phone": "Numero ya Telefone",
+    "institution": "Izina ry'Ishami",
+    "visit_date": "Itariki yo Gusura",
+    "visitors_count": "Umubare w'Abasura",
+    "special_requests": "Ibisabwa",
+    "submit_request": "Ohereza Gusaba"
+  },
+  "booking": {
+    "title": "Kwiyandikisha Gusura"
+  },
+  "receipt": {
+    "farm_name": "Ikiraro cy'Ingeramigabo cyi Kigali",
+    "title": "Resi yo Gusaba Gusura",
+    "request_id": "Numero yo Gusaba",
+    "date": "Itariki",
+    "at": "mu",
+    "visit_type": "Ubwoko bwo Gusura",
+    "amount": "Umubare",
+    "payment_status": "Imiterere yo Kwishyura",
+    "payment_pending": "Kwishyura Gitegereje",
+    "free": "Ubuntu",
+    "pending": "Gitegereje",
+    "to_be_scheduled": "Kugenzurwa",
+    "included_features": "Bihari muri iyi ngingo:",
+    "thank_you_note": "Murakoze gusaba gusura. Itsinda ryacu rizakubwira muri saa 24 niba gusura biri ku buryo bukwiye no kwishyura niba bikenewe.",
+    "filename_prefix": "KRC_gusaba",
+    "summary": "Icyegeranyo cyo Gusaba",
+    "reference": "Inyandiko",
+    "your_package_includes": "Iyi ngingo ifite:",
+    "download_receipt": "Kuramo Resi"
+  },
+  "confirmation": {
+    "title": "Gusaba Byakiriwe!",
+    "message": "Murakoze gusaba gusura. Itsinda ryacu rizakubwira muri saa 24 niba gusura biri ku buryo bukwiye no kwishyura niba bikenewe."
+  },
+  "common": {
+    "book_now": "Kwiyandikisha Nonaha",
+    "processing": "Gukora...",
+    "close": "Gufunga",
+    "none": "Ntacyo",
+    "not_provided": "Ntabwo byatanzwe",
+    "max": "Kurenza",
+    "rwf": "RWF",
+    "register_now":"Menyesha kwiyandikisha",
+    "alternate_view": "kureba ikindi"
+  },
+  "errors": {
+    "fetch_options": "Kugena amahitamo yo gusura byanze. Nyamuneka gerageza mukanya.",
+    "required_fields": "Nyamuneka uzuzure byose bikenewe",
+    "max_visitors": "Abasura barenze urugero muri iyi ngingo ni {max}",
+    "booking_error": "Hari ikosa mu gihe wo kwiyandikisha"
+  },
+  "messages": {
+    "processing": "Gukora kwiyandikisha..."
+  },
+
+"blog": {
+    "title": "Inkuru n'Ubumenyi ku Bworozi bwa Mpura",
+    "subtitle": "Shakisha ibice by'inkuru, amabwiriza, n'ibindi bikoresho byo kongera ubumenyi ku bworozi bwa mpura",
+    "featured_articles": "Inkuru Zirabikenewe",
+    "latest_articles": "Inkuru Vuba aha",
+    "search_placeholder": "Shakisha inkuru...",
+    "all_categories": "Ibyiciro Byose",
+    "all_tags": "Ibihekane Byose",
+    "no_articles_found": "Nta nkuru yabonetse ihuje n'ibisabwa",
+    "read_more": "Soma byinshi",
+    "continue_reading": "Komeza gusoma",
+    "min_read": "min gusoma",
+    "close": "Gufunga"
+  },
+  "categories": {
+    "farming": "Ubuhinzi",
+    "sustainability": "Komeza kubaho",
+    "nutrition": "Indyo",
+    "housing": "Amazu",
+    "breeding": "Ubworozi",
+    "business": "Ubucuruzi"
+  },
+  "articles": {
+    "1": {
+      "title": "Gutera intanga inkwavu, rumwe rupima 10 Kgs 🐰🐇",
+      "excerpt": "Bishobora kumera bitangaje, ariko ari ukuri, kandi bikora hano muri Rwanda! Menya Dieudonné Musoni, umutunganyi w'ubucuruzi w'u Rwanda kandi CEO wa Kigali Rabbit Center.",
+      "content": [
+        "Ubworozi bw'inkwavu bwave bukunda cyane muri Rwanda, buha abahinzi inyungu z'ibiryo n'ubucuruzi.",
+        "Uburyo bwa kera bwo kwororoka inkwavu busimburwa n'uburyo bushya bushoboka bushiraho ubuziranenge mugihe bukagira umusaruro mwinshi.",
+        "Uburyo bushya harimo imyubakire myiza, uburyo bwo kwororoka neza, n'uburyo bwo gutanga ibiryo neza."
+      ]
+    },
+    "2": {
+      "title": "Uburyo Bwo Komeza Kubaho ku Buhinzi Buto",
+      "excerpt": "Menya uburyo bwo gukoresha uburyo budakomeretsa ibidukikije mu mirimo yawe y'ubuhinzi",
+      "content": [
+        "Ubworozi bw'inkwavu bushingiye ku komeza kubaho bushishikariza uburyo budakomeretsa ibidukikije.",
+        "Uburyo nyamukuru harimo gukoresha neza imyanda, gukoresha ibikoresho bishobora kongera gukorerwa, n'uburyo bwo gutanga ibiryo bisanzwe.",
+        "Uburyo bwo komeza kubaho ntibyongera gusa ibidukikije ahubwo bukagira n'inkwavu mwiza."
+      ]
+    }
+  },
+
+
+  
+   "contactus": {
+    "title": "Twandikire",
+    "contactUs": "Twandikire",
+    "name": "Amazina",
+    "email": "Imeli",
+    "subject": "Insanganyamatsiko",
+    "message": "Ubutumwa",
+    "send": "Ohereza Ubutumwa",
+    "sending": "Kohereza...",
+    "address": "Aderesi",
+    "phone": "Telefoni",
+    "emailLabel": "Imeli",
+    "website": "Urubuga",
+    "success": "Ubutumwa bwawe bwoherejwe neza.",
+    "error": "Kohereza ubutumwa byanze. Ongera ugerageze.",
+    "fillAll": "Nyamuneka wuzuze imyanya yose.",
+    "invalidEmail": "Injiza aderesi ya email ikwiriye."
+  },
+
+
+  "training": {
+  "title": "Amahugurwa yo Korora Inziza",
+  "subtitle": "Menya ubumenyi n'ubushobozi bwa kinyamwuga mu bworozi bw'inziza",
+  "apply_button": "Kwiyandikisha",
+  "includes":"ikubiyemo",
+  "programs": {
+    "1": {
+      "title": "Ubworozi bw'inziza kubatangizi",
+      "description": "Menya ibanze ku bworozi bw'inziza, aho bazitira n'uburyo bwo kuzitaho."
+    },
+    "2": {
+      "title": "Ubumenyi bwimbitse mu gutera no kororoka",
+      "description": "Menya neza uburyo bwo kororoka, ubwoko bw'inziza n'imicungire y'ikororoka."
+    },
+    "3": {
+      "title": "Ubuzima bwiza n'indwara z'inziza",
+      "description": "Amahugurwa arambuye ku buzima bw'inziza, indwara zikunze kubageraho no kuzirinda."
+    },
+    "4": {
+      "title": "Ubumenyi ku bucuruzi bw'inziza",
+      "description": "Menya uko wabyaza inyungu ubworozi bw'inziza."
+    }
+  },
+  "form": {
+    "name": "Izina ryuzuye",
+    "email": "Imeri",
+    "phone": "Numero ya Telefone",
+    "location": "Aho utuye",
+    "experience": "Uburambe bwo Kwihinga mu Bworozi bw'Inziza",
+    "experience_options": {
+      "none": "Nta burambe",
+      "beginner": "Utanze (munsi y'umwaka umwe)",
+      "intermediate": "Umaze igihe (imyaka 1-3)",
+      "advanced": "Ufite ubumenyi (imyaka 3+)"
+    },
+    "preferred_date": "Itariki yo Kwiga",
+    "questions": "Ibibazo cyangwa Ibisabwa",
+    "submit": "Ohereza Kwiyandikisha",
+    "agree_terms": "Nemera amategeko n'amabwiriza"
+  },
+  "confirmation": {
+    "title": "Kwiyandikisha Byakiriwe!",
+    "message": "Murakoze kwiyandikisha kuri {program}. Itsinda ryacu rizakubwira muri saa 24 ukoresheje telefone cyangwa imeri kugirango rihamye kwiyandikisha kandi rikaguhaye amakuru yo kwishyura niba akenewe."
+  }
+}
+}

@@ -1,33 +1,33 @@
 import React from "react";
-
-const ServicesData = [
-  {
-    id: 1,
-    icon: "flaticon-blind",
-    name: "KIGALI RABBIT FARM",
-    description:
-      "Is a limited liability company incorporated in Rwanda under the Companies Act (NO 17/2018 of 13/04/2018) Laws of Rwanda.",
-    aosDelay: "100",
-  },
-  {
-    id: 2,
-    icon: "flaticon-dog-eating",
-    name: "GENETIC CENTER",
-    description:
-      "It was set up in 2018 primarily as sustainable farming breeding, trainer and consultancy firm. And now it became a RABBIT GENETIC CENTER.",
-    aosDelay: "300",
-  },
-  {
-    id: 3,
-    icon: "flaticon-grooming",
-    name: "Our introduction in East African Community",
-    description:
-      "We are the first company to introduce Rabbit Artificial Insemination system in EAC.",
-    aosDelay: "500",
-  },
-];
+import { useTranslation } from 'react-i18next';
 
 const Services = () => {
+  const { t } = useTranslation();
+
+  const ServicesData = [
+    {
+      id: 1,
+      icon: "flaticon-blind",
+      name: t("service1_title"),
+      description: t("service1_description"),
+      aosDelay: "100",
+    },
+    {
+      id: 2,
+      icon: "flaticon-dog-eating",
+      name: t("service2_title"),
+      description: t("service2_description"),
+      aosDelay: "300",
+    },
+    {
+      id: 3,
+      icon: "flaticon-grooming",
+      name: t("service3_title"),
+      description: t("service3_description"),
+      aosDelay: "500",
+    },
+  ];
+
   return (
     <>
       <span id="services"></span>
@@ -36,10 +36,10 @@ const Services = () => {
           {/* Heading section */}
           <div className="text-center mb-16">
             <h1 className="text-4xl font-bold text-green-800">
-              Our Introduction
+              {t("services_title")}
             </h1>
             <p className="text-gray-600 mt-2">
-              Discover more about who we are and what we do
+              {t("services_paragraph")}
             </p>
           </div>
 

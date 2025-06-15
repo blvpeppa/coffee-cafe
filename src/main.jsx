@@ -6,7 +6,7 @@ import "./index.css";
 //import '@fontsource/inter/variable.css'; // variable font (recommended)
 //import '@fontsource/inter/400.css';
 //import '@fontsource/inter/700.css';
-
+import './i18n'; // <- import here
 // Import css files
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
