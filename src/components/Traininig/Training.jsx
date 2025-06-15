@@ -35,14 +35,14 @@ const Training = () => {
         const response = await axios.get(`${API_BASE_URL}/programs`);
         setPrograms(response.data.data.map(program => ({
           ...program,
-          priceDisplay: `${program.price.toLocaleString()} ${t(`common.rwf`)}`,
+          priceDisplay: `${program.price.toLocaleString()} ${t('common.rwf')}`,
           requiresPayment: program.price > 0,
           features: program.features || []
         })));
       } catch (error) {
         console.error('Fetch error:', error);
         setMessage({
-          text: t(`errors.fetch_programs`),
+          text: t('errors.fetch_programs'),
           isError: true
         });
       }
@@ -83,14 +83,14 @@ const Training = () => {
 
   const validateForm = () => {
     if (!formData.name || !formData.email || !formData.phone || !formData.location) {
-      setMessage({ text: t(`errors.required_fields`), isError: true });
+      setMessage({ text: t('errors.required_fields'), isError: true });
       return false;
     }
 
     // Basic email validation
     const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
     if (!emailRegex.test(formData.email)) {
-      setMessage({ text: t(`errors.invalid_email`), isError: true });
+      setMessage({ text: t('errors.invalid_email'), isError: true });
       return false;
     }
 
@@ -104,7 +104,7 @@ const Training = () => {
 
     try {
       setIsLoading(true);
-      setMessage({ text: t(`messages.processing`), isError: false });
+      setMessage({ text: t('messages.processing'), isError: false });
 
       const response = await axios.post(`${API_BASE_URL}/register`, {
         ...formData,
@@ -122,18 +122,18 @@ const Training = () => {
           phone: formData.phone,
           program: selectedProgram.title,
           duration: selectedProgram.duration,
-          trainingDate: formData.preferredDate || t(`receipt.to_be_confirmed`),
+          trainingDate: formData.preferredDate || t('receipt.to_be_confirmed'),
           price: selectedProgram.priceDisplay,
-          paymentMethod: t(`receipt.payment_pending`),
-          status: t(`receipt.pending_contact`)
+          paymentMethod: t('receipt.payment_pending'),
+          status: t('receipt.pending_contact')
         });
         setStep(2);
       } else {
-        setMessage({ text: response.data.message || t(`errors.registration_failed`), isError: true });
+        setMessage({ text: response.data.message || t('errors.registration_failed'), isError: true });
       }
     } catch (error) {
       console.error('Registration error:', error);
-      const errorMsg = error.response?.data?.message || t(`errors.registration_error`);
+      const errorMsg = error.response?.data?.message || t('errors.registration_error');
       setMessage({ text: errorMsg, isError: true });
     } finally {
       setIsLoading(false);
@@ -149,31 +149,31 @@ const Training = () => {
       // Add logo and header
       doc.setFontSize(20);
       doc.setTextColor(40, 103, 45);
-      doc.text(t(`receipt.farm_name`), 105, 15, null, null, 'center');
+      doc.text(t('receipt.farm_name'), 105, 15, null, null, 'center');
       
       // Add receipt details
       doc.setFontSize(12);
-      doc.text(`${t(`receipt.receipt_id`)}: ${receiptData.registrationId}`, 20, 30);
-      doc.text(`${t(`receipt.date`)}: ${receiptData.date} ${t(`receipt.at`)} ${receiptData.time}`, 20, 40);
-      doc.text(`${t(`form.name`)}: ${receiptData.customer}`, 20, 50);
-      doc.text(`${t(`form.email`)}: ${receiptData.email}`, 20, 60);
-      doc.text(`${t(`form.phone`)}: ${receiptData.phone}`, 20, 70);
+      doc.text(`${t('receipt.receipt_id')}: ${receiptData.registrationId}`, 20, 30);
+      doc.text(`${t('receipt.date')}: ${receiptData.date} ${t('receipt.at')} ${receiptData.time}`, 20, 40);
+      doc.text(`${t('name')}: ${receiptData.customer}`, 20, 50);
+      doc.text(`${t('email')}: ${receiptData.email}`, 20, 60);
+      doc.text(`${t('phone')}: ${receiptData.phone}`, 20, 70);
       
       // Training details
-      doc.text(`${t(`receipt.program`)}: ${receiptData.program}`, 20, 90);
-      doc.text(`${t(`receipt.duration`)}: ${receiptData.duration}`, 20, 100);
-      doc.text(`${t(`receipt.training_date`)}: ${receiptData.trainingDate}`, 20, 110);
-      doc.text(`${t(`receipt.amount`)}: ${receiptData.price}`, 20, 120);
-      doc.text(`${t(`receipt.payment_method`)}: ${receiptData.paymentMethod}`, 20, 130);
+      doc.text(`${t('receipt.program')}: ${receiptData.program}`, 20, 90);
+      doc.text(`${t('receipt.duration')}: ${receiptData.duration}`, 20, 100);
+      doc.text(`${t('receipt.training_date')}: ${receiptData.trainingDate}`, 20, 110);
+      doc.text(`${t('receipt.amount')}: ${receiptData.price}`, 20, 120);
+      doc.text(`${t('receipt.payment_method')}: ${receiptData.paymentMethod}`, 20, 130);
       
       // Save the PDF
-      doc.save(`${t(`receipt.filename_prefix`)}-${receiptData.registrationId}.pdf`);
+      doc.save(`${t('receipt.filename_prefix')}-${receiptData.registrationId}.pdf`);
     } else {
       // HTML receipt implementation
       const receiptHtml = `<!DOCTYPE html>
         <html>
         <head>
-          <title>${t(`receipt.title`)} - ${receiptData.registrationId}</title>
+          <title>${t('receipt.title')} - ${receiptData.registrationId}</title>
           <style>
             body { font-family: Arial, sans-serif; line-height: 1.6; max-width: 800px; margin: 0 auto; padding: 20px; }
             .header { text-align: center; margin-bottom: 20px; }
@@ -186,49 +186,49 @@ const Training = () => {
         </head>
         <body>
           <div class="header">
-            <div class="title">${t(`receipt.farm_name`)}</div>
-            <div>${t(`receipt.title`)}</div>
+            <div class="title">${t('receipt.farm_name')}</div>
+            <div>${t('receipt.title')}</div>
             <div><strong>${receiptData.registrationId}</strong></div>
           </div>
           <div class="divider"></div>
           <div class="section info-grid">
             <div>
-              <h3>${t(`receipt.participant_info`)}</h3>
-              <p><strong>${t(`form.name`)}:</strong> ${receiptData.customer}</p>
-              <p><strong>${t(`form.email`)}:</strong> ${receiptData.email}</p>
-              <p><strong>${t(`form.phone`)}:</strong> ${receiptData.phone}</p>
+              <h3>${t('receipt.participant_info')}</h3>
+              <p><strong>${t('name')}:</strong> ${receiptData.customer}</p>
+              <p><strong>${t('email')}:</strong> ${receiptData.email}</p>
+              <p><strong>${t('phone')}:</strong> ${receiptData.phone}</p>
             </div>
             <div>
-              <h3>${t(`receipt.registration_details`)}</h3>
-              <p><strong>${t(`receipt.date`)}:</strong> ${receiptData.date}</p>
-              <p><strong>${t(`receipt.time`)}:</strong> ${receiptData.time}</p>
-              <p><strong>${t(`receipt.status`)}:</strong> ${receiptData.status}</p>
+              <h3>${t('receipt.registration_details')}</h3>
+              <p><strong>${t('receipt.date')}:</strong> ${receiptData.date}</p>
+              <p><strong>${t('receipt.time')}:</strong> ${receiptData.time}</p>
+              <p><strong>${t('receipt.status')}:</strong> ${receiptData.status}</p>
             </div>
           </div>
           <div class="section">
-            <h3>${t(`receipt.training_details`)}</h3>
-            <p><strong>${t(`receipt.program`)}:</strong> ${receiptData.program}</p>
-            <p><strong>${t(`receipt.duration`)}:</strong> ${receiptData.duration}</p>
-            <p><strong>${t(`receipt.training_date`)}:</strong> ${receiptData.trainingDate}</p>
-            <p><strong>${t(`receipt.amount`)}:</strong> ${receiptData.price}</p>
+            <h3>${t('receipt.training_details')}</h3>
+            <p><strong>${t('receipt.program')}:</strong> ${receiptData.program}</p>
+            <p><strong>${t('receipt.duration')}:</strong> ${receiptData.duration}</p>
+            <p><strong>${t('receipt.training_date')}:</strong> ${receiptData.trainingDate}</p>
+            <p><strong>${t('receipt.amount')}:</strong> ${receiptData.price}</p>
           </div>
           <div class="section">
-            <h3>${t(`receipt.payment_info`)}</h3>
-            <p><strong>${t(`receipt.payment_method`)}:</strong> ${receiptData.paymentMethod}</p>
+            <h3>${t('receipt.payment_info')}</h3>
+            <p><strong>${t('receipt.payment_method')}:</strong> ${receiptData.paymentMethod}</p>
           </div>
           <div class="divider"></div>
           <div class="footer">
-            <p>${t(`receipt.thank_you`)}</p>
-            <p>${t(`receipt.contact_soon`)}</p>
+            <p>${t('receipt.thank_you')}</p>
+            <p>${t('receipt.contact_soon')}</p>
           </div>
         </body>
         </html>`;
       
       const blob = new Blob([receiptHtml], { type: 'text/html' });
       const url = URL.createObjectURL(blob);
-      const a = document.createElement(`a`);
+      const a = document.createElement('a');
       a.href = url;
-      a.download = `${t(`receipt.filename_prefix`)}-${receiptData.registrationId}.html`;
+      a.download = `${t('receipt.filename_prefix')}-${receiptData.registrationId}.html`;
       document.body.appendChild(a);
       a.click();
       document.body.removeChild(a);
@@ -241,9 +241,9 @@ const Training = () => {
       {/* Programs Grid */}
       <div className="max-w-7xl mx-auto">
         <div className="text-center mb-12">
-          <h1 className="text-4xl font-extrabold text-green-800 mb-4">{t(`training.title`)}</h1>
+          <h1 className="text-4xl font-extrabold text-green-800 mb-4">{t('training.title')}</h1>
           <p className="text-xl text-gray-600 max-w-3xl mx-auto">
-            {t(`training.subtitle`)}
+            {t('training.subtitle')}
           </p>
         </div>
 
@@ -260,11 +260,11 @@ const Training = () => {
                   onClick={() => handleProgramSelect(program)}
                   className="w-full bg-green-600 hover:bg-green-700 text-white font-bold py-2 px-4 rounded transition-colors duration-300"
                 >
-                  {t(`common.register_now`)}
+                  {t('common.register_now')}
                 </button>
               </div>
               <div className="bg-gray-50 px-6 py-4">
-                <h3 className="text-sm font-semibold text-gray-700 mb-2">{t(`training.includes`)}:</h3>
+                <h3 className="text-sm font-semibold text-gray-700 mb-2">{t('training.includes')}:</h3>
                 <ul className="space-y-2">
                   {program.features?.map((feature, index) => (
                     <li key={index} className="flex items-start">
@@ -300,7 +300,7 @@ const Training = () => {
               {step === 1 && (
                 <form onSubmit={handleApplicationSubmit} className="space-y-6">
                   <h2 className="text-2xl font-bold text-green-800 mb-6 text-center">
-                    {t(``)} {selectedProgram.title}
+                    {t('')} {selectedProgram.title}
                   </h2>
                   
                   {/* Form fields */}
@@ -308,7 +308,7 @@ const Training = () => {
                     {/* Name Field */}
                     <div>
                       <label className="block text-gray-700 font-medium mb-2">
-                        {t(`form.name`)} <span className="text-red-500">*</span>
+                        {t('name')} <span className="text-red-500">*</span>
                       </label>
                       <div className="relative">
                         <div className="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
@@ -321,7 +321,7 @@ const Training = () => {
                           onChange={handleChange}
                           required
                           className="pl-10 w-full px-4 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-green-500"
-                          placeholder={t(`form.name_placeholder`)}
+                          placeholder={t('name')}
                         />
                       </div>
                     </div>
@@ -329,7 +329,7 @@ const Training = () => {
                     {/* Email Field */}
                     <div>
                       <label className="block text-gray-700 font-medium mb-2">
-                        {t(`form.email`)} <span className="text-red-500">*</span>
+                        {t('email')} <span className="text-red-500">*</span>
                       </label>
                       <div className="relative">
                         <div className="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
@@ -342,7 +342,7 @@ const Training = () => {
                           onChange={handleChange}
                           required
                           className="pl-10 w-full px-4 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-green-500"
-                          placeholder={t(`form.email_placeholder`)}
+                          placeholder={t('email')}
                         />
                       </div>
                     </div>
@@ -350,7 +350,7 @@ const Training = () => {
                     {/* Phone Field */}
                     <div>
                       <label className="block text-gray-700 font-medium mb-2">
-                        {t(`form.phone`)} <span className="text-red-500">*</span>
+                        {t('phone')} <span className="text-red-500">*</span>
                       </label>
                       <div className="relative">
                         <div className="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
@@ -363,7 +363,7 @@ const Training = () => {
                           onChange={handleChange}
                           required
                           className="pl-10 w-full px-4 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-green-500"
-                          placeholder={t(`form.phone_placeholder`)}
+                          placeholder={t('phone')}
                         />
                       </div>
                     </div>
@@ -371,7 +371,7 @@ const Training = () => {
                     {/* Location Field */}
                     <div>
                       <label className="block text-gray-700 font-medium mb-2">
-                        {t(`form.location`)} <span className="text-red-500">*</span>
+                        {t('location')} <span className="text-red-500">*</span>
                       </label>
                       <div className="relative">
                         <div className="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
@@ -384,7 +384,7 @@ const Training = () => {
                           onChange={handleChange}
                           required
                           className="pl-10 w-full px-4 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-green-500"
-                          placeholder={t(`form.location_placeholder`)}
+                          placeholder={t('location')}
                         />
                       </div>
                     </div>
@@ -392,7 +392,7 @@ const Training = () => {
                     {/* Experience Field */}
                     <div className="md:col-span-2">
                       <label className="block text-gray-700 font-medium mb-2">
-                        {t(`form.experience`)}
+                        {t('experience')}
                       </label>
                       <select
                         name="experience"
@@ -400,18 +400,18 @@ const Training = () => {
                         onChange={handleChange}
                         className="w-full px-4 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-green-500"
                       >
-                        <option value="">{t(`form.select_experience`)}</option>
-                        <option value="none">{t(`form.experience_options.none`)}</option>
-                        <option value="beginner">{t(`form.experience_options.beginner`)}</option>
-                        <option value="intermediate">{t(`form.experience_options.intermediate`)}</option>
-                        <option value="advanced">{t(`form.experience_options.advanced`)}</option>
+                        <option value="">{t('select_experience')}</option>
+                        <option value="none">{t('none')}</option>
+                        <option value="beginner">{t('beginner')}</option>
+                        <option value="intermediate">{t('intermediate')}</option>
+                        <option value="advanced">{t('advanced')}</option>
                       </select>
                     </div>
 
                     {/* Preferred Date Field */}
                     <div className="md:col-span-2">
                       <label className="block text-gray-700 font-medium mb-2">
-                        {t(`form.preferred_date`)}
+                        {t('preferred_date')}
                       </label>
                       <div className="relative">
                         <div className="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
@@ -430,7 +430,7 @@ const Training = () => {
                     {/* Questions Field */}
                     <div className="md:col-span-2">
                       <label className="block text-gray-700 font-medium mb-2">
-                        {t(`form.questions`)}
+                        {t('questions')}
                       </label>
                       <textarea
                         name="questions"
@@ -438,7 +438,7 @@ const Training = () => {
                         onChange={handleChange}
                         rows="3"
                         className="w-full px-4 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-green-500"
-                        placeholder={t(`form.questions_placeholder`)}
+                        placeholder={t('questions')}
                       ></textarea>
                     </div>
                   </div>
@@ -453,7 +453,7 @@ const Training = () => {
                       className="h-4 w-4 text-green-600 focus:ring-green-500 border-gray-300 rounded mt-1"
                     />
                     <label htmlFor="terms" className="ml-2 block text-gray-700">
-                      {t(`form.agree_to_terms`)}
+                      {t('agree to terms')}
                     </label>
                   </div>
 
@@ -474,9 +474,9 @@ const Training = () => {
                       {isLoading ? (
                         <>
                           <FaSpinner className="animate-spin mr-2 inline" />
-                          {t(`common.processing`)}
+                          {t('common.processing')}
                         </>
-                      ) : t(`form.submit_registration`)}
+                      ) : t('submit_registration')}
                     </button>
                   </div>
                 </form>
@@ -495,37 +495,37 @@ const Training = () => {
                     </svg>
                   </div>
                   <h3 className="text-2xl font-bold text-green-700 mb-2">
-                    {t(`confirmation.title`)}
+                    {t('confirmation.title')}
                   </h3>
                   <p className="text-gray-600 mb-6">
-                    {t(`confirmation.message`, { program: selectedProgram.title })}
+                    {t('confirmation.message', { program: selectedProgram.title })}
                   </p>
 
                   {/* Registration Details */}
                   <div className="mb-6 p-4 bg-gray-50 rounded-lg max-w-md mx-auto">
-                    <h4 className="font-bold mb-2">{t(`receipt.registration_details`)}</h4>
+                    <h4 className="font-bold mb-2">{t('receipt.registration_details')}</h4>
                     <p className="mb-1">{selectedProgram.title}</p>
-                    <p className="mb-1">{t(`receipt.duration`)}: {selectedProgram.duration}</p>
-                    <p className="mb-1">{t(`receipt.training_date`)}: {receiptData.trainingDate}</p>
+                    <p className="mb-1">{t('receipt.duration')}: {selectedProgram.duration}</p>
+                    <p className="mb-1">{t('receipt.training_date')}: {receiptData.trainingDate}</p>
                     {selectedProgram.price > 0 && (
-                      <p className="font-bold">{t(`receipt.amount`)}: {receiptData.price}</p>
+                      <p className="font-bold">{t('receipt.amount')}: {receiptData.price}</p>
                     )}
-                    <p className="mt-2 text-sm">{t(`receipt.reference_id`)}: {receiptData.registrationId}</p>
+                    <p className="mt-2 text-sm">{t('receipt.reference_id')}: {receiptData.registrationId}</p>
                   </div>
 
                   {/* Download Buttons */}
                   <div className="flex justify-center space-x-4 mb-6">
                     <button
-                      onClick={() => downloadReceipt(`pdf`)}
+                      onClick={() => downloadReceipt('pdf')}
                       className="bg-red-600 hover:bg-red-700 text-white font-bold py-2 px-4 rounded transition-colors duration-300 flex items-center"
                     >
-                      <FaPrint className="mr-2" /> {t(`receipt.download_pdf`)}
+                      <FaPrint className="mr-2" /> {t('receipt.download_pdf')}
                     </button>
                     <button
-                      onClick={() => downloadReceipt(`html`)}
+                      onClick={() => downloadReceipt('html')}
                       className="bg-blue-600 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded transition-colors duration-300 flex items-center"
                     >
-                      <FaPrint className="mr-2" /> {t(`receipt.download_html`)}
+                      <FaPrint className="mr-2" /> {t('receipt.download_html')}
                     </button>
                   </div>
 
@@ -534,7 +534,7 @@ const Training = () => {
                     onClick={handleCloseModal}
                     className="bg-green-700 hover:bg-green-800 text-white font-bold py-2 px-6 rounded transition-colors duration-300"
                   >
-                    {t(`common.close`)}
+                    {t('common.close')}
                   </button>
                 </div>
               )}
