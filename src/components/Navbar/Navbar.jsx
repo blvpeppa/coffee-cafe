@@ -5,7 +5,7 @@ import {
 } from "react-icons/fa";
 import { Link, useLocation } from "react-router-dom";
 import { useTranslation } from 'react-i18next';
-
+import logo from '../../assets/vite.svg';
 const Navbar = () => {
   const [isOpen, setIsOpen] = useState(false);
   const location = useLocation();
@@ -59,19 +59,36 @@ const Navbar = () => {
       </div>
 
       <div className="sticky top-0 z-50 bg-white shadow-md">
-        <div className="container mx-auto px-4 py-4 flex justify-between items-center">
-          <Link to="/" className="text-3xl font-bold text-green-900 tracking-wider hover:text-green-700 transition-colors">KRC</Link>
-          <ul className="hidden md:flex gap-8">
-            {Menu.map((menu) => (
-              <li key={menu.id}>
-                <Link to={menu.link} className={`text-lg hover:text-green-700 transition-all duration-300 ${isActive(menu.link)}`}>
-                  {t(menu.key)}
-                </Link>
-              </li>
-            ))}
-          </ul>
-          <button onClick={() => setIsOpen(!isOpen)} className="md:hidden text-2xl text-green-900">{isOpen ? <FaTimes /> : <FaBars />}</button>
-        </div>
+  <div className="container mx-auto px-4 py-4 flex justify-between items-center">
+    <Link to="/" className="flex items-center">
+      <img 
+        src={logo} 
+        alt="KRC" 
+        className="h-12 w-auto" 
+      />
+      <span className="ml-2 text-3xl font-bold text-green-900 tracking-wider hover:text-green-700 transition-colors">
+      </span>
+    </Link>
+    
+    <ul className="hidden md:flex gap-8">
+      {Menu.map((menu) => (
+        <li key={menu.id}>
+          <Link 
+            to={menu.link} 
+            className={`text-lg hover:text-green-700 transition-all duration-300 ${isActive(menu.link)}`}
+          >
+            {t(menu.key)}
+          </Link>
+        </li>
+      ))}
+    </ul>
+
+    <button onClick={() => setIsOpen(!isOpen)} className="md:hidden text-2xl text-green-900">
+      {isOpen ? <FaTimes /> : <FaBars />}
+    </button>
+  </div>
+</div>
+
 
         {isOpen && (
           <div className="md:hidden bg-white border-t border-gray-200 shadow-lg">
@@ -86,7 +103,6 @@ const Navbar = () => {
             </ul>
           </div>
         )}
-      </div>
     </>
   );
 };
